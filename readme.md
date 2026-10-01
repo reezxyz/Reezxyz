@@ -77,7 +77,7 @@
   </tr>
 </table>
 
-<a href="https://github.com/USERNAME?tab=repositories"><b>View all projects →</b></a>
+<a href="https://github.com/Reezxyz?tab=repositories"><b>View all projects →</b></a>
 </div>
 
 <img src="assets/divider.svg" width="100%"/>
@@ -86,10 +86,13 @@
 
 <div align="center">
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=USERNAME&show_icons=true&hide_border=false&bg_color=0B0B12&title_color=C6F432&icon_color=6D3CF0&text_color=FFFFFF&border_color=2A2540&border_radius=16" />
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=USERNAME&layout=compact&bg_color=0B0B12&title_color=C6F432&text_color=FFFFFF&border_color=2A2540&border_radius=16" />
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=Reezxyz&show_icons=true&hide_border=false&bg_color=0B0B12&title_color=C6F432&icon_color=6D3CF0&text_color=FFFFFF&border_color=2A2540&border_radius=16" />
 
-<img src="https://streak-stats.demolab.com?user=USERNAME&background=0B0B12&ring=6D3CF0&fire=FF5A36&currStreakLabel=C6F432&currStreakNum=FFFFFF&sideNums=FFFFFF&sideLabels=C6F432&dates=9A9AB0&border=2A2540&stroke=2A2540" />
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Reezxyz&layout=compact&bg_color=0B0B12&title_color=C6F432&text_color=FFFFFF&border_color=2A2540&border_radius=16" />
+
+<br>
+
+<img src="https://streak-stats.demolab.com?user=Reezxyz&background=0B0B12&ring=6D3CF0&fire=FF5A36&currStreakLabel=C6F432&currStreakNum=FFFFFF&sideNums=FFFFFF&sideLabels=C6F432&dates=9A9AB0&border=2A2540&stroke=2A2540" />
 
 </div>
 
