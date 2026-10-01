@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nama Kamu — Developer & 3D Artist</title>
+<meta name="description" content="Portofolio mahasiswa Teknik Informatika: web, mobile, game, multimedia, 3D, dan IoT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Tailwind CSS CDN — required by the Visual Lab gallery utilities -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
+<!-- Font Awesome — icons used by the gallery controls -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&family=VT323&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+/* Font Minecraft asli (opsional): taruh fonts/Minecraft.woff2 di samping index.html.
+   Kalau tidak ada, otomatis memakai "Press Start 2P". */
+@font-face{font-family:'Minecraft';src:local('Minecraft'),local('Minecraftia'),url('fonts/Minecraft.woff2') format('woff2');font-display:swap}
+
+/* Palet: hanya ungu (main) + lime (aksen) di atas dasar gelap */
+:root{
+  --bg:#08070f; --panel:#12101f; --ink:#f5f3ff; --muted:#a8a3c4; --line:rgba(255,255,255,.13);
+  --purple:#7c3aed; --purple-2:#a78bfa; --purple-d:#1a0f3d; --lime:#c8f533;
+  --ease:cubic-bezier(.65,0,.35,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg,canvas,video{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.wrap{width:min(1180px,92vw);margin-inline:auto;position:relative;z-index:2}
+section{position:relative;overflow:hidden}
+h1,h2,h3{line-height:1.05;letter-spacing:-.03em;font-weight:800}
+h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:56ch}
+.sec{padding:clamp(90px,13vw,160px) 0}
+.chip{display:inline-block;padding:.35rem .85rem;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.06);font-size:.84rem;margin:.2rem .25rem .2rem 0;backdrop-filter:blur(8px)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.6rem;border-radius:99px;font-weight:700;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.btn.primary{background:var(--lime);color:#14120a}
+.btn.ghost{border:1.5px solid var(--purple-2);background:rgba(124,58,237,.12)}
+.btn:hover{transform:translateY(-4px);box-shadow:0 14px 30px -10px rgba(124,58,237,.9)}
+.btn svg{width:16px;height:16px}
+
+/* Header section: badge + judul + deskripsi (gaya "Visual Lab") */
+.head{display:grid;gap:1rem;justify-items:start}
+.head h2{max-width:13ch}
+.badge{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem 1rem;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.06);backdrop-filter:blur(12px);color:var(--lime);font-weight:800;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.badge svg{width:15px;height:15px}
+
+/* ---------- NAV ---------- */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:60;background:linear-gradient(90deg,var(--purple),var(--lime));transform-origin:0 50%;transform:scaleX(0)}
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:.3rem;align-items:center;padding:.4rem .5rem;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.6);backdrop-filter:blur(16px) saturate(1.5);max-width:94vw;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{padding:.45rem .85rem;border-radius:99px;font-size:.86rem;white-space:nowrap;color:var(--muted);transition:background .45s var(--ease),color .45s var(--ease)}
+.nav a:hover{color:#fff}.nav a.on{background:var(--purple);color:#fff}
+.nav .logo{font-weight:800;color:var(--lime)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 90px;background:
+  radial-gradient(45% 45% at 88% 12%,rgba(124,58,237,.55),transparent 70%),
+  radial-gradient(40% 40% at 0% 100%,rgba(124,58,237,.35),transparent 70%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center}
+.hey{font-family:'Permanent Marker',cursive;color:var(--lime);font-size:1.4rem;transform:rotate(-3deg);display:inline-block}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);margin:.8rem 0 .4rem}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}
+.hero h1 .w>span{display:inline-block}
+.scribble{width:min(300px,60%);height:14px;margin-bottom:1.2rem}
+.scribble path{stroke:var(--lime);stroke-width:6;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1s var(--ease) 1.4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.roles{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--purple-2);height:1.6em;overflow:hidden;margin-bottom:1.2rem}
+.roles span{display:block}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+.stage{position:relative;aspect-ratio:1/1;max-height:640px;width:100%}
+#donut{width:100%;height:100%;cursor:grab;touch-action:pan-y}
+#donut:active{cursor:grabbing}
+.shading{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);display:flex;gap:2px;padding:4px;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.65);backdrop-filter:blur(10px);z-index:3}
+.shading button{padding:.4rem .9rem;border-radius:99px;font-size:.8rem;color:var(--muted);transition:background .45s var(--ease),color .45s var(--ease)}
+.shading button[aria-pressed=true]{background:var(--lime);color:#14120a;font-weight:700}
+.bubble{position:absolute;top:2%;left:-2%;z-index:3;max-width:170px;padding:.7rem .9rem;border-radius:18px 18px 18px 4px;border:2px solid var(--lime);background:rgba(124,58,237,.35);backdrop-filter:blur(8px);font-family:'Permanent Marker',cursive;font-size:.95rem;line-height:1.25;transform:rotate(-5deg)}
+.doodle{position:absolute;z-index:1;pointer-events:none}
+.doodle svg{width:100%;height:100%;overflow:visible}
+.d-star{width:46px;height:46px;top:8%;right:2%}.d-bolt{width:34px;height:50px;bottom:14%;left:-2%}.d-sq{width:110px;height:40px;top:84%;right:2%}.d-smile{width:44px;height:44px;top:46%;right:-1%}
+.scroll-ind{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.3rem;color:var(--muted);font-size:.78rem}
+.mouse{width:22px;height:34px;border:2px solid var(--muted);border-radius:12px;position:relative}
+.mouse::after{content:"";position:absolute;top:6px;left:50%;width:3px;height:7px;margin-left:-1.5px;border-radius:3px;background:var(--lime);animation:wheel 1.8s var(--ease) infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+
+/* ---------- SKILLS ---------- */
+.s-skills{background:linear-gradient(180deg,var(--bg),#100a26 50%,var(--bg))}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:3rem}
+.tile{position:relative;padding:1.6rem;border-radius:28px;border:1px solid var(--line);background:var(--panel);overflow:hidden;transition:transform .6s var(--ease),border-color .6s var(--ease);min-height:210px;display:flex;flex-direction:column;justify-content:flex-end}
+.tile::before{content:"";position:absolute;inset:auto -20% -60% -20%;height:100%;background:radial-gradient(closest-side,rgba(124,58,237,.7),transparent);opacity:.45;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.tile:hover{transform:translateY(-8px);border-color:var(--purple-2)}
+.tile:hover::before{opacity:.9;transform:translateY(-12%)}
+.tile .ic{position:absolute;top:1.3rem;left:1.4rem;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(200,245,51,.12);border:1px solid rgba(200,245,51,.35);color:var(--lime)}
+.tile .ic svg{width:24px;height:24px}
+.tile h3{font-size:1.5rem;position:relative}
+.tile p{color:var(--muted);font-size:.93rem;position:relative;margin:.3rem 0 .7rem}
+.tile .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.tile .bar i{position:absolute;inset:0;width:var(--v);background:var(--lime);border-radius:9px;transform-origin:0 50%}
+.t1,.t2{grid-column:span 3}.t3,.t4,.t5{grid-column:span 2}.t6{grid-column:span 6;min-height:150px}
+
+/* ---------- WEB ---------- */
+.s-web{background:linear-gradient(180deg,var(--bg),#130b30 35%,#130b30 70%,var(--bg))}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.browsers{position:relative;height:460px}
+.browser{position:absolute;width:82%;border-radius:20px;border:1px solid rgba(167,139,250,.4);background:rgba(18,16,31,.9);box-shadow:0 40px 70px -30px #000}
+.browser.b1{top:0;left:0}.browser.b2{top:150px;right:0;width:72%;border-color:var(--purple-2)}
+.bar-top{display:flex;gap:6px;align-items:center;padding:.65rem .9rem;border-bottom:1px solid var(--line)}
+.bar-top i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25)}.bar-top i:first-child{background:var(--lime)}
+.bar-top span{margin-left:.6rem;flex:1;font:.72rem 'JetBrains Mono';color:var(--purple-2);background:rgba(124,58,237,.18);padding:.15rem .6rem;border-radius:99px}
+.page{padding:.9rem;display:grid;gap:.6rem}
+.sk{border-radius:10px;background:linear-gradient(100deg,rgba(124,58,237,.18) 30%,rgba(167,139,250,.38) 50%,rgba(124,58,237,.18) 70%);background-size:300% 100%;animation:shimmer 3.2s var(--ease) infinite}
+@keyframes shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+.sk.h{height:90px}.sk.s{height:12px;width:60%}.sk.g{height:56px}.page .row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.code{font:.78rem/1.6 'JetBrains Mono';color:#e4dcff;padding:1rem}
+.code b{color:var(--purple-2);font-weight:400}.code em{color:var(--lime);font-style:normal}
+.plist{display:grid;margin-top:2rem}
+.proj{position:relative;padding:1.2rem 0;border-top:1px solid var(--line);transition:padding .55s var(--ease)}
+.proj:last-child{border-bottom:1px solid var(--line)}
+.proj::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
+.proj:hover{padding-left:1rem}.proj:hover::after{transform:scaleX(1)}
+.proj h3{font-size:1.25rem}.proj p{color:var(--muted);font-size:.95rem}
+
+/* ---------- MOBILE ---------- */
+.s-mob{background:linear-gradient(180deg,var(--bg),#1c0f46 40%,#1c0f46 70%,var(--bg))}
+.phones{position:relative;height:540px}
+.phone{position:absolute;width:230px;aspect-ratio:9/18.5;border-radius:38px;border:8px solid #0d0a1c;background:#efe9ff;box-shadow:0 40px 70px -25px #000,inset 0 0 0 2px rgba(255,255,255,.12);overflow:hidden;color:#1a0f3d}
+.phone.p1{left:6%;top:30px;transform:rotate(-7deg)}.phone.p2{right:6%;top:0;transform:rotate(6deg);background:#1a1230;color:#fff}
+.phone::before{content:"";position:absolute;top:8px;left:50%;width:70px;height:18px;border-radius:99px;background:#0d0a1c;transform:translateX(-50%);z-index:2}
+.ph-in{padding:38px 14px 14px;display:grid;gap:.6rem;height:100%;align-content:start}
+.ph-h{font:800 1.1rem 'Plus Jakarta Sans'}
+.ph-card{display:flex;gap:.6rem;align-items:center;padding:.6rem;border-radius:16px;background:rgba(124,58,237,.14)}
+.p2 .ph-card{background:rgba(255,255,255,.08)}
+.ph-card i{width:34px;height:34px;border-radius:11px;background:var(--purple);flex:none}
+.ph-card:nth-child(3) i{background:var(--lime)}.ph-card:nth-child(5) i{background:var(--purple-2)}
+.ph-card b{display:block;height:8px;border-radius:9px;background:currentColor;opacity:.55;width:70%;margin-bottom:5px}
+.ph-card u{display:block;height:6px;border-radius:9px;background:currentColor;opacity:.25;width:45%}
+.ph-tab{position:absolute;left:14px;right:14px;bottom:12px;height:44px;border-radius:99px;background:#1a0f3d;display:flex;justify-content:space-around;align-items:center}
+.p2 .ph-tab{background:#efe9ff}.ph-tab i{width:10px;height:10px;border-radius:50%;background:var(--lime)}.p2 .ph-tab i{background:var(--purple)}
+.ph-ring{width:120px;height:120px;margin:.4rem auto;border-radius:50%;background:conic-gradient(var(--lime) 0 68%,rgba(255,255,255,.12) 0);display:grid;place-items:center;font:800 1.4rem 'Plus Jakarta Sans'}
+.ph-ring span{width:94px;height:94px;border-radius:50%;background:#1a1230;display:grid;place-items:center}
+
+/* ---------- GAME (Minecraft vibe, tetap ungu + lime) ---------- */
+.s-game{background:linear-gradient(180deg,var(--bg),#1b0f45 18%,#2a1670 85%,#34208a);padding-bottom:0}
+.s-game .sec{padding-bottom:60px}
+.mc-head{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;position:relative;margin-top:1.2rem}
+.mc-title{font-family:'Minecraft','Press Start 2P',monospace;font-size:clamp(1.5rem,4.4vw,3.4rem);color:#fff;text-shadow:5px 5px 0 #0d0624;letter-spacing:.02em;line-height:1.3;font-weight:400;max-width:none}
+.splash{position:absolute;right:0;top:-34px;font-family:'Minecraft','Press Start 2P',monospace;font-size:clamp(.7rem,1.6vw,1.05rem);color:var(--lime);text-shadow:3px 3px 0 #0d0624;transform:rotate(-14deg);animation:splash 1.6s var(--ease) infinite alternate;white-space:nowrap}
+@keyframes splash{from{transform:rotate(-14deg) scale(.92)}to{transform:rotate(-14deg) scale(1.08)}}
+.px{image-rendering:pixelated}.px i{display:block}
+.sparks i{position:absolute;display:block;z-index:1;background:var(--lime);opacity:.8}
+.hud{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 2rem;align-items:center}
+.hearts{display:flex;gap:4px}
+.hotbar{display:flex;gap:4px;padding:5px;background:rgba(0,0,0,.4);border:4px solid #0a0618;box-shadow:inset 3px 3px 0 rgba(255,255,255,.12),inset -3px -3px 0 rgba(0,0,0,.4)}
+.slot{width:42px;height:42px;background:#2a2152;border:3px solid;border-color:#0a0618 #5b4aa8 #5b4aa8 #0a0618;display:grid;place-items:center}
+.slot.sel{outline:4px solid var(--lime);outline-offset:-2px}
+.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.mc-card{position:relative;padding:1.2rem 1.2rem 1.4rem;background-color:#2a2152;border:4px solid #0a0618;box-shadow:inset 4px 4px 0 rgba(255,255,255,.14),inset -4px -4px 0 rgba(0,0,0,.4),8px 8px 0 rgba(0,0,0,.35);transition:transform .5s steps(3)}
+.mc-card:hover{transform:translate(-4px,-8px)}
+.mc-card h3{font-family:'Minecraft','Press Start 2P',monospace;font-weight:400;font-size:.9rem;line-height:1.5;color:#fff;text-shadow:3px 3px 0 #0d0624;margin:.7rem 0 .4rem;letter-spacing:0}
+.mc-card p{font-family:'VT323',monospace;font-size:1.4rem;line-height:1.15;color:#ddd5ff}
+.mc-card .tags span{display:inline-block;margin:.5rem .3rem 0 0;padding:.05rem .5rem;background:#0a0618;color:var(--lime);font-family:'VT323',monospace;font-size:1.2rem;border:2px solid #5b4aa8}
+.mc-card .icon{width:64px;height:64px;display:grid;place-items:center;background:#1c1540;border:3px solid;border-color:#0a0618 #5b4aa8 #5b4aa8 #0a0618}
+.mc-tip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;background:rgba(13,7,32,.95);border:3px solid var(--purple);box-shadow:inset 0 0 0 2px #4c1d95;padding:.4rem .8rem;color:#fff;font-family:'VT323',monospace;font-size:1.3rem;white-space:nowrap;z-index:5;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.mc-card:hover .mc-tip{opacity:1;transform:translateX(-50%) scale(1)}
+.ground{position:relative;height:150px;margin-top:40px;z-index:2}
+.ground .grass{position:absolute;inset:0 0 auto 0;height:40px}
+.ground .dirt{position:absolute;inset:40px 0 0 0}
+
+/* ---------- IoT ---------- */
+.s-iot{background:linear-gradient(180deg,var(--bg),#0f0a24 18%,#0f0a24 82%,var(--bg))}
+.traces{position:absolute;inset:0;width:100%;height:100%;opacity:.5;z-index:0}
+.traces path{fill:none;stroke:var(--purple-2);stroke-width:1.5;stroke-dasharray:6 14;animation:flow 3s linear infinite}
+.traces path:nth-child(even){animation-duration:4.5s;stroke:var(--lime);opacity:.7}
+.traces circle{fill:var(--lime)}
+@keyframes flow{to{stroke-dashoffset:-80}}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
+.sensor{padding:1.2rem;border-radius:22px;border:1px solid var(--line);background:rgba(18,16,31,.75);backdrop-filter:blur(8px);font-family:'JetBrains Mono',monospace;transition:transform .6s var(--ease),border-color .6s var(--ease)}
+.sensor:hover{transform:translateY(-6px);border-color:var(--purple-2)}
+.sensor small{color:var(--muted);font-size:.78rem}
+.sensor .val{font-size:2rem;font-weight:600;color:#fff}.sensor .val i{font-style:normal;font-size:1rem;color:var(--lime)}
+.spark{width:100%;height:44px;margin-top:.4rem}
+.spark polyline{fill:none;stroke:var(--lime);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.relay{display:flex;align-items:center;justify-content:space-between;margin-top:.7rem}
+.sw{width:56px;height:30px;border-radius:99px;background:#241a4a;border:1px solid var(--purple-2);position:relative;transition:background .5s var(--ease)}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--purple-2);transition:transform .5s var(--ease),background .5s var(--ease)}
+.sw[aria-pressed=true]{background:var(--lime)}.sw[aria-pressed=true]::after{transform:translateX(26px);background:#14120a}
+.bulb{width:22px;height:22px;border-radius:50%;background:#241a4a;transition:background .5s var(--ease),box-shadow .5s var(--ease)}
+.bulb.on{background:var(--lime);box-shadow:0 0 24px 8px rgba(200,245,51,.55)}
+.serial{margin-top:1rem;height:150px;overflow:hidden;padding:1rem;border-radius:22px;border:1px solid var(--line);background:#07050f;font:.8rem/1.7 'JetBrains Mono';color:var(--lime);position:relative}
+.serial::after{content:"";position:absolute;inset:auto 0 0 0;height:40px;background:linear-gradient(transparent,#07050f)}
+.boards{margin-top:1.6rem}
+
+/* ---------- MULTIMEDIA ---------- */
+.s-media{background:linear-gradient(180deg,var(--bg),#170d3a 20%,#0d0822 70%,var(--bg))}
+.apps{display:flex;gap:1rem;margin:2rem 0}
+.app{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font:800 1.6rem 'Plus Jakarta Sans';border:1.5px solid var(--purple-2);color:var(--lime);background:rgba(124,58,237,.18);backdrop-filter:blur(8px);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.app:hover{transform:translateY(-8px) rotate(-6deg);box-shadow:0 18px 30px -10px var(--purple)}
+.nle{border-radius:24px;border:1px solid var(--line);background:rgba(18,16,31,.85);box-shadow:0 40px 80px -30px #000;overflow:hidden}
+.nle-top{display:flex;justify-content:space-between;padding:.7rem 1rem;border-bottom:1px solid var(--line);font:.8rem 'JetBrains Mono';color:var(--muted)}
+#tc{color:var(--lime)}
+.tracks{position:relative;padding:.8rem 1rem 1rem 3rem}
+.track{position:relative;height:36px;margin:.4rem 0;border-radius:10px;background:rgba(255,255,255,.04)}
+.track::before{content:attr(data-n);position:absolute;left:-2.2rem;top:8px;font:.72rem 'JetBrains Mono';color:var(--muted)}
+.clip{position:absolute;top:3px;bottom:3px;border-radius:8px;font:.7rem/30px 'JetBrains Mono';padding-left:.5rem;color:#fff;overflow:hidden;white-space:nowrap}
+.v1 .clip{background:linear-gradient(90deg,#5b21b6,#8b5cf6)}.v2 .clip{background:linear-gradient(90deg,#7c3aed,#c4b5fd);color:#1a0f3d}
+.a1 .clip{background:linear-gradient(90deg,#9bc21f,var(--lime));color:#14120a}.fx .clip{background:linear-gradient(90deg,#3b1a85,#6d28d9)}
+#playhead{position:absolute;top:.4rem;bottom:.4rem;left:3rem;width:2px;background:var(--lime);z-index:3}
+#playhead::before{content:"";position:absolute;top:-4px;left:-6px;border:7px solid transparent;border-top-color:var(--lime);border-bottom:0}
+.art{position:relative;aspect-ratio:4/3;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.art>div{position:absolute;inset:0;transition:opacity .6s var(--ease)}
+.l-sky{background:linear-gradient(180deg,#1b0f4a,#6d28d9 65%,#c4b5fd)}
+.l-mtn{clip-path:polygon(0 100%,0 62%,22% 40%,38% 58%,60% 28%,82% 56%,100% 44%,100% 100%);background-color:#0d0824}
+.l-glow{background:radial-gradient(circle at 62% 36%,rgba(200,245,51,.75) 0,rgba(200,245,51,.25) 14%,transparent 40%)}
+.l-txt{display:grid;place-items:center;font:800 2.2rem 'Plus Jakarta Sans';color:#fff;letter-spacing:.05em;text-shadow:0 4px 20px #0008}
+.layers{border-radius:22px;border:1px solid var(--line);background:rgba(18,16,31,.85);overflow:hidden}
+.layers h4{padding:.7rem 1rem;font:.78rem 'JetBrains Mono';color:var(--purple-2);border-bottom:1px solid var(--line)}
+.layer{display:flex;align-items:center;gap:.7rem;width:100%;padding:.75rem 1rem;border-bottom:1px solid var(--line);text-align:left;font-size:.92rem;transition:background .4s var(--ease)}
+.layer:hover{background:rgba(124,58,237,.2)}.layer .eye{width:18px;height:12px;border-radius:50%;border:2px solid var(--lime);position:relative;flex:none}
+.layer .eye::after{content:"";position:absolute;inset:2px 4px;border-radius:50%;background:var(--lime);transition:transform .4s var(--ease)}
+.layer[aria-pressed=false]{opacity:.45}.layer[aria-pressed=false] .eye::after{transform:scale(0)}
+
+/* ---------- 3D ---------- */
+.s-3d{background:linear-gradient(180deg,var(--bg),#1b0f45 25%,#120a2e 75%,var(--bg))}
+.stats{display:flex;gap:2rem;margin:1.6rem 0;flex-wrap:wrap}
+.stat b{display:block;font:800 2.4rem 'Plus Jakarta Sans';color:var(--lime)}.stat span{color:var(--muted);font-size:.9rem}
+.spl{position:relative;height:500px;border-radius:32px;overflow:hidden;background:rgba(0,0,0,.95);border:1px solid rgba(167,139,250,.4);box-shadow:0 40px 80px -30px #000}
+.spl canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.spl .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#6e6890;font:.85rem 'JetBrains Mono';text-align:center;padding:1rem}
+.spot{position:absolute;width:320px;height:320px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(167,139,250,.5),transparent 70%);filter:blur(30px);opacity:0;transition:opacity .5s var(--ease);z-index:2;transform:translate(-50%,-50%)}
+.spl:hover .spot{opacity:1}
+
+/* ---------- 3D SHOWCASE (PORTO LAMA) ---------- */
+/* EFEK RESIN & KACA CEMBUNG TEBAL (3D LIQUID GLASS EDGE) */
+.resin-glass {
+    position: relative;
+    /* Efek cembung resin: Kombinasi bayangan putih berkilau di dalam & bayangan gelap di luar */
+    box-shadow: 
+        inset 0 2px 4px 0 rgba(255, 255, 255, 0.4),      /* Kilatan cahaya atas */
+        inset 0 -2px 4px 0 rgba(0, 0, 0, 0.4),        /* Bayangan kedalaman bawah */
+        inset 0 0 15px 2px rgba(255, 255, 255, 0.15),  /* Bias cahaya kaca cembung */
+        0 20px 40px -15px rgba(0, 0, 0, 0.5);          /* Bayangan melayang di luar */
+}
+
+/* Garis pembiasan cahaya di tepi luar agar makin mirip resin cair */
+.resin-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px; /* Ketebalan bibir kaca */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.6) 0%, 
+        rgba(255, 255, 255, 0.1) 40%, 
+        rgba(255, 255, 255, 0.05) 60%, 
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* Hover state: luruskan card sepenuhnya saat video ditonton.
+   !important diperlukan agar transform dari scroll-reveal tidak mengalahkan hover. */
+.project-3d-card {
+    transition: transform 500ms cubic-bezier(.22,1,.36,1);
+}
+.project-3d-card:hover {
+    transform: translateY(0) rotate(0deg) !important;
+}
+
+/* ---------- TIKTOK ---------- */
+.s-tt{background:linear-gradient(180deg,#050612,#0d0822 40%,var(--bg))}
+.tt-box{padding:1.2rem;border-radius:32px;border:1px solid var(--line);background:rgba(255,255,255,.05);backdrop-filter:blur(14px);display:flex;justify-content:center;min-height:300px}
+.tt-box blockquote{margin:0 auto!important}
+.glowline{background:linear-gradient(90deg,var(--lime),var(--purple-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- CONTACT ---------- */
+.s-contact{text-align:center;background:radial-gradient(60% 60% at 50% 100%,rgba(124,58,237,.5),transparent 70%),var(--bg);padding-bottom:60px}
+.s-contact .head{justify-items:center}.s-contact .head h2{max-width:16ch;font-size:clamp(2.6rem,7vw,5.5rem)}
+.s-contact .cta{justify-content:center}
+footer{margin-top:5rem;color:var(--muted);font-size:.85rem}
+
+@media (max-width:900px){
+  .hero .wrap,.split{grid-template-columns:1fr}
+  .stage{max-width:480px;margin:auto}.d-sq,.d-smile{display:none}
+  .t1,.t2,.t3,.t4,.t5,.t6{grid-column:span 6}
+  .inv{grid-template-columns:1fr}.dash{grid-template-columns:1fr 1fr}.browsers{height:400px}.phones{height:520px}
+  .splash{display:none}.reels{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.25rem}
+  .rw:nth-child(n){margin-top:0}.rw:nth-child(2),.rw:nth-child(5){margin-top:35px}
+}
+@media (max-width:560px){.reels{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;gap:1rem;padding:1rem .5rem 50px;margin-inline:-1rem}.rw{flex:0 0 78vw;max-width:280px;scroll-snap-align:center}.rw:nth-child(n){margin-top:0}.reel{max-width:100%}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.scribble path{stroke-dashoffset:0}}
+</style>
+  <!-- Spline Runtime: render langsung ke canvas, tanpa Spline Viewer/watermark -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@1.9.80/build/runtime.js"
+      }
+    }
+  </script>
+</head>
+<body id="top">
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">NK</a>
+  <a href="#skills">Skill</a><a href="#web">Web</a><a href="#mobile">Mobile</a><a href="#game">Game</a>
+  <a href="#iot">IoT</a><a href="#media">Multimedia</a><a href="#3d">3D</a><a href="#featured-3d">Galeri</a><a href="#contact">Kontak</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="hey">Hei, saya Nama Kamu!</span>
+      <h1 id="h1">Saya membangun yang bisa diklik, dimainkan, dan diputar 360°.</h1>
+      <svg class="scribble" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9C60 2 120 12 180 6S260 4 297 8"/></svg>
+      <div class="roles" id="roles"><span>Web Developer</span></div>
+      <p class="lead">Mahasiswa Teknik Informatika. Web, aplikasi mobile, game, video, 3D, dan IoT dalam satu portofolio. Scroll ke bawah, tiap bagian punya dunianya sendiri.</p>
+      <div class="cta">
+        <a class="btn primary" href="#featured-3d"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>Lihat karya</a>
+        <a class="btn ghost" href="#contact">Hubungi saya</a>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="bubble" data-speed="-.3">Ayo bikin sesuatu yang keren!</div>
+      <div class="doodle d-star" data-speed="-.6"><svg viewBox="0 0 24 24" fill="#c8f533"><path d="M12 1l2.6 7.4L22 9l-6 4.6L18 21l-6-4.4L6 21l2-7.4L2 9l7.4-.6z"/></svg></div>
+      <div class="doodle d-bolt" data-speed=".5"><svg viewBox="0 0 24 36" fill="#c8f533"><path d="M14 0 2 20h8l-3 16 15-22h-9z"/></svg></div>
+      <div class="doodle d-sq" data-speed=".8"><svg viewBox="0 0 110 40" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round"><path d="M4 30c12-26 20 8 32-10s20 8 32-8 20 12 38-6"/></svg></div>
+      <div class="doodle d-smile" data-speed="-.4"><svg viewBox="0 0 40 40" fill="none" stroke="#c8f533" stroke-width="3" stroke-linecap="round"><circle cx="20" cy="20" r="16"/><path d="M13 15v2M27 15v2M12 24c4 6 12 6 16 0"/></svg></div>
+      <canvas id="donut" aria-label="Model 3D donat yang bisa diputar"></canvas>
+      <div class="shading" role="group" aria-label="Viewport shading">
+        <button aria-pressed="true" data-mode="solid">Solid</button>
+        <button aria-pressed="false" data-mode="wire">Wireframe</button>
+        <button aria-pressed="false" data-mode="clay">Clay</button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind"><div class="mouse"></div>Scroll ke bawah</div>
+</section>
+
+<!-- SKILLS -->
+<section class="s-skills sec" id="skills">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <span class="badge" data-i="spark">Skill Set</span>
+      <h2>Enam bidang, satu rasa ingin tahu</h2>
+      <p class="lead">Dari kode sampai kabel, dari timeline video sampai poligon. Klik kartu untuk melompat ke bagiannya.</p>
+    </div>
+    <div class="bento">
+      <a class="tile t1" href="#web" data-reveal="left"><span class="ic" data-i="globe"></span><h3>Web Developer</h3><p>HTML, CSS, JavaScript, React, Node.js</p><div class="bar"><i style="--v:90%"></i></div></a>
+      <a class="tile t2" href="#mobile" data-reveal="right"><span class="ic" data-i="phone"></span><h3>Mobile App Developer</h3><p>Flutter, React Native, Kotlin</p><div class="bar"><i style="--v:80%"></i></div></a>
+      <a class="tile t3" href="#game" data-reveal="scale"><span class="ic" data-i="game"></span><h3>Game Developer</h3><p>Unity, Godot, C#</p><div class="bar"><i style="--v:78%"></i></div></a>
+      <a class="tile t4" href="#media" data-reveal="scale"><span class="ic" data-i="film"></span><h3>Multimedia</h3><p>After Effects, Premiere Pro, Photoshop</p><div class="bar"><i style="--v:85%"></i></div></a>
+      <a class="tile t5" href="#3d" data-reveal="scale"><span class="ic" data-i="cube"></span><h3>3D Artist</h3><p>Blender: modeling, texturing, render</p><div class="bar"><i style="--v:82%"></i></div></a>
+      <a class="tile t6" href="#iot" data-reveal><span class="ic" data-i="chip"></span><h3>IoT Maker</h3><p>ESP32, Arduino, MQTT, sensor, dan otomasi rumah</p><div class="bar"><i style="--v:75%"></i></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- WEB -->
+<section class="s-web sec" id="web">
+  <div class="wrap split">
+    <div class="browsers">
+      <div class="browser b1" data-speed="-.35">
+        <div class="bar-top"><i></i><i></i><i></i><span>nama-kamu.dev/toko</span></div>
+        <div class="page"><div class="sk h"></div><div class="sk s"></div><div class="row"><div class="sk g"></div><div class="sk g"></div><div class="sk g"></div></div></div>
+      </div>
+      <div class="browser b2" data-speed=".45">
+        <div class="bar-top"><i></i><i></i><i></i><span>localhost:5173</span></div>
+        <pre class="code"><b>const</b> app = <em>express</em>()
+app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
+  <b>const</b> data = <b>await</b> db.<em>produk</em>.<em>findAll</em>()
+  res.<em>json</em>(data)
+})</pre>
+      </div>
+    </div>
+    <div>
+      <div class="head" data-reveal>
+        <span class="badge" data-i="globe">Web Developer</span>
+        <h2>Web yang cepat dan rapi</h2>
+        <p class="lead">Dari antarmuka sampai API. Saya suka detail kecil: transisi halus, layout responsif, dan kode yang gampang dirawat.</p>
+      </div>
+      <div style="margin-top:1.2rem"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">MySQL</span></div>
+      <div class="plist">
+        <div class="proj" data-reveal><h3>Toko Online UMKM</h3><p>Katalog, keranjang, dan pembayaran untuk usaha kecil.</p></div>
+        <div class="proj" data-reveal><h3>Sistem Informasi Akademik</h3><p>Jadwal, nilai, dan presensi dalam satu dashboard.</p></div>
+        <div class="proj" data-reveal><h3>Landing Page Event Kampus</h3><p>Halaman pendaftaran dengan animasi scroll dan hitung mundur.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE -->
+<section class="s-mob sec" id="mobile">
+  <div class="wrap split">
+    <div>
+      <div class="head" data-reveal>
+        <span class="badge" data-i="phone">Mobile Apps</span>
+        <h2>Aplikasi yang nyaman di satu tangan</h2>
+        <p class="lead">Android dan iOS dengan satu basis kode. Fokus pada kecepatan buka, gestur natural, dan layout yang pas di layar kecil.</p>
+      </div>
+      <div style="margin-top:1.2rem"><span class="chip">Flutter</span><span class="chip">React Native</span><span class="chip">Kotlin</span><span class="chip">Firebase</span></div>
+      <div class="plist">
+        <div class="proj" data-reveal><h3>Catatan Keuangan Mahasiswa</h3><p>Catat pengeluaran harian dan lihat grafik bulanan.</p></div>
+        <div class="proj" data-reveal><h3>Aplikasi Kontrol IoT</h3><p>Nyalakan lampu dan baca sensor dari ponsel lewat MQTT.</p></div>
+        <div class="proj" data-reveal><h3>Pengingat Jadwal Kuliah</h3><p>Notifikasi tugas dan ujian, bekerja tanpa internet.</p></div>
+      </div>
+    </div>
+    <div class="phones">
+      <div class="phone p1" data-speed="-.4"><div class="ph-in"><div class="ph-h">Hari ini</div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div></div>
+        <div class="ph-tab"><i></i><i style="opacity:.4"></i><i style="opacity:.4"></i></div></div>
+      <div class="phone p2" data-speed=".5"><div class="ph-in"><div class="ph-h">Ringkasan</div>
+        <div class="ph-ring"><span>68%</span></div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div>
+        <div class="ph-card"><i></i><div style="flex:1"><b></b><u></u></div></div></div>
+        <div class="ph-tab"><i style="opacity:.4"></i><i></i><i style="opacity:.4"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section class="s-game" id="game">
+  <div class="sparks" id="sparks" aria-hidden="true"></div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="head" data-reveal><span class="badge" data-i="game">Game Developer</span></div>
+      <div class="mc-head">
+        <div class="px" id="creeper" data-speed=".3" aria-hidden="true"></div>
+        <h2 class="mc-title" data-reveal="left">Projects: Game</h2>
+        <span class="splash">Level up!</span>
+      </div>
+      <div class="hud" data-reveal>
+        <div class="hearts" id="hearts" aria-hidden="true"></div>
+        <div class="hotbar" aria-hidden="true">
+          <div class="slot sel"><div class="px" data-item="diamond"></div></div>
+          <div class="slot"><div class="px" data-item="heart"></div></div>
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+      <div class="inv">
+        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 2D Platformer</div>
+          <div class="icon"><div class="px" data-item="diamond"></div></div>
+          <h3>Block Runner</h3><p>Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.</p>
+          <div class="tags"><span>Unity</span><span>C#</span></div></article>
+        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Godot · Roguelike</div>
+          <div class="icon"><div class="px" data-item="creeper"></div></div>
+          <h3>Pixel Dungeon</h3><p>Dungeon acak berbasis grid, musuh punya pola serangan sendiri.</p>
+          <div class="tags"><span>Godot</span><span>GDScript</span></div></article>
+        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 3D Arcade</div>
+          <div class="icon"><div class="px" data-item="heart"></div></div>
+          <h3>Space Drift</h3><p>Balap pesawat 3D dengan model dan efek buatan Blender.</p>
+          <div class="tags"><span>Unity</span><span>Blender</span></div></article>
+      </div>
+    </div>
+  </div>
+  <div class="ground"><div class="grass" id="grass"></div><div class="dirt" id="dirt"></div></div>
+</section>
+
+<!-- IoT -->
+<section class="s-iot sec" id="iot">
+  <svg class="traces" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 120H220L260 160H520L560 120H900L940 160H1200"/>
+    <path d="M0 400H180L220 360H460L500 400H760L800 440H1200"/>
+    <path d="M0 680H300L340 640H640L680 680H1000L1040 640H1200"/>
+    <path d="M300 0V220L340 260V520L300 560V800"/>
+    <path d="M880 0V180L920 220V560L880 600V800"/>
+    <circle cx="260" cy="160" r="5"/><circle cx="560" cy="120" r="5"/><circle cx="500" cy="400" r="5"/><circle cx="920" cy="220" r="5"/><circle cx="340" cy="640" r="5"/>
+  </svg>
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <span class="badge" data-i="chip">IoT Lab</span>
+      <h2>Perangkat yang bicara satu sama lain</h2>
+      <p class="lead">Sensor membaca dunia, ESP32 mengirim data lewat MQTT, dashboard menampilkannya. Di bawah ini simulasi live-nya. Coba nyalakan relay.</p>
+    </div>
+    <div class="dash">
+      <div class="sensor"><small>Suhu ruangan</small><div class="val"><span id="vT">28.0</span><i> °C</i></div><svg class="spark" viewBox="0 0 120 44" preserveAspectRatio="none"><polyline id="spT"/></svg></div>
+      <div class="sensor"><small>Kelembapan</small><div class="val"><span id="vH">62</span><i> %</i></div><svg class="spark" viewBox="0 0 120 44" preserveAspectRatio="none"><polyline id="spH"/></svg></div>
+      <div class="sensor"><small>Cahaya (LDR)</small><div class="val"><span id="vL">540</span><i> lux</i></div><svg class="spark" viewBox="0 0 120 44" preserveAspectRatio="none"><polyline id="spL"/></svg></div>
+      <div class="sensor"><small>Relay 1 · Lampu</small><div class="relay"><span class="bulb" id="bulb"></span><button class="sw" id="sw" aria-pressed="false" aria-label="Nyalakan lampu"></button></div><small style="display:block;margin-top:.8rem" id="relayTxt">GPIO 26 · LOW</small></div>
+    </div>
+    <div class="serial" id="serial" aria-label="Log serial monitor"></div>
+    <div class="boards"><span class="chip">ESP32</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">MQTT</span><span class="chip">DHT22</span><span class="chip">Relay</span></div>
+  </div>
+</section>
+
+<!-- MULTIMEDIA -->
+<section class="s-media sec" id="media">
+  <div class="wrap">
+    <div class="split" style="align-items:start">
+      <div>
+        <div class="head" data-reveal>
+          <span class="badge" data-i="film">Motion Studio</span>
+          <h2>Cerita yang bergerak</h2>
+          <p class="lead">Memotong, menyusun ritme, memberi motion graphic dan retouch. Video pendek, trailer, sampai poster.</p>
+        </div>
+        <div class="apps" data-reveal><div class="app" title="After Effects">Ae</div><div class="app" title="Premiere Pro">Pr</div><div class="app" title="Photoshop">Ps</div></div>
+        <div class="layers" data-reveal>
+          <h4>Layers · klik untuk menyalakan / mematikan</h4>
+          <button class="layer" aria-pressed="true" data-l="l-txt"><span class="eye"></span>Judul teks</button>
+          <button class="layer" aria-pressed="true" data-l="l-glow"><span class="eye"></span>Cahaya matahari</button>
+          <button class="layer" aria-pressed="true" data-l="l-mtn"><span class="eye"></span>Gunung</button>
+          <button class="layer" aria-pressed="true" data-l="l-sky" style="border-bottom:0"><span class="eye"></span>Langit senja</button>
+        </div>
+      </div>
+      <div>
+        <div class="art" data-reveal="scale" id="art"><div class="l-sky"></div><div class="l-mtn"></div><div class="l-glow"></div><div class="l-txt">GOLDEN HOUR</div></div>
+        <div class="nle" style="margin-top:1.4rem" data-reveal>
+          <div class="nle-top"><span>Sequence 01 · 1080×1920 · 30fps</span><span id="tc">00:00:00:00</span></div>
+          <div class="tracks" id="tracks">
+            <div id="playhead"></div>
+            <div class="track fx" data-n="FX"><div class="clip" style="left:10%;width:30%">Glow + Shake</div><div class="clip" style="left:56%;width:22%">Light Leak</div></div>
+            <div class="track v2" data-n="V2"><div class="clip" style="left:22%;width:40%">Title_anim.aep</div></div>
+            <div class="track v1" data-n="V1"><div class="clip" style="left:0;width:34%">Clip_A</div><div class="clip" style="left:35%;width:28%">Clip_B</div><div class="clip" style="left:64%;width:36%">Clip_C</div></div>
+            <div class="track a1" data-n="A1"><div class="clip" style="left:0;width:100%">Music_bed.wav</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D -->
+<section class="s-3d sec" id="3d">
+  <div class="wrap split">
+    <div>
+      <div class="head" data-reveal>
+        <span class="badge" data-i="cube">3D Studio</span>
+        <h2>Dari kubus polos jadi dunia</h2>
+        <p class="lead">Modeling, sculpting, texturing, rigging, sampai render di Blender. Putar objek 3D di samping, itu scene interaktif.</p>
+      </div>
+      <div class="stats" data-reveal>
+        <div class="stat"><b data-count="120">0</b><span>model selesai</span></div>
+        <div class="stat"><b data-count="48">0</b><span>render animasi</span></div>
+        <div class="stat"><b data-count="6">0</b><span>tahun pakai Blender</span></div>
+      </div>
+      <div><span class="chip">Modeling</span><span class="chip">Sculpting</span><span class="chip">UV &amp; Texturing</span><span class="chip">Rigging</span><span class="chip">Cycles / Eevee</span></div>
+    </div>
+    <div class="spl" id="spl" data-reveal="scale">
+      <div class="spot" id="spot"></div>
+      <canvas id="canvas3d"></canvas>
+    </div>
+  </div>
+</section>
+
+
+    <!-- 3D Showcase Section -->
+    <section id="featured-3d" class="py-24 border-t border-slate-200/50 dark:border-slate-800/50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="absolute top-20 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-xl mb-20 space-y-3 data-reveal">
+                <div class="section-kicker"><span class="section-kicker-line"></span><span>// visual_lab.render()</span><span class="section-index">VIS.01</span></div>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-amber-500 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-cube"></i> <span data-en="Visual Lab" data-id="Lab Visual">Visual Lab</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                    Blender Artwork & Motion
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" 
+                   data-en="Exploration of vertical 3D visualization—loop animations, volumetric lighting, and character portraits." 
+                   data-id="Eksplorasi visualisasi 3D vertikal—animasi loop, pencahayaan volumetrik, dan karakter portrait.">
+                    Exploration of vertical 3D visualization—loop animations, volumetric lighting, and character portraits.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-start pt-4 pb-16">
+                
+                <!-- Card 1 -->
+                <div class="project-3d-card md:-translate-y-8 md:-rotate-1 hover:rotate-0 hover:translate-y-0 transition-all duration-500 group" data-reveal="left">
+                    <div class="ambient-glow" style="--glow-color: rgba(245, 158, 11, 0.4);"></div>
+                    <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                            <source src="https://i.imgur.com/WDW32mF.mp4#t=34" type="video/mp4">
+                        </video>
+                        <div class="absolute top-5 left-5 z-30">
+                            <span class="px-4 py-2 rounded-2xl glass-card text-[11px] font-extrabold text-white backdrop-blur-md border-white/20 shadow-lg">
+                                #01 / Cinematic
+                            </span>
+                        </div>
+                        <div class="absolute top-5 right-5 z-30">
+                            <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
+                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
+                            </div>
+                            <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
+                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-3xl glass-card border-white/20 backdrop-blur-xl flex justify-between items-center z-30 group-hover:translate-y-[-4px] transition-transform duration-300">
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Spring Aesthetics</h3>
+                                <p class="text-[11px] text-slate-300 mt-0.5" data-en="Nature lighting & leaf simulation" data-id="Pencahayaan alam & simulasi daun">Nature lighting & leaf simulation</p>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-xl bg-orange-500/20 text-orange-300 border border-orange-500/30">Cycles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="project-3d-card md:translate-y-16 md:rotate-2 hover:rotate-0 hover:translate-y-12 transition-all duration-500 group" data-reveal="scale">
+                    <div class="ambient-glow" style="--glow-color: rgba(168, 85, 247, 0.4);"></div>
+                    <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                            <source src="https://i.imgur.com/Nm6S2ml.mp4#t=2.5" type="video/mp4">
+                        </video>
+                        <div class="absolute top-5 left-5 z-30">
+                            <span class="px-4 py-2 rounded-2xl glass-card text-[11px] font-extrabold text-white backdrop-blur-md border-white/20 shadow-lg">
+                                #02 / Underground
+                            </span>
+                        </div>
+                        <div class="absolute top-5 right-5 z-30">
+                            <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
+                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
+                            </div>
+                            <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
+                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-3xl glass-card border-white/20 backdrop-blur-xl flex justify-between items-center z-30 group-hover:translate-y-[-4px] transition-transform duration-300">
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Underground Garage</h3>
+                                <p class="text-[11px] text-slate-300 mt-0.5" data-en="Neon Underglow & Asphalt Shader" data-id="Lampu Neon bawah & Shader Aspal">Neon Underglow & Asphalt Shader</p>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-xl bg-orange-500/20 text-orange-300 border border-orange-500/30">Cycles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="project-3d-card md:-translate-y-2 md:-rotate-2 hover:rotate-0 hover:translate-y-0 transition-all duration-500 group" data-reveal="right">
+                    <div class="ambient-glow" style="--glow-color: rgba(59, 130, 246, 0.4);"></div>
+                    <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                            <source src="https://i.imgur.com/Bl4vRHz.mp4#t=2.5" type="video/mp4">
+                        </video>
+                        <div class="absolute top-5 left-5 z-30">
+                            <span class="px-4 py-2 rounded-2xl glass-card text-[11px] font-extrabold text-white backdrop-blur-md border-white/20 shadow-lg">
+                                #03 / Liminal Space
+                            </span>
+                        </div>
+                        <div class="absolute top-5 right-5 z-30">
+                            <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
+                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
+                            </div>
+                            <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
+                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-3xl glass-card border-white/20 backdrop-blur-xl flex justify-between items-center z-30 group-hover:translate-y-[-4px] transition-transform duration-300">
+                            <div>
+                                <h3 class="font-bold text-white text-sm">The Backrooms</h3>
+                                <p class="text-[11px] text-slate-300 mt-0.5" data-en="Fluorescent lighting & Grid texture" data-id="Pencahayaan fluoresens & tekstur grid">Fluorescent lighting & Grid texture</p>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/30">Cycles</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TIKTOK -->
+<section class="s-tt sec" id="tiktok">
+  <div class="wrap split">
+    <div class="head" data-reveal>
+      <span class="badge" data-i="play">TikTok</span>
+      <h2>Ikuti juga di <span class="glowline">TikTok</span></h2>
+      <p class="lead">Kontennya selalu terbaru. Untuk prototipe ini, embed memakai akun @nvidia. Ganti dengan akunmu lewat atribut <code>data-unique-id</code> dan <code>cite</code>.</p>
+    </div>
+    <div class="tt-box" data-reveal="scale">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nvidia" data-unique-id="nvidia" data-embed-type="creator" style="max-width:780px;min-width:288px;">
+        <section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@nvidia?refer=creator_embed">@nvidia</a></section>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="s-contact sec" id="contact">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <span class="badge" data-i="mail">Kontak</span>
+      <h2>Punya ide? Ayo bikin bareng</h2>
+      <p class="lead">Terbuka untuk magang, proyek freelance, dan kolaborasi game jam.</p>
+    </div>
+    <div class="cta" data-reveal>
+      <a class="btn primary" href="mailto:email@kamu.com">email@kamu.com</a>
+      <a class="btn ghost" href="#" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="#" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="#" rel="noopener">Instagram</a>
+    </div>
+    <footer>© 2026 Nama Kamu. Dibuat dengan HTML, CSS, JavaScript, GSAP, dan Three.js.</footer>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+<script type="module">
+  import { Application } from '@splinetool/runtime';
+
+  const canvas = document.getElementById('canvas3d');
+  if (canvas) {
+    const app = new Application(canvas);
+    app.load('https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode');
+  }
+</script>
+<script>
+(() => {
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const hasGsap = typeof gsap !== 'undefined';
+if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+
+/* ===== Ikon badge & kartu skill ===== */
+const ICONS = {
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  game: '<rect x="2" y="7" width="20" height="11" rx="4"/><path d="M7 10v5M4.5 12.5h5M16 11.5h.01M18.5 13.5h.01"/>',
+  chip: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+  film: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+  cube: '<path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>',
+  spark: '<path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/>',
+  play: '<path d="M7 4l13 8-13 8z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'
+};
+$$('[data-i]').forEach(el => el.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[el.dataset.i]}</svg>`));
+
+/* ===== Pixel art & tekstur (hanya ungu + lime) ===== */
+function pixelArt(el, map, pal, px) {
+  const rows = map.trim().split('\n').map(r => r.trim());
+  el.style.display = 'grid';
+  el.style.gridTemplateColumns = `repeat(${rows[0].length},${px}px)`;
+  rows.forEach(r => [...r].forEach(ch => {
+    const c = document.createElement('i'); c.style.width = c.style.height = px + 'px';
+    const col = pal[ch]; if (col) c.style.background = Array.isArray(col) ? col[Math.random() * col.length | 0] : col;
+    el.appendChild(c);
+  }));
+}
+function tile(colors, n = 8, px = 8) {
+  const c = document.createElement('canvas'); c.width = c.height = n * px; const x = c.getContext('2d');
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { x.fillStyle = colors[Math.random() * colors.length | 0]; x.fillRect(i * px, j * px, px, px); }
+  return `url(${c.toDataURL()})`;
+}
+const ART = {
+  creeper: [`
+    gggggggg
+    gggggggg
+    gkkggkkg
+    gkkggkkg
+    gggkkggg
+    ggkkkkgg
+    ggkggkgg
+    ggkggkgg`, { g: ['#c8f533', '#b5e01f', '#d6ff58'], k: '#14102a' }],
+  heart: [`
+    .rr.rr.
+    rrrrrrr
+    rwrrrrr
+    rrrrrrr
+    .rrrrr.
+    ..rrr..
+    ...r...`, { r: '#8b5cf6', w: '#e9ddff' }],
+  diamond: [`
+    ..bbbb..
+    .bwwcbb.
+    bwwcccbb
+    bwccccbd
+    bcccccdd
+    .bcccdd.
+    ..bcdd..
+    ...bd...`, { b: '#5b21b6', w: '#f3ebff', c: '#a78bfa', d: '#7c3aed' }]
+};
+const art = (el, k, px) => pixelArt(el, ART[k][0], ART[k][1], px);
+art($('#creeper'), 'creeper', 10);
+$$('[data-item]').forEach(e => art(e, e.dataset.item, e.closest('.icon') ? 6 : 3));
+for (let i = 0; i < 10; i++) { const h = document.createElement('div'); h.className = 'px'; art(h, 'heart', 3); $('#hearts').appendChild(h); }
+$('#grass').style.backgroundImage = tile(['#c8f533', '#b5e01f', '#d6ff58', '#a9d41a'], 8, 5);
+$('#dirt').style.backgroundImage = tile(['#2a1b5e', '#34226f', '#231650', '#2d1d66'], 8, 10);
+$$('.mc-card').forEach(c => c.style.backgroundImage = tile(['#2a2152', '#30275e', '#251c49', '#2d2457'], 8, 12));
+// kotak-kotak kecil melayang (parallax) sebagai dekor game
+const sp = $('#sparks');
+for (let i = 0; i < 14; i++) {
+  const s = document.createElement('i'), z = [8, 12, 16][i % 3];
+  s.style.cssText = `width:${z}px;height:${z}px;left:${Math.random() * 96}%;top:${8 + Math.random() * 80}%;${i % 3 === 0 ? 'background:#a78bfa;' : ''}`;
+  s.dataset.speed = (Math.random() * 1.2 - .6).toFixed(2); sp.appendChild(s);
+}
+
+/* ===== Hero heading split ===== */
+const h1 = $('#h1');
+h1.innerHTML = h1.textContent.split(' ').map(w => `<span class="w"><span>${w}</span></span>`).join(' ');
+
+/* ===== Roles ===== */
+const roles = ['Web Developer', 'Mobile App Developer', 'Game Developer', 'Video Editor & Motion Designer', '3D Artist', 'IoT Maker'];
+const rolesEl = $('#roles'); let ri = 0;
+rolesEl.innerHTML = roles.map(r => `<span>> ${r}</span>`).join('');
+setInterval(() => { ri = (ri + 1) % roles.length; const f = rolesEl.firstElementChild; f.style.transition = 'margin .8s cubic-bezier(.65,0,.35,1)'; f.style.marginTop = `-${ri * 1.6}em`; }, 2200);
+
+/* ===== GSAP ===== */
+if (hasGsap && !RM) {
+  gsap.from('#h1 .w>span', { yPercent: 110, duration: 1.1, ease: 'power2.inOut', stagger: .08, delay: .2 });
+  gsap.from('.hey,.hero .lead,.hero .cta,.roles', { opacity: 0, y: 24, duration: .9, ease: 'power2.inOut', stagger: .12, delay: .7 });
+  gsap.from('.stage', { opacity: 0, scale: .86, duration: 1.4, ease: 'power2.inOut', delay: .3 });
+  gsap.to('#progress', { scaleX: 1, ease: 'none', scrollTrigger: { scrub: .3, start: 0, end: 'max' } });
+  $$('[data-speed]').forEach(el => {
+    const spd = parseFloat(el.dataset.speed);
+    gsap.fromTo(el, { y: -spd * 120 }, { y: spd * 160, ease: 'none', scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: 1 } });
+  });
+  $$('[data-reveal]').forEach(el => {
+    const t = el.dataset.reveal, from = { opacity: 0, duration: 1, ease: 'power2.inOut' };
+    if (t === 'left') from.x = -80; else if (t === 'right') from.x = 80; else if (t === 'scale') { from.scale = .88; from.y = 30; } else from.y = 50;
+    from.scrollTrigger = { trigger: el, start: 'top 88%', once: true };
+    gsap.from(el, from);
+  });
+  $$('.tile .bar i').forEach(b => gsap.from(b, { scaleX: 0, duration: 1.4, ease: 'power2.inOut', scrollTrigger: { trigger: b, start: 'top 92%', once: true } }));
+  $$('[data-count]').forEach(n => { const o = { v: 0 }; gsap.to(o, { v: +n.dataset.count, duration: 2, ease: 'power2.inOut', scrollTrigger: { trigger: n, start: 'top 90%', once: true }, onUpdate: () => n.textContent = Math.round(o.v) + '+' }); });
+} else {
+  $$('[data-count]').forEach(n => n.textContent = n.dataset.count + '+');
+  const p = $('#progress'); addEventListener('scroll', () => p.style.transform = `scaleX(${scrollY / (document.body.scrollHeight - innerHeight)})`);
+}
+
+/* ===== Nav aktif ===== */
+const links = $$('#nav a[href^="#"]');
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { threshold: .35 });
+$$('section[id]').forEach(s => io.observe(s));
+
+/* ===== Three.js: donat bergaya Blender (ungu + lime) ===== */
+(function donut() {
+  if (typeof THREE === 'undefined') return;
+  const canvas = $('#donut'); const stage = canvas.parentElement;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const cam = new THREE.PerspectiveCamera(38, 1, .1, 100); cam.position.set(0, 1.2, 7.2); cam.lookAt(0, 0, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, .6));
+  const key = new THREE.DirectionalLight(0xffffff, .95); key.position.set(3, 5, 5); scene.add(key);
+  const rim = new THREE.PointLight(0xc8f533, 1.1, 20); rim.position.set(-4, -1, 3); scene.add(rim);
+  const rim2 = new THREE.PointLight(0x8b5cf6, 1.4, 20); rim2.position.set(4, 2, -3); scene.add(rim2);
+
+  const root = new THREE.Group(); scene.add(root);
+  const body = new THREE.Group(); body.rotation.x = -Math.PI / 2; root.add(body);
+  const dough = new THREE.Mesh(new THREE.TorusGeometry(1.5, .65, 48, 96), new THREE.MeshStandardMaterial({ color: 0x4c2aa6, roughness: .7 }));
+  const ig = new THREE.TorusGeometry(1.5, .7, 64, 128), pos = ig.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), u = Math.atan2(y, x);
+    const cx = 1.5 * Math.cos(u), cy = 1.5 * Math.sin(u);
+    const vx = x - cx, vy = y - cy, vz = z, len = Math.hypot(vx, vy, vz);
+    const cut = -.05 + .22 * Math.sin(u * 5) + .12 * Math.sin(u * 11 + 1);
+    const t = THREE.MathUtils.smoothstep(vz, cut - .12, cut + .12);
+    const s = (.64 + .08 * t) / len; pos.setXYZ(i, cx + vx * s, cy + vy * s, vz * s);
+  }
+  ig.computeVertexNormals();
+  const icing = new THREE.Mesh(ig, new THREE.MeshStandardMaterial({ color: 0xc8f533, roughness: .25, metalness: .05 }));
+  body.add(dough, icing);
+
+  const sprinkles = new THREE.Group(); body.add(sprinkles);
+  const cols = [0xffffff, 0x7c3aed, 0xa78bfa, 0x2a1670];
+  for (let i = 0; i < 90; i++) {
+    const u = Math.random() * Math.PI * 2, w = .5 + Math.random() * (Math.PI - 1);
+    const r = new THREE.Vector3(Math.cos(u), Math.sin(u), 0), n = r.clone().multiplyScalar(Math.cos(w)).add(new THREE.Vector3(0, 0, Math.sin(w)));
+    if (n.z < .55) { i--; continue; }
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(.022, .022, .16, 6), new THREE.MeshStandardMaterial({ color: cols[i % cols.length], roughness: .4 }));
+    m.position.set(1.5 * r.x, 1.5 * r.y, 0).addScaledVector(n, .73);
+    const ax = n.clone().cross(new THREE.Vector3(0, 0, 1)); if (ax.lengthSq() < 1e-6) ax.set(1, 0, 0); ax.normalize();
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n.clone().applyAxisAngle(ax, Math.PI / 2 * (Math.random() > .5 ? 1 : -1)));
+    m.rotateY(Math.random() * Math.PI * 2);
+    sprinkles.add(m);
+  }
+
+  const prims = [
+    new THREE.Mesh(new THREE.BoxGeometry(.5, .5, .5), new THREE.MeshBasicMaterial({ color: 0xa78bfa, wireframe: true })),
+    new THREE.Mesh(new THREE.IcosahedronGeometry(.38, 1), new THREE.MeshBasicMaterial({ color: 0xc8f533, wireframe: true })),
+    new THREE.Mesh(new THREE.ConeGeometry(.3, .6, 5), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }))
+  ];
+  prims.forEach(p => scene.add(p));
+
+  const parts = [dough, icing], solid = parts.map(p => p.material);
+  const clay = new THREE.MeshStandardMaterial({ color: 0xb9b3c9, roughness: 1 });
+  const wire = new THREE.MeshBasicMaterial({ color: 0xc8f533, wireframe: true });
+  function setMode(m) {
+    parts.forEach((p, i) => p.material = m === 'wire' ? wire : m === 'clay' ? clay : solid[i]);
+    sprinkles.visible = m === 'solid';
+    $$('.shading button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+  }
+  $$('.shading button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  let tx = 0, ty = 0, drag = false, lx = 0, ly = 0, spinY = 0, tiltX = .55;
+  stage.addEventListener('pointermove', e => { const r = stage.getBoundingClientRect(); tx = ((e.clientX - r.left) / r.width - .5); ty = ((e.clientY - r.top) / r.height - .5);
+    if (drag) { spinY += (e.clientX - lx) * .01; tiltX += (e.clientY - ly) * .006; lx = e.clientX; ly = e.clientY; } });
+  canvas.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; ly = e.clientY; canvas.setPointerCapture(e.pointerId); });
+  addEventListener('pointerup', () => drag = false);
+
+  function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(stage); resize();
+  let visible = true; new IntersectionObserver(e => visible = e[0].isIntersecting).observe(stage);
+  const clock = new THREE.Clock();
+  (function loop() {
+    requestAnimationFrame(loop); if (!visible) return;
+    const t = clock.getElapsedTime();
+    spinY += RM ? 0 : .006; tiltX += (.55 + ty * .6 - tiltX) * .03;
+    root.rotation.y = spinY + tx * .8; root.rotation.x = tiltX; root.position.y = RM ? 0 : Math.sin(t * 1.2) * .12;
+    prims.forEach((p, i) => { const a = t * (.5 + i * .15) + i * 2.1; p.position.set(Math.cos(a) * 3, Math.sin(a * 1.3) * 1.3, Math.sin(a) * 1.8); p.rotation.x += .01; p.rotation.y += .013; });
+    renderer.render(scene, cam);
+  })();
+})();
+
+/* ===== IoT live dashboard ===== */
+(function iot() {
+  const S = { T: { el: '#vT', sp: '#spT', v: 28, min: 24, max: 33, d: 1 }, H: { el: '#vH', sp: '#spH', v: 62, min: 40, max: 85, d: 0 }, L: { el: '#vL', sp: '#spL', v: 540, min: 100, max: 900, d: 0 } };
+  Object.values(S).forEach(s => { s.h = Array(30).fill(s.v); });
+  const log = $('#serial'); const lines = [];
+  function addLog(t) { lines.push(`<div>${t}</div>`); if (lines.length > 7) lines.shift(); log.innerHTML = lines.join(''); }
+  function tick() {
+    const now = Date.now() / 1000;
+    S.T.v = 28 + Math.sin(now / 6) * 2 + (Math.random() - .5) * .4;
+    S.H.v = 62 + Math.cos(now / 8) * 9 + (Math.random() - .5) * 2;
+    S.L.v = 540 + Math.sin(now / 5) * 220 + (Math.random() - .5) * 30;
+    for (const k in S) { const s = S[k]; s.h.push(s.v); s.h.shift(); $(s.el).textContent = s.v.toFixed(s.d);
+      $(s.sp).setAttribute('points', s.h.map((v, i) => `${(i / 29 * 120).toFixed(1)},${(42 - (v - s.min) / (s.max - s.min) * 40).toFixed(1)}`).join(' ')); }
+    addLog(`[${new Date().toLocaleTimeString('id-ID')}] mqtt publish home/room1 {"t":${S.T.v.toFixed(1)},"h":${S.H.v.toFixed(0)},"lux":${S.L.v.toFixed(0)}}`);
+  }
+  tick(); setInterval(tick, 1300);
+  const sw = $('#sw');
+  sw.addEventListener('click', () => {
+    const on = sw.getAttribute('aria-pressed') !== 'true'; sw.setAttribute('aria-pressed', on);
+    $('#bulb').classList.toggle('on', on); $('#relayTxt').textContent = `GPIO 26 · ${on ? 'HIGH' : 'LOW'}`;
+    sw.setAttribute('aria-label', on ? 'Matikan lampu' : 'Nyalakan lampu'); addLog(`[cmd] relay1 -> ${on ? 'ON' : 'OFF'}`);
+  });
+})();
+
+/* ===== Multimedia ===== */
+(function media() {
+  const ph = $('#playhead'), tc = $('#tc'), box = $('#tracks'), dur = 8, fps = 30;
+  function set(p) {
+    const w = box.clientWidth - 48 - 16; ph.style.left = (48 + p * w) + 'px';
+    const f = Math.floor(p * dur * fps); tc.textContent = `00:00:${String(Math.floor(f / fps)).padStart(2, '0')}:${String(f % fps).padStart(2, '0')}`;
+  }
+  if (hasGsap && !RM) { const o = { p: 0 }; gsap.to(o, { p: 1, duration: dur, ease: 'none', repeat: -1, onUpdate: () => set(o.p) }); } else set(.3);
+  $$('.layer').forEach(b => b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on);
+    $('.' + b.dataset.l, $('#art')).style.opacity = on ? 1 : 0;
+  }));
+})();
+
+/* ===== Spotlight Spline ===== */
+(function spotlight() {
+  const c = $('#spl'), s = $('#spot');
+  c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); s.style.left = (e.clientX - r.left) + 'px'; s.style.top = (e.clientY - r.top) + 'px'; });
+})();
+
+/* ===== 3D Artwork Gallery — behavior from porto lama ===== */
+document.addEventListener('DOMContentLoaded', () => {
+
+    const cards = document.querySelectorAll('.project-3d-card');
+
+    cards.forEach(card => {
+
+        const video = card.querySelector('.video-preview');
+        const soundBtn = card.querySelector('.sound-toggle');
+        const soundIcon = card.querySelector('.sound-icon');
+        const soundText = card.querySelector('.sound-text');
+
+
+        if (video) {
+
+            // Memori waktu thumbnail
+            let defaultStartTime = 0;
+
+
+            // Membaca #t= dari source video
+            const source = video.querySelector('source');
+
+            if (source && source.src.includes('#t=')) {
+
+                const timeMatch =
+                    source.src.match(/#t=([\d.]+)/);
+
+                if (timeMatch && timeMatch[1]) {
+                    defaultStartTime =
+                        parseFloat(timeMatch[1]);
+                }
+            }
+
+
+            // ======================================
+            // HOVER ENTER
+            // ======================================
+            card.addEventListener('mouseenter', () => {
+
+                video.currentTime = 0;
+
+                video
+                    .play()
+                    .catch(e =>
+                        console.log(
+                            "Autoplay ditahan browser:",
+                            e
+                        )
+                    );
+            });
+
+
+            // ======================================
+            // HOVER LEAVE
+            // ======================================
+            card.addEventListener('mouseleave', () => {
+
+                video.pause();
+
+                video.currentTime =
+                    defaultStartTime;
+
+                video.muted = true;
+
+
+                if (soundIcon) {
+
+                    soundIcon.className =
+                        'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                }
+
+
+                if (soundText) {
+                    soundText.textContent = 'Muted';
+                }
+            });
+
+
+            // ======================================
+            // SOUND BUTTON
+            // ======================================
+            if (soundBtn) {
+
+                soundBtn.addEventListener('click', (e) => {
+
+                    e.preventDefault();
+                    e.stopPropagation();
+
+
+                    if (video.muted) {
+
+                        document
+                            .querySelectorAll('.video-preview')
+                            .forEach(v => {
+                                v.muted = true;
+                            });
+
+
+                        document
+                            .querySelectorAll('.sound-icon')
+                            .forEach(icon => {
+
+                                icon.className =
+                                    'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                            });
+
+
+                        document
+                            .querySelectorAll('.sound-text')
+                            .forEach(text => {
+
+                                text.textContent =
+                                    'Muted';
+                            });
+
+
+                        video.muted = false;
+
+
+                        if (soundIcon) {
+
+                            soundIcon.className =
+                                'fa-solid fa-volume-high text-xs sound-icon text-amber-400 animate-pulse';
+                        }
+
+
+                        if (soundText) {
+                            soundText.textContent =
+                                'Sound On';
+                        }
+
+                    } else {
+
+                        video.muted = true;
+
+
+                        if (soundIcon) {
+
+                            soundIcon.className =
+                                'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                        }
+
+
+                        if (soundText) {
+                            soundText.textContent =
+                                'Muted';
+                        }
+                    }
+
+                });
+            }
+
+        }
+
+    });
+
+});
+
+
+// ==========================================
+;
+})();
+
+</script>
+</body>
+</html>
