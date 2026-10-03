@@ -86,16 +86,17 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .roles span{display:block}
 .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
 .stage{position:relative;aspect-ratio:1/1;max-height:640px;width:100%;pointer-events:none}
-.hero-robot-shell{position:absolute;top:0;right:0;bottom:0;width:62%;overflow:hidden;z-index:1;pointer-events:auto}
-/* Canvas sengaja lebih besar dari shell (di-clip overflow:hidden) supaya robot terlihat besar & logo pojok canvas terpotong */
-#heroRobot{position:absolute;left:var(--rx,0px);top:var(--ry,85px);width:calc(100% + 200px);height:calc(100% + 140px);max-width:none;cursor:grab;touch-action:pan-y}
+/* Canvas Spline memenuhi seluruh section hero. Posisi & ukuran robot diatur langsung di editor Spline. */
+.hero-robot-shell{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:auto}
+#heroRobot{position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;cursor:grab;touch-action:pan-y}
 /* Sembunyikan watermark "Built with Spline" jika muncul sebagai elemen DOM */
 .hero-robot-shell a[href*="spline.design"],.hero-robot-shell [class*="watermark" i],.hero-robot-shell [id*="logo" i],.hero-robot-shell [class*="spline-logo" i]{display:none!important}
 /* Penutup logo "Built with Spline" */
 .spline-cover{position:absolute;right:0;bottom:0;width:360px;height:130px;z-index:30;pointer-events:none;
   background:radial-gradient(ellipse at 70% 70%,var(--bg) 0%,var(--bg) 62%,transparent 100%)}
 .spl .spline-cover{width:300px;height:100px;background:radial-gradient(ellipse at 70% 70%,#130b30 0%,#130b30 60%,transparent 100%)}
-.hero .wrap{pointer-events:none}.hero .wrap>div:first-child{pointer-events:auto}
+.hero .wrap,.hero .wrap>div:first-child{pointer-events:none}.hero .wrap a,.hero .wrap button{pointer-events:auto}
+.hero-robot-hint,.scroll-ind{pointer-events:none}
 #heroRobot:active{cursor:grabbing}
 .hero-robot-hint{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:4;display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .75rem;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.62);backdrop-filter:blur(10px);font:600 .7rem 'JetBrains Mono';color:var(--muted);white-space:nowrap;pointer-events:none}
 .hero-robot-hint::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,245,51,.75)}
@@ -326,7 +327,6 @@ footer{margin-top:5rem;color:var(--muted);font-size:.85rem}
 
 @media (max-width:900px){
   .hero-robot-shell{width:100%;height:58%;top:auto;opacity:.95}
-  #heroRobot{left:-60px;top:-20px;width:calc(100% + 120px);height:calc(100% + 100px)}
   .hero .wrap,.split{grid-template-columns:1fr}
   .stage{max-width:480px;margin:auto;aspect-ratio:auto;height:380px}.d-sq,.d-smile{display:none}
   .inv{grid-template-columns:1fr}.dash{grid-template-columns:1fr 1fr}.browsers{height:400px}.phones{height:520px}
@@ -401,7 +401,6 @@ html.i18n-pending body{visibility:hidden}
   </div>
   <div class="hero-robot-shell">
     <canvas id="heroRobot" aria-label="Robot 3D interaktif"></canvas>
-    <div class="hero-robot-hint">INTERACTIVE 3D · HOVER / DRAG</div>
   </div>
   <div class="spline-cover" aria-hidden="true"></div>
   <div class="scroll-ind"><div class="mouse"></div>Scroll ke bawah</div>
@@ -890,22 +889,29 @@ document.documentElement.classList.remove('i18n-pending');
     }).catch(err => console.error('Spline 3D Studio failed to load:', err));
   }
 
-  // Ubah angka ini untuk memperbesar / memperkecil robot di hero (1 = default Spline)
-  const HERO_ZOOM = 2.1;
+  // Zoom tambahan (opsional). 1 = persis seperti yang diatur di editor Spline; atur posisi robot di sana.
+  const HERO_ZOOM = 1;
   const heroCanvas = document.getElementById('heroRobot');
   if (heroCanvas) {
     const heroApp = new Application(heroCanvas, { htmlContentMode: 'inline' });
     heroApp.load(SPLINE_SCENE_URL).then(() => {
       heroApp.setBackgroundColor('transparent');
-      // Keep the Hero section size unchanged; enlarge the robot inside the same stage.
-      // Spline zoom > 1 moves the scene camera closer to the robot.
-      heroApp.setZoom(HERO_ZOOM);
+      if (HERO_ZOOM !== 1) heroApp.setZoom(HERO_ZOOM);
     }).catch(err => console.error('Spline Hero failed to load:', err));
 
     // Hapus elemen watermark "Built with Spline" bila ditambahkan runtime ke DOM
     const killLogo = () => document.querySelectorAll('.hero-robot-shell a[href*="spline.design"], .hero-robot-shell [id*="logo" i], .hero-robot-shell [class*="watermark" i]').forEach(el => el.remove());
     new MutationObserver(killLogo).observe(heroCanvas.parentElement, { childList: true, subtree: true });
     killLogo();
+
+    // Mouse bergerak di mana pun di hero (termasuk di atas teks/tombol) tetap dikirim ke canvas,
+    // sehingga robot selalu mengikuti kursor.
+    const heroSection = heroCanvas.closest('.hero');
+    ['pointermove', 'mousemove'].forEach(type => heroSection.addEventListener(type, e => {
+      if (!e.isTrusted || e.target === heroCanvas) return;
+      const Ctor = type === 'pointermove' && window.PointerEvent ? PointerEvent : MouseEvent;
+      heroCanvas.dispatchEvent(new Ctor(type, { bubbles: true, cancelable: true, clientX: e.clientX, clientY: e.clientY, screenX: e.screenX, screenY: e.screenY, pointerType: 'mouse', pointerId: 1, isPrimary: true }));
+    }, { passive: true }));
   }
 </script>
 <script>
