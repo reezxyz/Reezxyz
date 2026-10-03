@@ -73,9 +73,6 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 /* Sembunyikan watermark "Built with Spline" jika muncul sebagai elemen DOM */
 .hero-robot-shell a[href*="spline.design"],.hero-robot-shell [class*="watermark" i],.hero-robot-shell [id*="logo" i],.hero-robot-shell [class*="spline-logo" i]{display:none!important}
 /* Penutup logo "Built with Spline" */
-.spline-cover{position:absolute;right:0;bottom:0;width:360px;height:130px;z-index:30;pointer-events:none;
-  background:radial-gradient(ellipse at 70% 70%,var(--bg) 0%,var(--bg) 62%,transparent 100%)}
-.spl .spline-cover{width:300px;height:100px;background:radial-gradient(ellipse at 70% 70%,#130b30 0%,#130b30 60%,transparent 100%)}
 .hero .wrap,.hero .wrap>div:first-child{pointer-events:none}.hero .wrap a,.hero .wrap button{pointer-events:auto}
 .hero-robot-hint,.scroll-ind{pointer-events:none}
 #heroRobot:active{cursor:grabbing}
@@ -94,26 +91,29 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .s-skills{background:linear-gradient(180deg,var(--bg),#100a26 50%,var(--bg))}
 /* Skill set: ringkas. 3 kolom sama lebar, baris aplikasi kecil */
 .s-skills.sec{padding:clamp(64px,8vw,104px) 0}
-.sk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem}
-.sk-card{position:relative;overflow:hidden;display:flex;flex-direction:column;padding:1rem;border-radius:26px;border:1px solid var(--line);background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02));backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 24px 50px -35px #000;transition:transform .7s var(--ease),border-color .7s var(--ease)}
-.sk-card::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 55% at var(--gx) var(--gy),var(--glow),transparent 70%);pointer-events:none;opacity:.9}
-.sk-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.55)}
-.sk-head{position:relative;display:flex;align-items:center;gap:.65rem;padding:.1rem .1rem .8rem}
-.sk-head .ic{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-2));box-shadow:0 8px 18px -8px rgba(124,58,237,.95),inset 0 1px 0 rgba(255,255,255,.35)}
-.sk-head .ic svg{width:18px;height:18px}
-.sk-head h3{font-size:1.02rem;line-height:1.15}
-.sk-head small{display:block;color:var(--muted);font-size:.72rem;font-weight:500}
-.sk-go{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;transition:transform .5s var(--ease),color .5s var(--ease)}
-.sk-go svg{width:16px;height:16px;padding:0;box-sizing:content-box}
-.sk-go::before{content:"";position:absolute;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);transition:background .5s var(--ease)}
-.sk-go{position:relative}.sk-go svg{position:relative}
-.sk-go:hover{color:#14120a;transform:rotate(-45deg)}.sk-go:hover::before{background:var(--lime)}
-.sk-tools{position:relative;display:flex;flex-wrap:wrap;gap:.55rem}
-.sk-tool{position:relative;width:52px;height:52px;border-radius:17px;display:grid;place-items:center;color:var(--b);background:rgba(8,7,15,.45);border:1px solid rgba(255,255,255,.1);cursor:default;transition:transform .5s var(--ease),background .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease)}
-.sk-tool svg{width:26px;height:26px}
-.sk-tool:hover,.sk-tool:focus-visible{transform:translateY(-4px);background:rgba(124,58,237,.18);background:color-mix(in srgb,var(--b) 14%,rgba(8,7,15,.5));border-color:rgba(255,255,255,.2);border-color:color-mix(in srgb,var(--b) 50%,transparent);box-shadow:0 0 22px -4px var(--b)}
+.sk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem;counter-reset:sk}
+.sk-card{counter-increment:sk;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:1.1rem;min-height:172px;padding:1.45rem 1.1rem 1.1rem;border-radius:26px;border:1px solid rgba(139,92,246,.5);background:linear-gradient(160deg,#150f2e 0%,#0b0819 72%);box-shadow:inset 0 0 38px -14px rgba(124,58,237,.55),0 22px 40px -30px #000;transition:transform .7s var(--ease),border-color .7s var(--ease)}
+.sk-card::after{content:"0" counter(sk);position:absolute;z-index:2;top:.6rem;left:1.2rem;font:600 .62rem/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:rgba(255,255,255,.4)}
+.sk-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.9)}
+.sk-art{position:absolute;right:0;bottom:0;z-index:0;width:62%;height:100%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44%);mask-image:linear-gradient(90deg,transparent 0,#000 44%);transition:transform .8s var(--ease)}
+.sk-card:hover .sk-art{transform:translate(-4px,-3px) scale(1.03)}
+.sk-defs{position:absolute;width:0;height:0;overflow:hidden}
+.sk-head{position:relative;z-index:2;display:flex;align-items:center;gap:.8rem}
+.sk-head .ic{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-2));box-shadow:0 10px 20px -10px rgba(124,58,237,.95),inset 0 1px 0 rgba(255,255,255,.35)}
+.sk-head .ic svg{width:22px;height:22px}
+.sk-head h3{font-size:1.12rem;line-height:1.15}
+.sk-head small{display:block;color:var(--muted);font-size:.78rem;font-weight:500}
+.sk-go{position:relative;margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;border:1.5px solid rgba(255,255,255,.3);background:rgba(8,6,20,.6);transition:transform .5s var(--ease),background .5s var(--ease),color .5s var(--ease)}
+.sk-go::before{content:"";position:absolute;inset:-1.5px;border-radius:50%;background:conic-gradient(from -30deg,var(--lime) 0 26%,transparent 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2.6px),#000 calc(100% - 2.2px));mask:radial-gradient(farthest-side,transparent calc(100% - 2.6px),#000 calc(100% - 2.2px))}
+.sk-go svg{position:relative;width:18px;height:18px}
+.sk-go:hover{background:var(--lime);color:#14120a;transform:rotate(-45deg)}
+.sk-tools{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:.5rem}
+.sk-tool{position:relative;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:var(--b);background:rgba(8,6,20,.72);border:1px solid rgba(255,255,255,.11);cursor:default;transition:transform .5s var(--ease),background .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease)}
+.sk-tool svg{width:24px;height:24px}
+.sk-tool:hover,.sk-tool:focus-visible{transform:translateY(-4px);background:rgba(124,58,237,.18);background:color-mix(in srgb,var(--b) 14%,rgba(8,7,15,.6));border-color:rgba(255,255,255,.2);border-color:color-mix(in srgb,var(--b) 50%,transparent);box-shadow:0 0 22px -4px var(--b)}
 .sk-tool::after{content:attr(data-name);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translate(-50%,4px);padding:.25rem .65rem;border-radius:99px;background:#fff;color:#14102a;font-size:.7rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease);z-index:5}
 .sk-tool:hover::after,.sk-tool:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+@media (max-width:560px){.sk-art{width:60%;opacity:.9}.sk-card{min-height:164px}}
 .sk-legend{margin-top:1rem;color:var(--muted);font-size:.78rem}
 @media (max-width:1100px){.sk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -243,8 +243,26 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .stats{display:flex;gap:2rem;margin:1.6rem 0;flex-wrap:wrap}
 .stat b{display:block;font:800 2.4rem 'Plus Jakarta Sans';color:var(--lime)}.stat span{color:var(--muted);font-size:.9rem}
 .spl{position:relative;height:500px;border-radius:32px;overflow:hidden;background:rgba(0,0,0,.14);border:1px solid rgba(167,139,250,.4);box-shadow:0 40px 80px -30px #000}
-.spl canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.spl::after{content:"";position:absolute;right:8px;bottom:7px;width:176px;height:48px;border-radius:16px;background:linear-gradient(135deg,rgba(8,7,15,.18),rgba(18,16,31,.92));pointer-events:none;z-index:3}
+.spl canvas{position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block}
+/* ===== MEMOTONG WATERMARK "Built with Spline" =====
+   Watermark digambar di dalam canvas WebGL, di pojok kanan-bawah. Canvas dibuat lebih tinggi ke ATAS dan ke BAWAH
+   sebesar --wm-crop; induknya (.spl / .hero-robot-shell) memakai overflow:hidden sehingga watermark jatuh di bawah
+   tepi bawah dan terpotong. Pusat canvas tetap di pusat kartu, jadi posisi objek tidak bergeser; yang berubah hanya
+   skalanya: (tinggi area + 2 x --wm-crop) / tinggi area.
+   Tiap area punya nilai sendiri. Masih ada watermark yang terlihat? Naikkan angkanya (kelebihan 1px di sini = 1px lebih
+   banyak yang terpotong). Konsekuensinya objek makin besar, jauhkan kamera di Spline untuk mengimbanginya.
+   !important wajib: runtime Spline memaksa style inline width/height:100% pada canvas setelah scene dimuat. */
+.spl #canvas3d,.hero-robot-shell #heroRobot{
+  position:absolute!important;
+  left:0!important;right:auto!important;
+  top:calc(var(--wm-crop) * -1)!important;bottom:auto!important;
+  width:100%!important;
+  height:calc(100% + var(--wm-crop) * 2)!important;
+  max-width:none!important;
+}
+.spl #canvas3d{--wm-crop:140px}
+.hero-robot-shell #heroRobot{--wm-crop:120px}
+.spl::after{content:none}
 
 .spl .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#6e6890;font:.85rem 'JetBrains Mono';text-align:center;padding:1rem}
 .spot{position:absolute;width:320px;height:320px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(167,139,250,.5),transparent 70%);filter:blur(30px);opacity:0;transition:opacity .5s var(--ease);z-index:2;transform:translate(-50%,-50%)}
@@ -552,7 +570,7 @@ img,video{max-width:100%;height:auto}
 @media (max-width:767px),(max-height:480px) and (pointer:coarse){
   html{scroll-behavior:auto}
   .hero{padding:96px 0 72px}
-  .hero-robot-shell,.spline-cover,.hero .stage,.spl,.scroll-ind,.progress,.sparks{display:none!important}
+  .hero-robot-shell,.hero .stage,.spl,.scroll-ind,.progress,.sparks{display:none!important}
   .hero .wrap,.hero .wrap>div:first-child{pointer-events:auto}
   .head::before,.dh-wrap::before{display:none}
   *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
@@ -567,13 +585,35 @@ img,video{max-width:100%;height:auto}
   html{font-size:112.5%}
   .wrap{width:min(1500px,80vw)}
   .hero-robot-shell{left:50%;right:auto;width:100%;max-width:2100px;transform:translateX(-50%)}
-  .spline-cover{right:calc((100% - min(100%,2100px)) / 2)}
 }
 @media (min-width:2560px){
   html{font-size:131.25%}
   .wrap{width:min(1760px,72vw)}
   .hero-robot-shell{max-width:2400px}
-  .spline-cover{right:calc((100% - min(100%,2400px)) / 2)}
+}
+
+/* ===== NAVBAR MOBILE: nama "Reez" di kiri, hamburger di kanan (<768px) ===== */
+.nav .brand,.nav-toggle{display:none}
+.nav-links{display:contents}
+@media (max-width:767px){
+  .nav{left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));transform:none;max-width:none;overflow:visible;justify-content:space-between;gap:.5rem;padding:.35rem .4rem .35rem 1.15rem}
+  .nav .logo{display:none}
+  .nav .brand{display:inline-flex;align-items:baseline;font:800 1.45rem/1 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:-.05em;color:#fff;padding:.3rem 0}
+  .nav .brand span{color:var(--lime)}
+  .nav .brand:hover{color:#fff}
+  .nav-toggle{position:relative;display:block;flex:none;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--line);transition:background .35s var(--ease)}
+  .nav-toggle:hover,.nav.open .nav-toggle{background:rgba(255,255,255,.16)}
+  .nav-toggle span{position:absolute;left:50%;top:50%;width:18px;height:2px;margin:-1px 0 0 -9px;border-radius:2px;background:#fff;transition:transform .35s var(--ease),opacity .2s var(--ease)}
+  .nav-toggle span:nth-child(1){transform:translateY(-6px)}
+  .nav-toggle span:nth-child(3){transform:translateY(6px)}
+  .nav.open .nav-toggle span:nth-child(1){transform:rotate(45deg)}
+  .nav.open .nav-toggle span:nth-child(2){opacity:0}
+  .nav.open .nav-toggle span:nth-child(3){transform:rotate(-45deg)}
+  .nav-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem;position:absolute;top:calc(100% + 10px);left:0;right:0;padding:.6rem;border-radius:28px;background:#12101f;border:1px solid var(--line);box-shadow:0 24px 50px -20px rgba(0,0,0,.85);max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px);overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s linear .3s}
+  .nav.open .nav-links{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+  .nav-links a{display:flex;align-items:center;min-height:46px;padding:.5rem 1rem;border-radius:18px;font-size:1rem}
+  .nav-links .lang{position:static;grid-column:1/-1;justify-self:start;margin:.4rem 0 .1rem .2rem}
+  .nav-links .lang button{min-height:40px;min-width:48px}
 }
 </style>
   <!-- Spline Runtime: render langsung ke canvas, tanpa Spline Viewer/watermark -->
@@ -590,9 +630,13 @@ img,video{max-width:100%;height:auto}
 
 <header class="nav" id="nav">
   <a class="logo" href="#top">NK</a>
+  <a class="brand" href="#top" aria-label="Reez">Reez<span aria-hidden="true">.</span></a>
+  <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navMenu">
   <a href="#skills">Skill</a><a href="#web">Web</a><a href="#mobile">Mobile</a><a href="#game">Game</a>
   <a href="#iot">IoT</a><a href="#media">Multimedia</a><a href="#3d">3D</a><a href="#featured-3d">Galeri</a><a href="#contact">Kontak</a>
   <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="id" aria-pressed="false">ID</button></div>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -620,7 +664,6 @@ img,video{max-width:100%;height:auto}
   <div class="hero-robot-shell">
     <canvas id="heroRobot" aria-label="Robot 3D interaktif"></canvas>
   </div>
-  <div class="spline-cover" aria-hidden="true"></div>
   <div class="scroll-ind"><div class="mouse"></div>Scroll ke bawah</div>
 </section>
 
@@ -632,8 +675,13 @@ img,video{max-width:100%;height:auto}
       <h2 class="dh"><span>APLIKASI</span><span class="o">YANG SAYA KUASAI.</span></h2>
       <p class="lead">Dikelompokkan per bidang. Arahkan kursor ke ikon untuk melihat nama aplikasinya, atau klik panah untuk melihat proyeknya.</p>
     </div>
+    <svg class="sk-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+      <linearGradient id="skgBlob" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5b21b6" stop-opacity=".12"/><stop offset="1" stop-color="#8b5cf6" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="skgPurple" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+    </defs></svg>
     <div class="sk-grid">
-      <article class="sk-card" style="--gx:100%;--gy:0%;--glow:rgba(124,58,237,.5)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M64 170C60 128 92 96 126 80C160 64 176 28 214 22C240 18 262 34 264 62V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><g transform="rotate(-6 170 96)"><rect x="96" y="32" width="150" height="86" rx="9" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".6" stroke-width="1.5"/><g fill="none" stroke-width="3" stroke-linecap="round"><path d="M110 48h42" stroke="#a78bfa" stroke-opacity=".8"/><path d="M118 60h62" stroke="#7c3aed"/><path d="M118 72h38" stroke="#c8f533"/><path d="M126 84h74" stroke="#a78bfa" stroke-opacity=".5"/><path d="M110 96h30" stroke="#7c3aed"/></g><path d="M82 118h178l10 14q1 4-4 4H78q-5 0-4-4z" fill="#1c1240" stroke="#a78bfa" stroke-opacity=".5"/><rect x="150" y="118" width="40" height="4" rx="2" fill="#2a1670"/></g></svg>
         <div class="sk-head"><span class="ic" data-i="globe"></span><div><h3>Web Development</h3><small>4 aplikasi</small></div><a class="sk-go" href="#web" aria-label="Lihat proyek Web Development"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="HTML5" data-name="HTML5" style="--b:#E34F26"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg></span>
@@ -642,7 +690,8 @@ img,video{max-width:100%;height:auto}
           <span class="sk-tool" tabindex="0" role="img" aria-label="React" data-name="React" style="--b:#61DAFB"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg></span>
         </div>
       </article>
-      <article class="sk-card" style="--gx:0%;--gy:100%;--glow:rgba(167,139,250,.38)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M96 170C84 132 112 104 140 90C170 75 186 40 224 38C246 37 262 52 262 76V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><g transform="rotate(12 187 82)"><rect x="152" y="10" width="70" height="146" rx="15" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".65" stroke-width="1.5"/><rect x="174" y="17" width="26" height="5" rx="2.5" fill="#2a1670"/><circle cx="187" cy="48" r="11" fill="url(#skgPurple)"/><path d="M164 70h46M164 80h30" stroke="#a78bfa" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/><rect x="164" y="94" width="46" height="22" rx="7" fill="#2a1670"/><circle cx="175" cy="105" r="3.5" fill="#c8f533"/><path d="M183 105h20" stroke="#a78bfa" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/><rect x="164" y="122" width="46" height="22" rx="7" fill="#1c1240"/></g></svg>
         <div class="sk-head"><span class="ic" data-i="phone"></span><div><h3>Mobile Apps</h3><small>4 aplikasi</small></div><a class="sk-go" href="#mobile" aria-label="Lihat proyek Mobile Apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="Flutter" data-name="Flutter" style="--b:#70A0C7"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg></span>
@@ -651,7 +700,8 @@ img,video{max-width:100%;height:auto}
           <span class="sk-tool" tabindex="0" role="img" aria-label="Firebase" data-name="Firebase" style="--b:#E66140"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M19.455 8.369c-.538-.748-1.778-2.285-3.681-4.569-.826-.991-1.535-1.832-1.884-2.245a146 146 0 0 0-.488-.576l-.207-.245-.113-.133-.022-.032-.01-.005L12.57 0l-.609.488c-1.555 1.246-2.828 2.851-3.681 4.64-.523 1.064-.864 2.105-1.043 3.176-.047.241-.088.489-.121.738-.209-.017-.421-.028-.632-.033-.018-.001-.035-.002-.059-.003a7.46 7.46 0 0 0-2.28.274l-.317.089-.163.286c-.765 1.342-1.198 2.869-1.252 4.416-.07 2.01.477 3.954 1.583 5.625 1.082 1.633 2.61 2.882 4.42 3.611l.236.095.071.025.003-.001a9.59 9.59 0 0 0 2.941.568q.171.006.342.006c1.273 0 2.513-.249 3.69-.742l.008.004.313-.145a9.63 9.63 0 0 0 3.927-3.335c1.01-1.49 1.577-3.234 1.641-5.042.075-2.161-.643-4.304-2.133-6.371m-7.083 6.695c.328 1.244.264 2.44-.191 3.558-1.135-1.12-1.967-2.352-2.475-3.665-.543-1.404-.87-2.74-.974-3.975.48.157.922.366 1.315.622 1.132.737 1.914 1.902 2.325 3.461zm.207 6.022c.482.368.99.712 1.513 1.028-.771.21-1.565.302-2.369.273a8 8 0 0 1-.373-.022c.458-.394.869-.823 1.228-1.279zm1.347-6.431c-.516-1.957-1.527-3.437-3.002-4.398-.647-.421-1.385-.741-2.194-.95.011-.134.026-.268.043-.4.014-.113.03-.216.046-.313.133-.689.332-1.37.589-2.025.099-.25.206-.499.321-.74l.004-.008c.177-.358.376-.719.61-1.105l.092-.152-.003-.001c.544-.851 1.197-1.627 1.942-2.311l.288.341c.672.796 1.304 1.548 1.878 2.237 1.291 1.549 2.966 3.583 3.612 4.48 1.277 1.771 1.893 3.579 1.83 5.375-.049 1.395-.461 2.755-1.195 3.933-.694 1.116-1.661 2.05-2.8 2.708-.636-.318-1.559-.839-2.539-1.599.79-1.575.952-3.28.479-5.072zm-2.575 5.397c-.725.939-1.587 1.55-2.09 1.856-.081-.029-.163-.06-.243-.093l-.065-.026c-1.49-.616-2.747-1.656-3.635-3.01-.907-1.384-1.356-2.993-1.298-4.653.041-1.19.338-2.327.882-3.379.316-.07.638-.114.96-.131l.084-.002c.162-.003.324-.003.478 0 .227.011.454.035.677.07.073 1.513.445 3.145 1.105 4.852.637 1.644 1.694 3.162 3.144 4.515z"/></svg></span>
         </div>
       </article>
-      <article class="sk-card" style="--gx:100%;--gy:100%;--glow:rgba(200,245,51,.16)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M58 170C54 136 84 112 118 100C152 88 170 52 208 46C236 42 262 60 262 88V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><path d="M108 76C112 56 130 52 148 54H182C200 52 218 56 222 76L236 128C238 142 224 146 216 136L198 114H132L114 136C106 146 92 142 94 128Z" fill="#1c1240" stroke="#a78bfa" stroke-opacity=".6" stroke-width="1.5"/><rect x="125" y="72" width="10" height="28" rx="3" fill="#a78bfa" fill-opacity=".85"/><rect x="116" y="81" width="28" height="10" rx="3" fill="#a78bfa" fill-opacity=".85"/><circle cx="204" cy="74" r="5" fill="#c8f533"/><circle cx="214" cy="84" r="5" fill="#a78bfa" fill-opacity=".8"/><circle cx="204" cy="94" r="5" fill="#a78bfa" fill-opacity=".5"/><circle cx="194" cy="84" r="5" fill="#7c3aed"/><circle cx="155" cy="98" r="8" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".7"/><circle cx="177" cy="98" r="8" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".7"/></svg>
         <div class="sk-head"><span class="ic" data-i="game"></span><div><h3>Game Development</h3><small>3 aplikasi</small></div><a class="sk-go" href="#game" aria-label="Lihat proyek Game Development"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="Unity" data-name="Unity" style="--b:#FFFFFF"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></svg></span>
@@ -659,7 +709,8 @@ img,video{max-width:100%;height:auto}
           <span class="sk-tool" tabindex="0" role="img" aria-label="C#" data-name="C#" style="--b:#B47BB0"><svg aria-hidden="true" viewBox="0 0 128 128" fill="currentColor"><path d="M117.5 33.5l.3-.2c-.6-1.1-1.5-2.1-2.4-2.6L67.1 2.9c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.3.9 3.4l-.2.1c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4V36.1c.1-.8 0-1.7-.4-2.6zm-53.5 70c-21.8 0-39.5-17.7-39.5-39.5S42.2 24.5 64 24.5c14.7 0 27.5 8.1 34.3 20l-13 7.5C81.1 44.5 73.1 39.5 64 39.5c-13.5 0-24.5 11-24.5 24.5s11 24.5 24.5 24.5c9.1 0 17.1-5 21.3-12.4l12.9 7.6c-6.8 11.8-19.6 19.8-34.2 19.8zM115 62h-3.2l-.9 4h4.1v5h-5l-1.2 6h-4.9l1.2-6h-3.8l-1.2 6h-4.8l1.2-6H94v-5h3.5l.9-4H94v-5h5.3l1.2-6h4.9l-1.2 6h3.8l1.2-6h4.8l-1.2 6h2.2v5zm-12.7 4h3.8l.9-4h-3.8z"/></svg></span>
         </div>
       </article>
-      <article class="sk-card" style="--gx:0%;--gy:0%;--glow:rgba(200,245,51,.16)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M78 170C70 130 100 100 132 92C168 82 184 46 220 42C244 40 262 56 262 80V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><g transform="rotate(-12 170 92)"><rect x="104" y="40" width="156" height="104" rx="9" fill="#1a1240" stroke="#a78bfa" stroke-opacity=".55" stroke-width="1.5"/><g stroke="#a78bfa" stroke-opacity=".75" stroke-width="2.5" stroke-linecap="round"><path d="M158 56v8M168 56v8M178 56v8M188 56v8"/><path d="M158 112v8M168 112v8M178 112v8M188 112v8"/><path d="M142 72h8M142 82h8M142 92h8M142 102h8"/><path d="M196 72h8M196 82h8M196 92h8M196 102h8"/></g><rect x="150" y="64" width="46" height="48" rx="5" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".85" stroke-width="1.5"/><rect x="160" y="74" width="26" height="28" rx="3" fill="#2a1670"/><circle cx="173" cy="88" r="4" fill="#c8f533"/><path d="M204 72h24l10-10h20M204 92h30M120 92h22M178 120v12h30" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="238" cy="62" r="3" fill="#a78bfa"/><circle cx="234" cy="92" r="3" fill="#a78bfa"/><circle cx="120" cy="92" r="3" fill="#a78bfa"/><circle cx="208" cy="132" r="3" fill="#a78bfa"/></g></svg>
         <div class="sk-head"><span class="ic" data-i="chip"></span><div><h3>IoT & Elektronik</h3><small>4 aplikasi</small></div><a class="sk-go" href="#iot" aria-label="Lihat proyek IoT & Elektronik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="Arduino" data-name="Arduino" style="--b:#40A5AB"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M18.087 6.146c-.3 0-.607.017-.907.069-2.532.367-4.23 2.239-5.18 3.674-.95-1.435-2.648-3.307-5.18-3.674a6.49 6.49 0 0 0-.907-.069C2.648 6.146 0 8.77 0 12s2.656 5.854 5.913 5.854c.3 0 .607-.017.916-.069 2.531-.376 4.23-2.247 5.18-3.683.949 1.436 2.647 3.307 5.18 3.683.299.043.607.069.915.069C21.344 17.854 24 15.23 24 12s-2.656-5.854-5.913-5.854zM6.53 15.734a3.837 3.837 0 0 1-.625.043c-2.148 0-3.889-1.7-3.889-3.777 0-2.085 1.749-3.777 3.898-3.777.208 0 .416.017.624.043 2.39.35 3.847 2.768 4.347 3.734-.508.974-1.974 3.384-4.355 3.734zm11.558.043c-.208 0-.416-.017-.624-.043-2.39-.35-3.856-2.768-4.347-3.734.491-.966 1.957-3.384 4.347-3.734.208-.026.416-.043.624-.043 2.149 0 3.89 1.7 3.89 3.777 0 2.085-1.75 3.777-3.89 3.777zm1.65-4.404v1.134h-1.205v1.182h-1.156v-1.182H16.17v-1.134h1.206V10.19h1.156v1.183h1.206zM4.246 12.498H7.82v-1.125H4.245v1.125z"/></svg></span>
@@ -668,7 +719,8 @@ img,video{max-width:100%;height:auto}
           <span class="sk-tool" tabindex="0" role="img" aria-label="MQTT" data-name="MQTT" style="--b:#A970A9"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M10.657 23.994h-9.45A1.212 1.212 0 0 1 0 22.788v-9.18h.071c5.784 0 10.504 4.65 10.586 10.386Zm7.606 0h-4.045C14.135 16.246 7.795 9.977 0 9.942V6.038h.071c9.983 0 18.121 8.044 18.192 17.956Zm4.53 0h-.97C21.754 12.071 11.995 2.407 0 2.372v-1.16C0 .55.544.006 1.207.006h7.64C15.733 2.49 21.257 7.789 24 14.508v8.291c0 .663-.544 1.195-1.207 1.195ZM16.713.006h6.092A1.19 1.19 0 0 1 24 1.2v5.914c-.91-1.242-2.046-2.65-3.158-3.762C19.588 2.11 18.122.987 16.714.005Z"/></svg></span>
         </div>
       </article>
-      <article class="sk-card" style="--gx:100%;--gy:0%;--glow:rgba(124,58,237,.5)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M60 170C58 134 88 108 120 98C154 88 174 54 212 50C240 47 262 64 262 92V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><g transform="rotate(-5 172 98)"><path d="M122 54l8-14h40l8 14z" fill="#2a1670" stroke="#a78bfa" stroke-opacity=".5"/><rect x="96" y="52" width="156" height="94" rx="14" fill="#1c1240" stroke="#a78bfa" stroke-opacity=".6" stroke-width="1.5"/><path d="M96 66a14 14 0 0 1 14-14h128a14 14 0 0 1 14 14v8H96z" fill="#2a1670"/><circle cx="190" cy="102" r="36" fill="#0c0920" stroke="#a78bfa" stroke-opacity=".7" stroke-width="2"/><circle cx="190" cy="102" r="26" fill="none" stroke="#7c3aed" stroke-width="4"/><circle cx="190" cy="102" r="15" fill="url(#skgPurple)"/><path d="M180 94a12 12 0 0 1 12-6" stroke="#fff" stroke-opacity=".7" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="114" cy="63" r="3.5" fill="#c8f533"/><rect x="206" y="58" width="28" height="8" rx="4" fill="#a78bfa" fill-opacity=".5"/></g></svg>
         <div class="sk-head"><span class="ic" data-i="film"></span><div><h3>Multimedia</h3><small>3 aplikasi</small></div><a class="sk-go" href="#media" aria-label="Lihat proyek Multimedia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="After Effects" data-name="After Effects" style="--b:#9999FF"><svg aria-hidden="true" viewBox="0 0 128 128" fill="currentColor"><path d="M87 52.4c-7.5.9-7.5 9.2-7.5 9.2h14.9c.1 0 .8-9.2-7.4-9.2zM38.2 63.1H51l-6.4-24.4z"/><path d="M0 0v128h128V0H0zm57.5 88.6L53 72.5H36.2l-4.4 16.1h-9.4l16-54.9v-3.8h12.2l17.3 58.7H57.5zm46-19.6h-24c1.9 19.2 21.2 10 21.2 10v8s-1.3 2.6-14.8 2.6-16.3-18.3-16.3-18.3v-4.7s1.3-22 17.3-22 16.5 14.6 16.5 14.6V69z"/></svg></span>
@@ -676,7 +728,8 @@ img,video{max-width:100%;height:auto}
           <span class="sk-tool" tabindex="0" role="img" aria-label="Photoshop" data-name="Photoshop" style="--b:#31A8FF"><svg aria-hidden="true" viewBox="0 0 128 128" fill="currentColor"><path d="M22.666 1.6C10.133 1.6 0 11.734 0 24.268v79.464C0 116.266 10.133 126.4 22.666 126.4h82.668c12.533 0 22.666-10.134 22.666-22.668V24.268C128 11.734 117.867 1.6 105.334 1.6H22.666zm23.201 31.734c4.373 0 8 .532 10.986 1.652A19.05 19.05 0 0 1 64 39.361a16.976 16.976 0 0 1 3.894 6.079c.8 2.24 1.225 4.533 1.225 6.933 0 4.587-1.066 8.373-3.2 11.36-2.132 2.986-5.118 5.227-8.585 6.507-3.627 1.334-7.627 1.813-12 1.813-1.28 0-2.135 0-2.668-.053-.533-.053-1.28-.053-2.293-.053v17.12c.053.373-.213.694-.586.747H29.44c-.426 0-.638-.215-.638-.695V34.24c0-.373.16-.588.533-.588.907 0 1.76 0 2.986-.052 1.28-.054 2.613-.052 4.053-.106 1.44-.053 2.987-.054 4.64-.107 1.654-.054 3.254-.053 4.854-.053zm1.19 10.504a18.68 18.68 0 0 0-.817.002c-1.386 0-2.613.001-3.627.055-1.066-.054-1.812-.001-2.185.052v17.92c.746.054 1.438.106 2.078.106h2.828c2.08 0 4.16-.32 6.133-.96 1.707-.48 3.2-1.494 4.373-2.827 1.12-1.334 1.654-3.146 1.654-5.493a8.776 8.776 0 0 0-1.226-4.746c-.907-1.386-2.188-2.454-3.735-3.04-1.727-.7-3.576-1.033-5.476-1.07zm44.73 2.723c2.187 0 4.427.158 6.613.478 1.6.213 3.146.642 4.586 1.229.214.053.427.265.533.478.054.213.108.427.108.64v8.694a.655.655 0 0 1-.266.533c-.48.107-.747.107-.96 0-1.6-.853-3.308-1.439-5.122-1.812-1.973-.427-3.946-.695-5.972-.695-1.067-.054-2.188.108-3.201.374-.694.16-1.28.534-1.653 1.067-.266.427-.426.96-.426 1.44s.214.96.534 1.386c.48.587 1.119 1.068 1.812 1.442a48.8 48.8 0 0 0 3.787 1.757c2.88.96 5.653 2.295 8.213 3.895 1.76 1.12 3.2 2.614 4.213 4.427a11.509 11.509 0 0 1 1.228 5.493 12.412 12.412 0 0 1-2.082 7.093 13.362 13.362 0 0 1-5.972 4.746c-2.614 1.12-5.814 1.707-9.654 1.707-2.454 0-4.852-.213-7.252-.693a21.51 21.51 0 0 1-5.44-1.707c-.373-.213-.641-.587-.588-1.014V78.24c0-.16.053-.374.213-.48.16-.107.32-.052.48.054a22.83 22.83 0 0 0 6.614 2.614c2.027.533 4.161.799 6.295.799 2.026 0 3.466-.267 4.426-.747.853-.373 1.439-1.28 1.439-2.24 0-.746-.426-1.441-1.28-2.135-.853-.693-2.613-1.492-5.226-2.505a32.638 32.638 0 0 1-7.574-3.84 13.81 13.81 0 0 1-4.053-4.533 11.44 11.44 0 0 1-1.226-5.44c0-2.293.639-4.48 1.812-6.453 1.333-2.133 3.308-3.84 5.602-4.906 2.506-1.28 5.652-1.867 9.44-1.867z"/></svg></span>
         </div>
       </article>
-      <article class="sk-card" style="--gx:0%;--gy:100%;--glow:rgba(167,139,250,.38)" data-reveal="scale">
+      <article class="sk-card" data-reveal="scale">
+        <svg class="sk-art" viewBox="0 0 260 170" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false"><path d="M82 170C74 128 102 98 134 86C168 74 188 34 224 30C246 28 262 44 262 70V170Z" fill="url(#skgBlob)"/><circle cx="104" cy="56" r="3" fill="#8b5cf6" opacity=".7"/><circle cx="92" cy="42" r="1.8" fill="#a78bfa" opacity=".6"/><g stroke="#a78bfa" stroke-opacity=".9" stroke-width="1.5" stroke-linejoin="round"><polygon points="178,36 223,62 178,88 133,62" fill="#a78bfa" fill-opacity=".38"/><polygon points="133,62 178,88 178,140 133,114" fill="#7c3aed" fill-opacity=".45"/><polygon points="178,88 223,62 223,114 178,140" fill="#2a1670" fill-opacity=".9"/></g><g fill="#c8f533"><circle cx="178" cy="36" r="3.5"/><circle cx="178" cy="88" r="3.5"/></g><g fill="#a78bfa"><circle cx="133" cy="62" r="2.5"/><circle cx="223" cy="62" r="2.5"/><circle cx="133" cy="114" r="2.5"/><circle cx="223" cy="114" r="2.5"/><circle cx="178" cy="140" r="2.5"/></g></svg>
         <div class="sk-head"><span class="ic" data-i="cube"></span><div><h3>3D Art</h3><small>3 aplikasi</small></div><a class="sk-go" href="#3d" aria-label="Lihat proyek 3D Art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="sk-tools">
           <span class="sk-tool" tabindex="0" role="img" aria-label="Blender" data-name="Blender" style="--b:#E87D0D"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg></span>
@@ -874,7 +927,6 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
     <div class="spl" id="spl" data-reveal="scale">
       <div class="spot" id="spot"></div>
       <canvas id="canvas3d"></canvas>
-      <div class="spline-cover" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -1042,7 +1094,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
 (() => {
 const PAIRS = [["Skill", "Skills"], ["Galeri", "Gallery"], ["Kontak", "Contact"], ["Hei, saya Nama Kamu!", "Hey, I'm Your Name!"], ["Mahasiswa Teknik Informatika. Web, aplikasi mobile, game, video, 3D, dan IoT dalam satu portofolio. Scroll ke bawah, tiap bagian punya dunianya sendiri.", "Informatics Engineering student. Web, mobile apps, games, video, 3D, and IoT in one portfolio. Scroll down, every section has its own world."], ["Lihat karya", "View my work"], ["Hubungi saya", "Contact me"], ["Ayo bikin sesuatu yang keren!", "Let's make something awesome!"], ["INTERAKTIF 3D · HOVER / SERET", "INTERACTIVE 3D · HOVER / DRAG"], ["Scroll ke bawah", "Scroll down"], ["APLIKASI", "TOOLS I"], ["YANG SAYA KUASAI.", "KNOW WELL."], ["Dikelompokkan per bidang. Arahkan kursor ke ikon untuk melihat nama aplikasinya, atau klik panah untuk melihat proyeknya.", "Grouped by field. Hover over an icon to see the app name, or click the arrow to view its projects."], ["4 aplikasi", "4 apps"], ["3 aplikasi", "3 apps"], ["IoT & Elektronik", "IoT & Electronics"], ["Ikon dari Simple Icons dan Devicon.", "Icons from Simple Icons and Devicon."], ["WEB YANG", "FAST & CLEAN"], ["CEPAT & RAPI.", "WEBSITES."], ["Dari antarmuka sampai API. Saya suka detail kecil: transisi halus, layout responsif, dan kode yang gampang dirawat.", "From interface to API. I love the small details: smooth transitions, responsive layouts, and code that is easy to maintain."], ["Toko Online UMKM", "Small Business Online Store"], ["Katalog, keranjang, dan pembayaran untuk usaha kecil.", "Catalog, cart, and payments for small businesses."], ["Sistem Informasi Akademik", "Academic Information System"], ["Jadwal, nilai, dan presensi dalam satu dashboard.", "Schedules, grades, and attendance in one dashboard."], ["Landing Page Event Kampus", "Campus Event Landing Page"], ["Halaman pendaftaran dengan animasi scroll dan hitung mundur.", "A registration page with scroll animations and a countdown."], ["APLIKASI DI", "APPS BUILT"], ["SATU TANGAN.", "FOR ONE HAND."], ["Android dan iOS dengan satu basis kode. Fokus pada kecepatan buka, gestur natural, dan layout yang pas di layar kecil.", "Android and iOS from a single codebase. Focused on fast launch, natural gestures, and layouts that fit small screens."], ["Catatan Keuangan Mahasiswa", "Student Finance Tracker"], ["Catat pengeluaran harian dan lihat grafik bulanan.", "Log daily spending and view monthly charts."], ["Aplikasi Kontrol IoT", "IoT Control App"], ["Nyalakan lampu dan baca sensor dari ponsel lewat MQTT.", "Switch lights on and read sensors from your phone over MQTT."], ["Pengingat Jadwal Kuliah", "Class Schedule Reminder"], ["Notifikasi tugas dan ujian, bekerja tanpa internet.", "Assignment and exam notifications that work offline."], ["Hari ini", "Today"], ["Ringkasan", "Summary"], ["Proyek: Game", "Projects: Game"], ["Naik level!", "Level up!"], ["Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.", "An endless 2D runner with touch controls and an online scoring system."], ["Dungeon acak berbasis grid, musuh punya pola serangan sendiri.", "Grid-based random dungeons where every enemy has its own attack pattern."], ["Balap pesawat 3D dengan model dan efek buatan Blender.", "3D spaceship racing with models and effects made in Blender."], ["PERANGKAT YANG", "DEVICES THAT"], ["SALING BICARA.", "TALK TO EACH OTHER."], ["Sensor membaca dunia, ESP32 mengirim data lewat MQTT, dashboard menampilkannya. Di bawah ini simulasi live-nya. Coba nyalakan relay.", "Sensors read the world, the ESP32 sends data over MQTT, and the dashboard displays it. Below is a live simulation. Try switching the relay."], ["Suhu ruangan", "Room temperature"], ["Kelembapan", "Humidity"], ["Cahaya (LDR)", "Light (LDR)"], ["Relay 1 · Lampu", "Relay 1 · Lamp"], ["CERITA YANG", "STORIES THAT"], ["BERGERAK.", "MOVE."], ["Memotong, menyusun ritme, memberi motion graphic dan retouch. Video pendek, trailer, sampai poster.", "Cutting, building rhythm, adding motion graphics and retouching. Short videos, trailers, and posters."], ["Layers · klik untuk menyalakan / mematikan", "Layers · click to toggle"], ["Judul teks", "Title text"], ["Cahaya matahari", "Sunlight"], ["Gunung", "Mountains"], ["Langit senja", "Sunset sky"], ["DARI KUBUS", "FROM A CUBE"], ["JADI DUNIA.", "TO A WORLD."], ["Modeling, sculpting, texturing, rigging, sampai render di Blender. Putar objek 3D di samping, itu scene interaktif.", "Modeling, sculpting, texturing, rigging, all the way to rendering in Blender. Spin the 3D object beside this, it is an interactive scene."], ["model selesai", "models completed"], ["render animasi", "animation renders"], ["tahun pakai Blender", "years using Blender"], ["IKUTI JUGA DI", "FOLLOW ME ON"], ["Kontennya selalu terbaru. Untuk prototipe ini, embed memakai akun @nvidia. Ganti dengan akunmu lewat atribut", "Always fresh content. This prototype embeds the @nvidia account. Swap in your own account via the"], ["dan", "and"], ["PUNYA IDE?", "GOT AN IDEA?"], ["AYO BIKIN BARENG.", "LET'S TEAM UP."], ["Terbuka untuk magang, proyek freelance, dan kolaborasi game jam.", "Open to internships, freelance projects, and game jam collaborations."], ["© 2026 Nama Kamu. Dibuat dengan HTML, CSS, JavaScript, GSAP, dan Three.js.", "© 2026 Your Name. Built with HTML, CSS, JavaScript, GSAP, and Three.js."], ["Robot 3D interaktif", "Interactive 3D robot"], ["Lihat proyek Web Development", "View Web Development projects"], ["Lihat proyek Mobile Apps", "View Mobile Apps projects"], ["Lihat proyek Game Development", "View Game Development projects"], ["Lihat proyek IoT & Elektronik", "View IoT & Electronics projects"], ["Lihat proyek Multimedia", "View Multimedia projects"], ["Lihat proyek 3D Art", "View 3D Art projects"], ["Log serial monitor", "Serial monitor log"]];
 const H1 = {"id": "Saya membangun yang bisa diklik, dimainkan, dan diputar 360°.", "en": "I build things you can click, play, and spin 360°."};
-const DYN = {"en": {"muted": "Muted", "soundOn": "Sound On", "lampOn": "Turn on the lamp", "lampOff": "Turn off the lamp", "locale": "en-US", "title": "Your Name — Developer & 3D Artist", "desc": "Portfolio of an Informatics Engineering student: web, mobile, game, multimedia, 3D, and IoT."}, "id": {"muted": "Bisu", "soundOn": "Suara Nyala", "lampOn": "Nyalakan lampu", "lampOff": "Matikan lampu", "locale": "id-ID", "title": "Nama Kamu — Developer & 3D Artist", "desc": "Portofolio mahasiswa Teknik Informatika: web, mobile, game, multimedia, 3D, dan IoT."}};
+const DYN = {"en": {"menuOpen": "Open menu", "menuClose": "Close menu", "muted": "Muted", "soundOn": "Sound On", "lampOn": "Turn on the lamp", "lampOff": "Turn off the lamp", "locale": "en-US", "title": "Your Name — Developer & 3D Artist", "desc": "Portfolio of an Informatics Engineering student: web, mobile, game, multimedia, 3D, and IoT."}, "id": {"menuOpen": "Buka menu", "menuClose": "Tutup menu", "muted": "Bisu", "soundOn": "Suara Nyala", "lampOn": "Nyalakan lampu", "lampOff": "Matikan lampu", "locale": "id-ID", "title": "Nama Kamu — Developer & 3D Artist", "desc": "Portofolio mahasiswa Teknik Informatika: web, mobile, game, multimedia, 3D, dan IoT."}};
 const norm = s => s.replace(/\s+/g, ' ').trim();
 const byId = new Map(PAIRS.map(p => [norm(p[0]), p])), byEn = new Map(PAIRS.map(p => [norm(p[1]), p]));
 const textRecs = [], attrRecs = [], skipTag = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA']);
@@ -1055,7 +1107,7 @@ for (let n; (n = walker.nextNode());) {
   const pair = byId.get(key) || byEn.get(key); if (pair) textRecs.push({ n, pair, a: m[1], b: m[3] });
 }
 document.querySelectorAll('[aria-label],[title]').forEach(el => {
-  if (el.id === 'sw' || el.closest('[data-i18n-skip]')) return;
+  if (el.id === 'sw' || el.id === 'navToggle' || el.closest('[data-i18n-skip]')) return;
   ['aria-label', 'title'].forEach(a => { const v = el.getAttribute(a); if (!v) return;
     const pair = byId.get(norm(v)) || byEn.get(norm(v)); if (pair) attrRecs.push({ el, a, pair }); });
 });
@@ -1095,12 +1147,15 @@ document.documentElement.classList.remove('i18n-pending');
 <script type="module">
   // Runtime Spline dimuat hanya saat dibutuhkan: tidak di mobile, dan baru saat section mendekati layar.
   // Saat section keluar layar (atau tab disembunyikan) render dijeda lewat app.stop() dan dilanjutkan dengan app.play().
-  const SPLINE_SCENE_URL = 'https://prod.spline.design/ZIGg4JII9zmSiWOC/scene.splinecode';
+  // Scene Hero tetap menggunakan robot yang sekarang.
+  const SPLINE_HERO_SCENE_URL = 'https://prod.spline.design/ZIGg4JII9zmSiWOC/scene.splinecode';
+  // Scene khusus untuk canvas pada section 3D Studio.
+  const SPLINE_3D_SCENE_URL = 'https://prod.spline.design/7a4j1r80EN2tL6Ic/scene.splinecode';
   const mqMobile = matchMedia('(max-width: 767px), (max-height: 480px) and (pointer: coarse)');
   let runtime;
   const loadRuntime = () => (runtime ||= import('@splinetool/runtime'));
 
-  function lazyScene({ canvas, root, margin, label, onReady }) {
+  function lazyScene({ canvas, root, margin, label, sceneUrl, onReady }) {
     if (!canvas || !root) return;
     let app = null, starting = false, visible = false;
     const sync = () => {
@@ -1115,7 +1170,7 @@ document.documentElement.classList.remove('i18n-pending');
       try {
         const { Application } = await loadRuntime();
         const a = new Application(canvas, { htmlContentMode: 'inline' });
-        await a.load(SPLINE_SCENE_URL);
+        await a.load(sceneUrl || SPLINE_HERO_SCENE_URL);
         a.setBackgroundColor('transparent');
         if (onReady) onReady(a);
         app = a; sync();
@@ -1129,14 +1184,27 @@ document.documentElement.classList.remove('i18n-pending');
 
   // 3D Studio: dimuat saat section mendekati layar
   const canvas3d = document.getElementById('canvas3d');
-  if (canvas3d) lazyScene({ canvas: canvas3d, root: canvas3d.parentElement, margin: '300px', label: 'Spline 3D Studio' });
+  if (canvas3d) lazyScene({
+    canvas: canvas3d,
+    root: canvas3d.parentElement,
+    margin: '300px',
+    label: 'Spline 3D Studio',
+    sceneUrl: SPLINE_3D_SCENE_URL
+  });
 
   // Zoom tambahan (opsional). 1 = persis seperti yang diatur di editor Spline; atur posisi robot di sana.
   const HERO_ZOOM = 1;
   const heroCanvas = document.getElementById('heroRobot');
   if (heroCanvas) {
     const heroSection = heroCanvas.closest('.hero');
-    lazyScene({ canvas: heroCanvas, root: heroSection, margin: '0px', label: 'Spline Hero', onReady: a => { if (HERO_ZOOM !== 1) a.setZoom(HERO_ZOOM); } });
+    lazyScene({
+      canvas: heroCanvas,
+      root: heroSection,
+      margin: '0px',
+      label: 'Spline Hero',
+      sceneUrl: SPLINE_HERO_SCENE_URL,
+      onReady: a => { if (HERO_ZOOM !== 1) a.setZoom(HERO_ZOOM); }
+    });
 
     // Hapus elemen watermark "Built with Spline" bila ditambahkan runtime ke DOM
     const killLogo = () => document.querySelectorAll('.hero-robot-shell a[href*="spline.design"], .hero-robot-shell [id*="logo" i], .hero-robot-shell [class*="watermark" i]').forEach(el => el.remove());
@@ -1331,6 +1399,19 @@ if (hasGsap && !RM) {
 const links = $$('#nav a[href^="#"]');
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { threshold: .35 });
 $$('section[id]').forEach(s => io.observe(s));
+
+/* ===== Menu hamburger (mobile) ===== */
+(function navMenu() {
+  const nav = $('#nav'), btn = $('#navToggle'); if (!nav || !btn) return;
+  const label = () => btn.setAttribute('aria-label', I18N.t(nav.classList.contains('open') ? 'menuClose' : 'menuOpen'));
+  const set = open => { nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); label(); };
+  btn.addEventListener('click', e => { e.stopPropagation(); set(!nav.classList.contains('open')); });
+  nav.addEventListener('click', e => { if (e.target.closest('.nav-links a')) set(false); });
+  document.addEventListener('click', e => { if (!nav.contains(e.target)) set(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); } });
+  matchMedia('(max-width: 767px)').addEventListener('change', () => set(false));
+  window.addEventListener('langchange', label); label();
+})();
 
 /* ===== Hero 3D =====
    Hero and 3D Studio now use the updated Spline robot scene.
