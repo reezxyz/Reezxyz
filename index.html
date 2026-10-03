@@ -3,32 +3,13 @@
 <head>
 <meta charset="utf-8">
 <script>document.documentElement.classList.add("i18n-pending");setTimeout(function(){document.documentElement.classList.remove("i18n-pending")},3000)</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Your Name — Developer & 3D Artist</title>
 <meta name="description" content="Portfolio of an Informatics Engineering student: web, mobile, game, multimedia, 3D, and IoT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Tailwind CSS CDN — required by the Visual Lab gallery utilities -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Plus Jakarta Sans', 'sans-serif']
-        }
-      }
-    }
-  };
-</script>
-<!-- Font Awesome — icons used by the gallery controls -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&family=VT323&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* Font Minecraft asli (opsional): taruh fonts/Minecraft.woff2 di samping index.html.
-   Kalau tidak ada, otomatis memakai "Press Start 2P". */
-@font-face{font-family:'Minecraft';src:local('Minecraft'),local('Minecraftia'),url('fonts/Minecraft.woff2') format('woff2');font-display:swap}
 
 /* Palet: hanya ungu (main) + lime (aksen) di atas dasar gelap */
 :root{
@@ -64,18 +45,18 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 
 /* ---------- NAV ---------- */
 .progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:60;background:linear-gradient(90deg,var(--purple),var(--lime));transform-origin:0 50%;transform:scaleX(0)}
-.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:.3rem;align-items:center;padding:.4rem .5rem;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.6);backdrop-filter:blur(16px) saturate(1.5);max-width:94vw;overflow-x:auto;scrollbar-width:none}
+.nav{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:.3rem;align-items:center;padding:.4rem .5rem;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.6);backdrop-filter:blur(16px) saturate(1.5);max-width:94vw;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nav a{padding:.45rem .85rem;border-radius:99px;font-size:.86rem;white-space:nowrap;color:var(--muted);transition:background .45s var(--ease),color .45s var(--ease)}
 .nav a:hover{color:#fff}.nav a.on{background:var(--purple);color:#fff}
 .nav .logo{font-weight:800;color:var(--lime)}
 
 /* ---------- HERO ---------- */
-.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 90px;background:
+.hero{min-height:100vh;min-height:100svh;min-height:100dvh;display:flex;align-items:center;padding:110px 0 90px;background:
   radial-gradient(45% 45% at 88% 12%,rgba(124,58,237,.55),transparent 70%),
   radial-gradient(40% 40% at 0% 100%,rgba(124,58,237,.35),transparent 70%),var(--bg)}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center}
-.hey{font-family:'Permanent Marker',cursive;color:var(--lime);font-size:1.4rem;transform:rotate(-3deg);display:inline-block}
+.hey{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-style:italic;letter-spacing:-.01em;color:var(--lime);font-size:1.4rem;transform:rotate(-3deg);display:inline-block}
 .hero h1{font-size:clamp(2.6rem,6vw,5rem);margin:.8rem 0 .4rem}
 .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}
 .hero h1 .w>span{display:inline-block}
@@ -100,7 +81,7 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 #heroRobot:active{cursor:grabbing}
 .hero-robot-hint{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:4;display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .75rem;border-radius:99px;border:1px solid var(--line);background:rgba(18,16,31,.62);backdrop-filter:blur(10px);font:600 .7rem 'JetBrains Mono';color:var(--muted);white-space:nowrap;pointer-events:none}
 .hero-robot-hint::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,245,51,.75)}
-.bubble{position:absolute;top:2%;left:-2%;z-index:3;max-width:170px;padding:.7rem .9rem;border-radius:18px 18px 18px 4px;border:2px solid var(--lime);background:rgba(124,58,237,.35);backdrop-filter:blur(8px);font-family:'Permanent Marker',cursive;font-size:.95rem;line-height:1.25;transform:rotate(-5deg)}
+.bubble{position:absolute;top:2%;left:-2%;z-index:3;max-width:170px;padding:.7rem .9rem;border-radius:18px 18px 18px 4px;border:2px solid var(--lime);background:rgba(124,58,237,.35);backdrop-filter:blur(8px);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-style:italic;font-size:.95rem;line-height:1.25;transform:rotate(-5deg)}
 .doodle{position:absolute;z-index:1;pointer-events:none}
 .doodle svg{width:100%;height:100%;overflow:visible}
 .d-star{width:46px;height:46px;top:8%;right:2%}.d-bolt{width:34px;height:50px;bottom:14%;left:-2%}.d-sq{width:110px;height:40px;top:84%;right:2%}.d-smile{width:44px;height:44px;top:46%;right:-1%}
@@ -195,10 +176,10 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .mc-card{position:relative;padding:1.2rem 1.2rem 1.4rem;background-color:#2a2152;border:4px solid #0a0618;box-shadow:inset 4px 4px 0 rgba(255,255,255,.14),inset -4px -4px 0 rgba(0,0,0,.4),8px 8px 0 rgba(0,0,0,.35);transition:transform .5s steps(3)}
 .mc-card:hover{transform:translate(-4px,-8px)}
 .mc-card h3{font-family:'Minecraft','Press Start 2P',monospace;font-weight:400;font-size:.9rem;line-height:1.5;color:#fff;text-shadow:3px 3px 0 #0d0624;margin:.7rem 0 .4rem;letter-spacing:0}
-.mc-card p{font-family:'VT323',monospace;font-size:1.4rem;line-height:1.15;color:#ddd5ff}
-.mc-card .tags span{display:inline-block;margin:.5rem .3rem 0 0;padding:.05rem .5rem;background:#0a0618;color:var(--lime);font-family:'VT323',monospace;font-size:1.2rem;border:2px solid #5b4aa8}
+.mc-card p{font-family:'JetBrains Mono',monospace;font-size:.94rem;line-height:1.71;color:#ddd5ff}
+.mc-card .tags span{display:inline-block;margin:.5rem .3rem 0 0;padding:.05rem .5rem;background:#0a0618;color:var(--lime);font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:2.25;border:2px solid #5b4aa8}
 .mc-card .icon{width:64px;height:64px;display:grid;place-items:center;background:#1c1540;border:3px solid;border-color:#0a0618 #5b4aa8 #5b4aa8 #0a0618}
-.mc-tip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;background:rgba(13,7,32,.95);border:3px solid var(--purple);box-shadow:inset 0 0 0 2px #4c1d95;padding:.4rem .8rem;color:#fff;font-family:'VT323',monospace;font-size:1.3rem;white-space:nowrap;z-index:5;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.mc-tip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;background:rgba(13,7,32,.95);border:3px solid var(--purple);box-shadow:inset 0 0 0 2px #4c1d95;padding:.4rem .8rem;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.867rem;line-height:2.25;white-space:nowrap;z-index:5;transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .mc-card:hover .mc-tip{opacity:1;transform:translateX(-50%) scale(1)}
 .ground{position:relative;height:150px;margin-top:40px;z-index:2}
 .ground .grass{position:absolute;inset:0 0 auto 0;height:40px}
@@ -320,7 +301,7 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .glowline{background:linear-gradient(90deg,var(--lime),var(--purple-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---------- CONTACT ---------- */
-.s-contact{text-align:center;background:radial-gradient(60% 60% at 50% 100%,rgba(124,58,237,.5),transparent 70%),var(--bg);padding-bottom:60px}
+.s-contact{text-align:center;background:radial-gradient(60% 60% at 50% 100%,rgba(124,58,237,.5),transparent 70%),var(--bg);padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}
 .s-contact .head{justify-items:center}.s-contact .head h2{max-width:16ch;font-size:clamp(2.6rem,7vw,5.5rem)}
 .s-contact .cta{justify-content:center}
 footer{margin-top:5rem;color:var(--muted);font-size:.85rem}
@@ -357,6 +338,243 @@ html.i18n-pending body{visibility:hidden}
 .lang button{min-width:38px;min-height:32px;padding:0 .65rem;border-radius:99px;font-size:.76rem;font-weight:800;letter-spacing:.05em;color:var(--muted);transition:background .45s var(--ease),color .45s var(--ease)}
 .lang button:hover{color:#fff}
 .lang button[aria-pressed=true]{background:#fff;color:#14102a}
+
+/* ---------- IKON (SVG inline, pengganti Font Awesome) ---------- */
+.fa-svg{display:inline-block;flex:none;height:1em;fill:currentColor;overflow:visible;margin-block:calc((1lh - 1em) / 2)}
+
+/* ---------- TEKS PIXEL SVG (pengganti font Press Start 2P) ---------- */
+.px-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.pxt-wrap{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.3em 1em;padding-block:.15em}
+.splash.pxt-wrap{display:inline-flex;flex-wrap:nowrap;padding-block:0}
+.mc-card h3.pxt-wrap{gap:.5em .9em;padding-block:.25em}
+.pxt{display:block;flex:none;height:1em;fill:currentColor;shape-rendering:crispEdges;overflow:visible}
+.mc-title .pxt{filter:drop-shadow(5px 5px 0 #0d0624)}
+.splash .pxt,.mc-card h3 .pxt{filter:drop-shadow(3px 3px 0 #0d0624)}
+
+/* ---------- ANIMASI CSS HANYA BERJALAN SAAT SECTION TERLIHAT ---------- */
+html.vis-gate section:not(.in-view) *,html.vis-gate section:not(.in-view) *::before,html.vis-gate section:not(.in-view) *::after{animation-play-state:paused!important}
+</style>
+<!-- Utilitas Tailwind hasil kompilasi (CSS biasa, tanpa CDN). Ditaruh setelah CSS halaman agar urutan cascade sama seperti sebelumnya. -->
+<style id="tailwind-compiled">
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }
+::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}
+:after,:before{--tw-content:""}
+:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Plus Jakarta Sans,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}
+body{margin:0;line-height:inherit}
+hr{height:0;color:inherit;border-top-width:1px}
+abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
+a{color:inherit;text-decoration:inherit}
+b,strong{font-weight:bolder}
+code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-.25em}
+sup{top:-.5em}
+table{text-indent:0;border-color:inherit;border-collapse:collapse}
+button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}
+button,select{text-transform:none}
+button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}
+:-moz-focusring{outline:auto}
+:-moz-ui-invalid{box-shadow:none}
+progress{vertical-align:baseline}
+::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+summary{display:list-item}
+blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}
+fieldset{margin:0}
+fieldset,legend{padding:0}
+menu,ol,ul{list-style:none;margin:0;padding:0}
+dialog{padding:0}
+textarea{resize:vertical}
+input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}
+input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}
+[role=button],button{cursor:pointer}
+:disabled{cursor:default}
+audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}
+img,video{max-width:100%;height:auto}
+[hidden]:where(:not([hidden=until-found])){display:none}
+.pointer-events-none{pointer-events:none}
+.visible{visibility:visible}
+.absolute{position:absolute}
+.relative{position:relative}
+.bottom-10{bottom:2.5rem}
+.bottom-5{bottom:1.25rem}
+.left-10{left:2.5rem}
+.left-5{left:1.25rem}
+.right-0{right:0}
+.right-10{right:2.5rem}
+.right-5{right:1.25rem}
+.top-0{top:0}
+.top-20{top:5rem}
+.top-5{top:1.25rem}
+.z-30{z-index:30}
+.mx-auto{margin-left:auto;margin-right:auto}
+.mb-20{margin-bottom:5rem}
+.mt-0\.5{margin-top:.125rem}
+.block{display:block}
+.inline{display:inline}
+.flex{display:flex}
+.inline-flex{display:inline-flex}
+.grid{display:grid}
+.hidden{display:none}
+.aspect-\[9\/16\]{aspect-ratio:9/16}
+.h-80{height:20rem}
+.h-96{height:24rem}
+.h-full{height:100%}
+.w-80{width:20rem}
+.w-96{width:24rem}
+.w-full{width:100%}
+.max-w-6xl{max-width:72rem}
+.max-w-xl{max-width:36rem}
+.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+@keyframes bounce{0%,to{transform:translateY(-25%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,.2,1)}}
+.animate-bounce{animation:bounce 1s infinite}
+@keyframes pulse{50%{opacity:.5}}
+.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+.items-start{align-items:flex-start}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.justify-between{justify-content:space-between}
+.gap-10{gap:2.5rem}
+.gap-2{gap:.5rem}
+.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}
+.overflow-hidden{overflow:hidden}
+.whitespace-nowrap{white-space:nowrap}
+.rounded-2xl{border-radius:1rem}
+.rounded-3xl{border-radius:1.5rem}
+.rounded-\[2\.5rem\]{border-radius:2.5rem}
+.rounded-full{border-radius:9999px}
+.rounded-xl{border-radius:.75rem}
+.border{border-width:1px}
+.border-t{border-top-width:1px}
+.border-blue-500\/30{border-color:rgba(59,130,246,.3)}
+.border-orange-500\/30{border-color:rgba(249,115,22,.3)}
+.border-slate-200\/50{border-color:rgba(226,232,240,.5)}
+.border-white\/20{border-color:hsla(0,0%,100%,.2)}
+.bg-amber-500\/10{background-color:rgba(245,158,11,.1)}
+.bg-blue-500\/20{background-color:rgba(59,130,246,.2)}
+.bg-orange-500\/20{background-color:rgba(249,115,22,.2)}
+.bg-purple-500\/10{background-color:rgba(168,85,247,.1)}
+.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}
+.object-cover{-o-object-fit:cover;object-fit:cover}
+.p-4{padding:1rem}
+.px-2\.5{padding-left:.625rem;padding-right:.625rem}
+.px-3\.5{padding-left:.875rem;padding-right:.875rem}
+.px-4{padding-left:1rem;padding-right:1rem}
+.px-6{padding-left:1.5rem;padding-right:1.5rem}
+.py-1{padding-top:.25rem;padding-bottom:.25rem}
+.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}
+.py-2{padding-top:.5rem;padding-bottom:.5rem}
+.py-24{padding-top:6rem;padding-bottom:6rem}
+.pb-16{padding-bottom:4rem}
+.pt-4{padding-top:1rem}
+.text-\[10px\]{font-size:10px}
+.text-\[11px\]{font-size:11px}
+.text-sm{font-size:.875rem;line-height:1.25rem}
+.text-xs{font-size:.75rem;line-height:1rem}
+.font-black{font-weight:900}
+.font-bold{font-weight:700}
+.font-extrabold{font-weight:800}
+.uppercase{text-transform:uppercase}
+.tracking-wide{letter-spacing:.025em}
+.tracking-wider{letter-spacing:.05em}
+.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}
+.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}
+.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}
+.text-orange-300{--tw-text-opacity:1;color:rgb(253 186 116/var(--tw-text-opacity,1))}
+.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}
+.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}
+.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}
+.opacity-0{opacity:0}
+.opacity-100{opacity:1}
+.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}
+.outline{outline-style:solid}
+.blur-3xl{--tw-blur:blur(64px)}
+.blur-3xl,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}
+.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}
+.backdrop-blur-md,.backdrop-blur-xl{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}
+.backdrop-blur-xl{--tw-backdrop-blur:blur(24px)}
+.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.duration-300{transition-duration:.3s}
+.duration-500{transition-duration:.5s}
+.hover\:translate-y-0:hover{--tw-translate-y:0px}
+.hover\:translate-y-0:hover,.hover\:translate-y-12:hover{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.hover\:translate-y-12:hover{--tw-translate-y:3rem}
+.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.hover\:bg-white\/20:hover{background-color:hsla(0,0%,100%,.2)}
+.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.group:hover .group-hover\:pointer-events-auto{pointer-events:auto}
+.group:hover .group-hover\:translate-y-\[-4px\]{--tw-translate-y:-4px}
+.group:hover .group-hover\:scale-100,.group:hover .group-hover\:translate-y-\[-4px\]{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.group:hover .group-hover\:scale-100{--tw-scale-x:1;--tw-scale-y:1}
+.group:hover .group-hover\:scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.group:hover .group-hover\:opacity-0{opacity:0}
+.group:hover .group-hover\:opacity-100{opacity:1}
+.dark\:border-slate-800\/50:is(.dark *){border-color:rgba(30,41,59,.5)}
+.dark\:text-amber-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}
+.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}
+@media (min-width:640px){.sm\:text-base{font-size:1rem;line-height:1.5rem}}
+@media (min-width:768px){.md\:-translate-y-2{--tw-translate-y:-0.5rem}
+.md\:-translate-y-2,.md\:-translate-y-8{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.md\:-translate-y-8{--tw-translate-y:-2rem}
+.md\:translate-y-16{--tw-translate-y:4rem}
+.md\:-rotate-1,.md\:translate-y-16{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.md\:-rotate-1{--tw-rotate:-1deg}
+.md\:-rotate-2{--tw-rotate:-2deg}
+.md\:-rotate-2,.md\:rotate-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+.md\:rotate-2{--tw-rotate:2deg}
+.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.md\:gap-12{gap:3rem}}
+</style>
+<style id="responsive">
+/* ===== RESPONSIF: safe-area, tablet, mobile, layar sangat lebar ===== */
+@supports (width:max(1px,2px)){
+  .wrap{width:min(1180px,calc(100vw - 2 * max(4vw,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))))}
+}
+/* Label "Level up!" disembunyikan di <=900px seperti sebelumnya; menu agar muat di tablet */
+@media (max-width:900px){
+  .splash.pxt-wrap{display:none}
+  .nav a{padding:.45rem .62rem;font-size:.82rem}
+}
+/* Tablet (768-1199px) */
+@media (min-width:768px) and (max-width:1199px){
+  .inv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inv .mc-card:last-child:nth-child(odd){grid-column:1/-1}
+  .dash{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Mobile (<768px) dan HP landscape: tanpa visual 3D/Spline, animasi dikurangi */
+@media (max-width:767px),(max-height:480px) and (pointer:coarse){
+  html{scroll-behavior:auto}
+  .hero{padding:96px 0 72px}
+  .hero-robot-shell,.spline-cover,.hero .stage,.spl,.scroll-ind,.progress,.sparks{display:none!important}
+  .hero .wrap,.hero .wrap>div:first-child{pointer-events:auto}
+  .head::before,.dh-wrap::before{display:none}
+  *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .nav{background:rgba(18,16,31,.94)}
+  .glass-card{background:rgba(20,16,36,.66)}
+  .sk,.traces path,.animate-bounce,.animate-pulse,.splash,.mouse::after{animation:none!important}
+  .scribble path{animation:none;stroke-dashoffset:0}
+}
+/* Layar lebar */
+@media (min-width:1600px){.wrap{width:min(1320px,86vw)}}
+@media (min-width:1920px){
+  html{font-size:112.5%}
+  .wrap{width:min(1500px,80vw)}
+  .hero-robot-shell{left:50%;right:auto;width:100%;max-width:2100px;transform:translateX(-50%)}
+  .spline-cover{right:calc((100% - min(100%,2100px)) / 2)}
+}
+@media (min-width:2560px){
+  html{font-size:131.25%}
+  .wrap{width:min(1760px,72vw)}
+  .hero-robot-shell{max-width:2400px}
+  .spline-cover{right:calc((100% - min(100%,2400px)) / 2)}
+}
 </style>
   <!-- Spline Runtime: render langsung ke canvas, tanpa Spline Viewer/watermark -->
   <script type="importmap">
@@ -544,8 +762,8 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
       <div class="head" data-reveal><span class="badge" data-i="game">Game Developer</span></div>
       <div class="mc-head">
         <div class="px" id="creeper" data-speed=".3" aria-hidden="true"></div>
-        <h2 class="mc-title" data-reveal="left">Projects: Game</h2>
-        <span class="splash">Level up!</span>
+        <h2 class="mc-title" data-reveal="left" data-px="Projects: Game" data-px-en="Projects: Game" data-px-id="Proyek: Game" data-px-ls=".02">Projects: Game</h2>
+        <span class="splash" data-px="Level up!" data-px-en="Level up!" data-px-id="Naik level!">Level up!</span>
       </div>
       <div class="hud" data-reveal>
         <div class="hearts" id="hearts" aria-hidden="true"></div>
@@ -558,15 +776,15 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
       <div class="inv">
         <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 2D Platformer</div>
           <div class="icon"><div class="px" data-item="diamond"></div></div>
-          <h3>Block Runner</h3><p>Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.</p>
+          <h3 data-px="Block Runner">Block Runner</h3><p>Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.</p>
           <div class="tags"><span>Unity</span><span>C#</span></div></article>
         <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Godot · Roguelike</div>
           <div class="icon"><div class="px" data-item="creeper"></div></div>
-          <h3>Pixel Dungeon</h3><p>Dungeon acak berbasis grid, musuh punya pola serangan sendiri.</p>
+          <h3 data-px="Pixel Dungeon">Pixel Dungeon</h3><p>Dungeon acak berbasis grid, musuh punya pola serangan sendiri.</p>
           <div class="tags"><span>Godot</span><span>GDScript</span></div></article>
         <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 3D Arcade</div>
           <div class="icon"><div class="px" data-item="heart"></div></div>
-          <h3>Space Drift</h3><p>Balap pesawat 3D dengan model dan efek buatan Blender.</p>
+          <h3 data-px="Space Drift">Space Drift</h3><p>Balap pesawat 3D dengan model dan efek buatan Blender.</p>
           <div class="tags"><span>Unity</span><span>Blender</span></div></article>
       </div>
     </div>
@@ -671,7 +889,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
             <div class="max-w-xl mb-20 space-y-3 data-reveal dh-wrap">
                 <div class="section-kicker"><span class="section-kicker-line"></span><span>// visual_lab.render()</span><span class="section-index">VIS.01</span></div>
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-amber-500 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-cube"></i> <span data-en="Visual Lab" data-id="Lab Visual">Visual Lab</span>
+                    <svg class="fa-svg" viewBox="0 0 512 512" style="width:1em" aria-hidden="true" focusable="false"><path d="M234.5 5.7c13.9-5 29.1-5 43.1 0l192 68.6C495 83.4 512 107.5 512 134.6V377.4c0 27-17 51.2-42.5 60.3l-192 68.6c-13.9 5-29.1 5-43.1 0l-192-68.6C17 428.6 0 404.5 0 377.4V134.6c0-27 17-51.2 42.5-60.3l192-68.6zM256 66L82.3 128 256 190l173.7-62L256 66zm32 368.6l160-57.1v-188L288 246.6v188z"/></svg> <span data-en="Visual Lab" data-id="Lab Visual">Visual Lab</span>
                 </div>
                 <h2 class="dh"><span>BLENDER</span><span class="o">IN MOTION.</span></h2>
                 <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" 
@@ -687,7 +905,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                 <div class="project-3d-card md:-translate-y-8 md:-rotate-1 hover:rotate-0 hover:translate-y-0 transition-all duration-500 group" data-reveal="left">
                     <div class="ambient-glow" style="--glow-color: rgba(245, 158, 11, 0.4);"></div>
                     <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
-                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="none">
                             <source src="https://i.imgur.com/WDW32mF.mp4#t=34" type="video/mp4">
                         </video>
                         <div class="absolute top-5 left-5 z-30">
@@ -697,11 +915,11 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                         </div>
                         <div class="absolute top-5 right-5 z-30">
                             <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
-                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <svg class="fa-svg text-xs text-white animate-bounce" viewBox="0 0 320 512" style="width:0.625em" aria-hidden="true" focusable="false"><path d="M0 55.2V426c0 12.2 9.9 22 22 22c6.3 0 12.4-2.7 16.6-7.5L121.2 346l58.1 116.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9L179.8 320H297.9c12.2 0 22.1-9.9 22.1-22.1c0-6.3-2.7-12.3-7.4-16.5L38.6 37.9C34.3 34.1 28.9 32 23.2 32C10.4 32 0 42.4 0 55.2z"/></svg>
                                 <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
                             </div>
                             <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
-                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <svg class="fa-svg text-xs sound-icon text-slate-300" viewBox="0 0 576 512" style="width:1.125em" aria-hidden="true" focusable="false"><path d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>
                                 <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
                             </button>
                         </div>
@@ -719,7 +937,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                 <div class="project-3d-card md:translate-y-16 md:rotate-2 hover:rotate-0 hover:translate-y-12 transition-all duration-500 group" data-reveal="scale">
                     <div class="ambient-glow" style="--glow-color: rgba(168, 85, 247, 0.4);"></div>
                     <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
-                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="none">
                             <source src="https://i.imgur.com/Nm6S2ml.mp4#t=2.5" type="video/mp4">
                         </video>
                         <div class="absolute top-5 left-5 z-30">
@@ -729,11 +947,11 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                         </div>
                         <div class="absolute top-5 right-5 z-30">
                             <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
-                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <svg class="fa-svg text-xs text-white animate-bounce" viewBox="0 0 320 512" style="width:0.625em" aria-hidden="true" focusable="false"><path d="M0 55.2V426c0 12.2 9.9 22 22 22c6.3 0 12.4-2.7 16.6-7.5L121.2 346l58.1 116.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9L179.8 320H297.9c12.2 0 22.1-9.9 22.1-22.1c0-6.3-2.7-12.3-7.4-16.5L38.6 37.9C34.3 34.1 28.9 32 23.2 32C10.4 32 0 42.4 0 55.2z"/></svg>
                                 <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
                             </div>
                             <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
-                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <svg class="fa-svg text-xs sound-icon text-slate-300" viewBox="0 0 576 512" style="width:1.125em" aria-hidden="true" focusable="false"><path d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>
                                 <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
                             </button>
                         </div>
@@ -751,7 +969,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                 <div class="project-3d-card md:-translate-y-2 md:-rotate-2 hover:rotate-0 hover:translate-y-0 transition-all duration-500 group" data-reveal="right">
                     <div class="ambient-glow" style="--glow-color: rgba(59, 130, 246, 0.4);"></div>
                     <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative resin-glass bg-slate-900">
-                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="metadata">
+                        <video class="video-preview w-full h-full object-cover" muted loop playsinline preload="none">
                             <source src="https://i.imgur.com/Bl4vRHz.mp4#t=2.5" type="video/mp4">
                         </video>
                         <div class="absolute top-5 left-5 z-30">
@@ -761,11 +979,11 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
                         </div>
                         <div class="absolute top-5 right-5 z-30">
                             <div class="hover-hint px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white shadow-lg opacity-100 group-hover:opacity-0 group-hover:scale-95 transition-all duration-300 pointer-events-none">
-                                <i class="fa-solid fa-arrow-pointer text-xs text-white animate-bounce"></i>
+                                <svg class="fa-svg text-xs text-white animate-bounce" viewBox="0 0 320 512" style="width:0.625em" aria-hidden="true" focusable="false"><path d="M0 55.2V426c0 12.2 9.9 22 22 22c6.3 0 12.4-2.7 16.6-7.5L121.2 346l58.1 116.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9L179.8 320H297.9c12.2 0 22.1-9.9 22.1-22.1c0-6.3-2.7-12.3-7.4-16.5L38.6 37.9C34.3 34.1 28.9 32 23.2 32C10.4 32 0 42.4 0 55.2z"/></svg>
                                 <span class="text-[10px] font-extrabold tracking-wide whitespace-nowrap" data-en="Hover to Play" data-id="Arahkan Kursor">Hover to Play</span>
                             </div>
                             <button class="sound-toggle absolute top-0 right-0 px-3.5 py-2 rounded-2xl glass-card border border-white/20 backdrop-blur-md flex items-center justify-center gap-2 text-white hover:bg-white/20 transition-all active:scale-95 shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto whitespace-nowrap">
-                                <i class="fa-solid fa-volume-xmark text-xs sound-icon text-slate-300"></i>
+                                <svg class="fa-svg text-xs sound-icon text-slate-300" viewBox="0 0 576 512" style="width:1.125em" aria-hidden="true" focusable="false"><path d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>
                                 <span class="sound-text text-[10px] font-bold tracking-wide" data-en="Muted" data-id="Bisu">Muted</span>
                             </button>
                         </div>
@@ -874,30 +1092,51 @@ document.documentElement.classList.remove('i18n-pending');
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
 <script type="module">
-  import { Application } from '@splinetool/runtime';
-
+  // Runtime Spline dimuat hanya saat dibutuhkan: tidak di mobile, dan baru saat section mendekati layar.
+  // Saat section keluar layar (atau tab disembunyikan) render dijeda lewat app.stop() dan dilanjutkan dengan app.play().
   const SPLINE_SCENE_URL = 'https://prod.spline.design/ZIGg4JII9zmSiWOC/scene.splinecode';
+  const mqMobile = matchMedia('(max-width: 767px), (max-height: 480px) and (pointer: coarse)');
+  let runtime;
+  const loadRuntime = () => (runtime ||= import('@splinetool/runtime'));
 
-  const canvas3d = document.getElementById('canvas3d');
-  if (canvas3d) {
-    const app3d = new Application(canvas3d, { htmlContentMode: 'inline' });
-    app3d.load(SPLINE_SCENE_URL).then(() => {
-      // Let the portfolio's own dark background show through the Spline scene.
-      app3d.setBackgroundColor('transparent');
-    }).catch(err => console.error('Spline 3D Studio failed to load:', err));
+  function lazyScene({ canvas, root, margin, label, onReady }) {
+    if (!canvas || !root) return;
+    let app = null, starting = false, visible = false;
+    const sync = () => {
+      if (!app) return;
+      const run = visible && !mqMobile.matches && !document.hidden;
+      if (run && app.isStopped) app.play();
+      else if (!run && !app.isStopped) app.stop();
+    };
+    const start = async () => {
+      if (app || starting || mqMobile.matches) return;
+      starting = true;
+      try {
+        const { Application } = await loadRuntime();
+        const a = new Application(canvas, { htmlContentMode: 'inline' });
+        await a.load(SPLINE_SCENE_URL);
+        a.setBackgroundColor('transparent');
+        if (onReady) onReady(a);
+        app = a; sync();
+      } catch (err) { console.error(label + ' failed to load:', err); }
+      starting = false;
+    };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); sync(); }, { rootMargin: margin }).observe(root);
+    mqMobile.addEventListener('change', () => { if (!mqMobile.matches && visible) start(); sync(); });
+    document.addEventListener('visibilitychange', sync);
   }
+
+  // 3D Studio: dimuat saat section mendekati layar
+  const canvas3d = document.getElementById('canvas3d');
+  if (canvas3d) lazyScene({ canvas: canvas3d, root: canvas3d.parentElement, margin: '300px', label: 'Spline 3D Studio' });
 
   // Zoom tambahan (opsional). 1 = persis seperti yang diatur di editor Spline; atur posisi robot di sana.
   const HERO_ZOOM = 1;
   const heroCanvas = document.getElementById('heroRobot');
   if (heroCanvas) {
-    const heroApp = new Application(heroCanvas, { htmlContentMode: 'inline' });
-    heroApp.load(SPLINE_SCENE_URL).then(() => {
-      heroApp.setBackgroundColor('transparent');
-      if (HERO_ZOOM !== 1) heroApp.setZoom(HERO_ZOOM);
-    }).catch(err => console.error('Spline Hero failed to load:', err));
+    const heroSection = heroCanvas.closest('.hero');
+    lazyScene({ canvas: heroCanvas, root: heroSection, margin: '0px', label: 'Spline Hero', onReady: a => { if (HERO_ZOOM !== 1) a.setZoom(HERO_ZOOM); } });
 
     // Hapus elemen watermark "Built with Spline" bila ditambahkan runtime ke DOM
     const killLogo = () => document.querySelectorAll('.hero-robot-shell a[href*="spline.design"], .hero-robot-shell [id*="logo" i], .hero-robot-shell [class*="watermark" i]').forEach(el => el.remove());
@@ -906,9 +1145,8 @@ document.documentElement.classList.remove('i18n-pending');
 
     // Mouse bergerak di mana pun di hero (termasuk di atas teks/tombol) tetap dikirim ke canvas,
     // sehingga robot selalu mengikuti kursor.
-    const heroSection = heroCanvas.closest('.hero');
     ['pointermove', 'mousemove'].forEach(type => heroSection.addEventListener(type, e => {
-      if (!e.isTrusted || e.target === heroCanvas) return;
+      if (!e.isTrusted || e.target === heroCanvas || mqMobile.matches) return;
       const Ctor = type === 'pointermove' && window.PointerEvent ? PointerEvent : MouseEvent;
       heroCanvas.dispatchEvent(new Ctor(type, { bubbles: true, cancelable: true, clientX: e.clientX, clientY: e.clientY, screenX: e.screenX, screenY: e.screenY, pointerType: 'mouse', pointerId: 1, isPrimary: true }));
     }, { passive: true }));
@@ -920,6 +1158,28 @@ const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const hasGsap = typeof gsap !== 'undefined';
 if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+
+/* ===== Perangkat & visibilitas =====
+   MOBILE: layar < 768px, atau HP landscape. Di sini visual 3D dibuang dan animasi dikurangi. */
+const MOBILE_Q = '(max-width: 767px), (max-height: 480px) and (pointer: coarse)';
+const MQ_MOBILE = matchMedia(MOBILE_Q);
+document.documentElement.classList.add('vis-gate');
+// Jalankan sesuatu hanya saat elemen terlihat (on) dan hentikan saat tidak terlihat (off)
+function whenVisible(el, on, off, margin = '120px') {
+  if (!el) return;
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? (on && on()) : (off && off())), { rootMargin: margin }).observe(el);
+}
+// Section terlihat => animasi CSS-nya berjalan; keluar layar => dijeda
+$$('section').forEach(sec => whenVisible(sec, () => sec.classList.add('in-view'), () => sec.classList.remove('in-view'), '80px'));
+
+/* ===== Ikon volume (SVG) untuk tombol suara galeri ===== */
+const FA_ICONS = {"volume-xmark": {"vb": "0 0 576 512", "d": "M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z", "w": 1.125}, "volume-high": {"vb": "0 0 640 512", "d": "M533.6 32.5C598.5 85.3 640 165.8 640 256s-41.5 170.8-106.4 223.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C557.5 398.2 592 331.2 592 256s-34.5-142.2-88.7-186.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM473.1 107c43.2 35.2 70.9 88.9 70.9 149s-27.7 113.8-70.9 149c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C475.3 341.3 496 301.1 496 256s-20.7-85.3-53.2-111.8c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zm-60.5 74.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z", "w": 1.25}};
+function setFaIcon(el, name, cls) {
+  const i = FA_ICONS[name]; if (!el || !i) return;
+  el.setAttribute('viewBox', i.vb); el.style.width = i.w + 'em';
+  el.innerHTML = '<path d="' + i.d + '"/>';
+  el.setAttribute('class', 'fa-svg ' + cls);
+}
 
 /* ===== Ikon badge & kartu skill ===== */
 const ICONS = {
@@ -986,9 +1246,34 @@ for (let i = 0; i < 10; i++) { const h = document.createElement('div'); h.classN
 $('#grass').style.backgroundImage = tile(['#c8f533', '#b5e01f', '#d6ff58', '#a9d41a'], 8, 5);
 $('#dirt').style.backgroundImage = tile(['#2a1b5e', '#34226f', '#231650', '#2d1d66'], 8, 10);
 $$('.mc-card').forEach(c => c.style.backgroundImage = tile(['#2a2152', '#30275e', '#251c49', '#2d2457'], 8, 12));
+/* ===== Teks pixel SVG (bitmap 8x8 diambil dari font Press Start 2P) ===== */
+const PXF = {"!":"3838383030003000","\"":"6c6c6c0000000000","#":"6cfe6c6c6cfe6c00","$":"107cd07c16fc1000","%":"62a4c810264a8c00","&":"70d8d870dacc7e00","'":"3030300000000000","(":"0c18303030180c00",")":"6030181818306000","*":"006c38fe386c0000","+":"0018187e18180000",",":"0000000000303060","-":"0000007e00000000",".":"0000000000303000","/":"0204081020408000","0":"384cc6c6c6643800","1":"1838181818187e00","2":"7cc60e3c78e0fe00","3":"7e0c183c06c67c00","4":"1c3c6cccfe0c0c00","5":"fcc0fc0606c67c00","6":"3c60c0fcc6c67c00","7":"fec60c1830303000","8":"78c4e4789e867c00","9":"7cc6c67e060c7800",":":"0030300030300000",";":"0030300030306000","<":"0c18306030180c00","=":"0000fe00fe000000",">":"6030180c18306000","?":"7cfec60c38003800","@":"7c82baaabe807c00","A":"386cc6c6fec6c600","B":"fcc6c6fcc6c6fc00","C":"3c66c0c0c0663c00","D":"f8ccc6c6c6ccf800","E":"fec0c0fcc0c0fe00","F":"fec0c0fcc0c0c000","G":"3e60c0cec6663e00","H":"c6c6c6fec6c6c600","I":"7e18181818187e00","J":"0606060606c67c00","K":"c6ccd8f0f8dcce00","L":"6060606060607e00","M":"c6eefed6d6c6c600","N":"c6e6f6decec6c600","O":"7cc6c6c6c6c67c00","P":"fcc6c6c6fcc0c000","Q":"7cc6c6c6decc7a00","R":"fcc6c6cef8dcce00","S":"7cc6c07c06c67c00","T":"7e18181818181800","U":"c6c6c6c6c6c67c00","V":"c6c6c6ee7c381000","W":"d6d6d6d6feee4400","X":"c6c66c386cc6c600","Y":"6666663c18181800","Z":"fe0e1c3870e0fe00","[":"3c30303030303c00","\\":"8040201008040200","]":"7818181818187800","^":"386c000000000000","_":"00000000000000fe","`":"1008000000000000","a":"00007c067ec67e00","b":"c0c0fcc6c6c67c00","c":"00007ec0c0c07e00","d":"06067ec6c6c67e00","e":"00007cc6fec07c00","f":"0e187e1818181800","g":"00007ec6c67e067c","h":"c0c0fcc6c6c6c600","i":"1800381818187e00","j":"0c001c0c0c0c0c78","k":"c0c0c6ccf8ccc600","l":"3818181818187e00","m":"0000fcb6b6b6b600","n":"0000fcc6c6c6c600","o":"00007cc6c6c67c00","p":"0000fcc6c6fcc0c0","q":"00007ec6c67e0606","r":"00006e7060606000","s":"00007cc07c06fc00","t":"18187e1818181800","u":"0000c6c6c6c67e00","v":"00006666663c1800","w":"0000d6d6d6d66c00","x":"0000c66c386cc600","y":"0000c6c6c67e067c","z":"0000fe1c3870fe00","{":"0c18183018180c00","|":"1818181818181800","}":"6030301830306000","~":"000070ba1c000000"};
+function pxWord(word, ls) {
+  const adv = 8 + ls * 8; let d = '', n = 0;
+  [...word].forEach((ch, i) => {
+    n++; const h = PXF[ch]; if (!h) return;
+    for (let r = 0; r < 8; r++) {
+      const b = parseInt(h.substr(r * 2, 2), 16);
+      for (let c = 0; c < 8;) {
+        if (b >> (7 - c) & 1) { let e = c; while (e < 8 && (b >> (7 - e) & 1)) e++; d += 'M' + +(i * adv + c).toFixed(2) + ' ' + r + 'h' + (e - c) + 'v1h-' + (e - c) + 'z'; c = e; } else c++;
+      }
+    }
+  });
+  return '<svg class="pxt" viewBox="0 0 ' + +(n * adv).toFixed(2) + ' 8" style="width:' + +(n * (1 + ls)).toFixed(3) + 'em" aria-hidden="true" focusable="false"><path d="' + d + '"/></svg>';
+}
+function renderPx() {
+  const lang = window.I18N ? I18N.lang : 'en';
+  $$('[data-px]').forEach(el => {
+    const text = (lang === 'id' ? el.dataset.pxId : el.dataset.pxEn) || el.dataset.px, ls = parseFloat(el.dataset.pxLs || 0);
+    el.innerHTML = '<span class="px-sr">' + text + '</span>' + text.split(' ').map(w => pxWord(w, ls)).join('');
+    el.classList.add('pxt-wrap');
+  });
+}
+renderPx(); window.addEventListener('langchange', renderPx);
+
 // kotak-kotak kecil melayang (parallax) sebagai dekor game
 const sp = $('#sparks');
-for (let i = 0; i < 14; i++) {
+for (let i = 0; i < (MQ_MOBILE.matches ? 0 : 14); i++) {
   const s = document.createElement('i'), z = [8, 12, 16][i % 3];
   s.style.cssText = `width:${z}px;height:${z}px;left:${Math.random() * 96}%;top:${8 + Math.random() * 80}%;${i % 3 === 0 ? 'background:#a78bfa;' : ''}`;
   s.dataset.speed = (Math.random() * 1.2 - .6).toFixed(2); sp.appendChild(s);
@@ -1002,10 +1287,21 @@ h1.innerHTML = h1.textContent.split(' ').map(w => `<span class="w"><span>${w}</s
 const roles = ['Web Developer', 'Mobile App Developer', 'Game Developer', 'Video Editor & Motion Designer', '3D Artist', 'IoT Maker'];
 const rolesEl = $('#roles'); let ri = 0;
 rolesEl.innerHTML = roles.map(r => `<span>> ${r}</span>`).join('');
-setInterval(() => { ri = (ri + 1) % roles.length; const f = rolesEl.firstElementChild; f.style.transition = 'margin .8s cubic-bezier(.65,0,.35,1)'; f.style.marginTop = `-${ri * 1.6}em`; }, 2200);
+const rolesStep = () => { ri = (ri + 1) % roles.length; const f = rolesEl.firstElementChild; f.style.transition = 'margin .8s cubic-bezier(.65,0,.35,1)'; f.style.marginTop = `-${ri * 1.6}em`; };
+let rolesTimer = 0;
+whenVisible($('.hero'), () => { if (!rolesTimer) rolesTimer = setInterval(rolesStep, 2200); }, () => { clearInterval(rolesTimer); rolesTimer = 0; }, '0px');
 
 /* ===== GSAP ===== */
 if (hasGsap && !RM) {
+  const mm = gsap.matchMedia();
+  mm.add({ isMobile: MOBILE_Q, isFull: '(min-width: 768px) and (not ((max-height: 480px) and (pointer: coarse)))' }, ctx => {
+    if (ctx.conditions.isMobile) {
+      // Mobile: hanya fade singkat saat elemen terlihat. Tanpa parallax, stagger, atau hitung naik.
+      gsap.from('.hero .wrap > div:first-child', { opacity: 0, duration: .6, ease: 'power2.out' });
+      $$('[data-reveal]').forEach(el => gsap.from(el, { opacity: 0, duration: .5, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 92%%', once: true } }));
+      $$('[data-count]').forEach(n => n.textContent = n.dataset.count + '+');
+      return;
+    }
   gsap.from('#h1 .w>span', { yPercent: 110, duration: 1.1, ease: 'power2.inOut', stagger: .08, delay: .2 });
   gsap.from('.hey,.hero .lead,.hero .cta,.roles', { opacity: 0, y: 24, duration: .9, ease: 'power2.inOut', stagger: .12, delay: .7 });
   gsap.from('.stage', { opacity: 0, scale: .86, duration: 1.4, ease: 'power2.inOut', delay: .3 });
@@ -1024,6 +1320,8 @@ if (hasGsap && !RM) {
     gsap.from($$('.sk-tool', card), { y: 18, opacity: 0, scale: .85, duration: .8, ease: 'power2.inOut', stagger: .06, scrollTrigger: { trigger: card, start: 'top 85%', once: true } });
   });
   $$('[data-count]').forEach(n => { const o = { v: 0 }; gsap.to(o, { v: +n.dataset.count, duration: 2, ease: 'power2.inOut', scrollTrigger: { trigger: n, start: 'top 90%', once: true }, onUpdate: () => n.textContent = Math.round(o.v) + '+' }); });
+  });
+
 } else {
   $$('[data-count]').forEach(n => n.textContent = n.dataset.count + '+');
   const p = $('#progress'); addEventListener('scroll', () => p.style.transform = `scaleX(${scrollY / (document.body.scrollHeight - innerHeight)})`);
@@ -1054,7 +1352,9 @@ $$('section[id]').forEach(s => io.observe(s));
       $(s.sp).setAttribute('points', s.h.map((v, i) => `${(i / 29 * 120).toFixed(1)},${(42 - (v - s.min) / (s.max - s.min) * 40).toFixed(1)}`).join(' ')); }
     addLog(`[${new Date().toLocaleTimeString(I18N.t('locale'))}] mqtt publish home/room1 {"t":${S.T.v.toFixed(1)},"h":${S.H.v.toFixed(0)},"lux":${S.L.v.toFixed(0)}}`);
   }
-  tick(); setInterval(tick, 1300);
+  tick();
+  let iotTimer = 0; const iotMs = MQ_MOBILE.matches ? 2600 : 1300;
+  whenVisible($('#iot'), () => { if (!iotTimer) iotTimer = setInterval(tick, iotMs); }, () => { clearInterval(iotTimer); iotTimer = 0; });
   const sw = $('#sw');
   const refreshLamp = () => sw.setAttribute('aria-label', I18N.t(sw.getAttribute('aria-pressed') === 'true' ? 'lampOff' : 'lampOn'));
   refreshLamp(); window.addEventListener('langchange', refreshLamp);
@@ -1072,7 +1372,7 @@ $$('section[id]').forEach(s => io.observe(s));
     const w = box.clientWidth - 48 - 16; ph.style.left = (48 + p * w) + 'px';
     const f = Math.floor(p * dur * fps); tc.textContent = `00:00:${String(Math.floor(f / fps)).padStart(2, '0')}:${String(f % fps).padStart(2, '0')}`;
   }
-  if (hasGsap && !RM) { const o = { p: 0 }; gsap.to(o, { p: 1, duration: dur, ease: 'none', repeat: -1, onUpdate: () => set(o.p) }); } else set(.3);
+  if (hasGsap && !RM && !MQ_MOBILE.matches) { const o = { p: 0 }; const tw = gsap.to(o, { p: 1, duration: dur, ease: 'none', repeat: -1, paused: true, onUpdate: () => set(o.p) }); whenVisible($('#media'), () => tw.play(), () => tw.pause(), '0px'); } else set(.3);
   $$('.layer').forEach(b => b.addEventListener('click', () => {
     const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on);
     $('.' + b.dataset.l, $('#art')).style.opacity = on ? 1 : 0;
@@ -1154,8 +1454,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (soundIcon) {
 
-                    soundIcon.className =
-                        'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                    setFaIcon(soundIcon, 'volume-xmark', 'text-xs sound-icon text-slate-300');
                 }
 
 
@@ -1189,8 +1488,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             .querySelectorAll('.sound-icon')
                             .forEach(icon => {
 
-                                icon.className =
-                                    'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                                setFaIcon(icon, 'volume-xmark', 'text-xs sound-icon text-slate-300');
                             });
 
 
@@ -1208,8 +1506,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (soundIcon) {
 
-                            soundIcon.className =
-                                'fa-solid fa-volume-high text-xs sound-icon text-amber-400 animate-pulse';
+                            setFaIcon(soundIcon, 'volume-high', 'text-xs sound-icon text-amber-400 animate-pulse');
                         }
 
 
@@ -1225,8 +1522,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (soundIcon) {
 
-                            soundIcon.className =
-                                'fa-solid fa-volume-xmark text-xs sound-icon text-slate-300';
+                            setFaIcon(soundIcon, 'volume-xmark', 'text-xs sound-icon text-slate-300');
                         }
 
 
@@ -1247,6 +1543,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ==========================================
+
+/* ===== Sumber berat dimuat hanya saat sectionnya hampir terlihat ===== */
+let ttLoaded = false;
+whenVisible($('#tiktok'), () => {
+  if (ttLoaded) return; ttLoaded = true;
+  const t = document.createElement('script'); t.async = true; t.src = 'https://www.tiktok.com/embed.js'; document.body.appendChild(t);
+}, null, '400px');
+const galVideos = $$('.video-preview'); let galArmed = false;
+whenVisible($('#featured-3d'), () => {
+  if (galArmed) return; galArmed = true;
+  galVideos.forEach(v => { v.preload = 'metadata'; v.load(); });
+}, () => galVideos.forEach(v => v.pause()), '500px');
 ;
 })();
 
