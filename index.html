@@ -159,31 +159,44 @@ h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .ph-ring span{width:94px;height:94px;border-radius:50%;background:#1a1230;display:grid;place-items:center}
 
 /* ---------- GAME (Minecraft vibe, tetap ungu + lime) ---------- */
-.s-game{background:linear-gradient(180deg,var(--bg),#1b0f45 18%,#2a1670 85%,#34208a);padding-bottom:0}
-.s-game .sec{padding-bottom:60px}
-.mc-head{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;position:relative;margin-top:1.2rem}
-.mc-title{font-family:'Minecraft','Press Start 2P',monospace;font-size:clamp(1.5rem,4.4vw,3.4rem);color:#fff;text-shadow:5px 5px 0 #0d0624;letter-spacing:.02em;line-height:1.3;font-weight:400;max-width:none}
-.splash{position:absolute;right:0;top:-34px;font-family:'Minecraft','Press Start 2P',monospace;font-size:clamp(.7rem,1.6vw,1.05rem);color:var(--lime);text-shadow:3px 3px 0 #0d0624;transform:rotate(-14deg);animation:splash 1.6s var(--ease) infinite alternate;white-space:nowrap}
-@keyframes splash{from{transform:rotate(-14deg) scale(.92)}to{transform:rotate(-14deg) scale(1.08)}}
-.px{image-rendering:pixelated}.px i{display:block}
+/* ---------- GAME: HUD game modern ---------- */
+.s-game{background:linear-gradient(180deg,var(--bg),#170d3a 22%,#170d3a 80%,var(--bg))}
 .sparks i{position:absolute;display:block;z-index:1;background:var(--lime);opacity:.8}
-.hud{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 2rem;align-items:center}
-.hearts{display:flex;gap:4px}
-.hotbar{display:flex;gap:4px;padding:5px;background:rgba(0,0,0,.4);border:4px solid #0a0618;box-shadow:inset 3px 3px 0 rgba(255,255,255,.12),inset -3px -3px 0 rgba(0,0,0,.4)}
-.slot{width:42px;height:42px;background:#2a2152;border:3px solid;border-color:#0a0618 #5b4aa8 #5b4aa8 #0a0618;display:grid;place-items:center}
-.slot.sel{outline:4px solid var(--lime);outline-offset:-2px}
-.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-.mc-card{position:relative;padding:1.2rem 1.2rem 1.4rem;background-color:#2a2152;border:4px solid #0a0618;box-shadow:inset 4px 4px 0 rgba(255,255,255,.14),inset -4px -4px 0 rgba(0,0,0,.4),8px 8px 0 rgba(0,0,0,.35);transition:transform .5s steps(3)}
-.mc-card:hover{transform:translate(-4px,-8px)}
-.mc-card h3{font-family:'Minecraft','Press Start 2P',monospace;font-weight:400;font-size:.9rem;line-height:1.5;color:#fff;text-shadow:3px 3px 0 #0d0624;margin:.7rem 0 .4rem;letter-spacing:0}
-.mc-card p{font-family:'JetBrains Mono',monospace;font-size:.94rem;line-height:1.71;color:#ddd5ff}
-.mc-card .tags span{display:inline-block;margin:.5rem .3rem 0 0;padding:.05rem .5rem;background:#0a0618;color:var(--lime);font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:2.25;border:2px solid #5b4aa8}
-.mc-card .icon{width:64px;height:64px;display:grid;place-items:center;background:#1c1540;border:3px solid;border-color:#0a0618 #5b4aa8 #5b4aa8 #0a0618}
-.mc-tip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;background:rgba(13,7,32,.95);border:3px solid var(--purple);box-shadow:inset 0 0 0 2px #4c1d95;padding:.4rem .8rem;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.867rem;line-height:2.25;white-space:nowrap;z-index:5;transition:opacity .4s var(--ease),transform .4s var(--ease)}
-.mc-card:hover .mc-tip{opacity:1;transform:translateX(-50%) scale(1)}
-.ground{position:relative;height:150px;margin-top:40px;z-index:2}
-.ground .grass{position:absolute;inset:0 0 auto 0;height:40px}
-.ground .dirt{position:absolute;inset:40px 0 0 0}
+.gm-defs{position:absolute;width:0;height:0;overflow:hidden}
+.gm-title{display:flex;margin:1.1rem 0 2.2rem;max-width:none;font-size:clamp(1.3rem,3.8vw,2.7rem);line-height:1.3;font-weight:400;color:#fff}
+.gm-title.pxt-wrap{align-items:center;gap:.3em 1em}
+.gm-title::before{content:"";flex:none;width:.5em;height:.5em;background:var(--lime);margin-right:-.4em}
+.gm-title .pxt{filter:drop-shadow(0 0 12px rgba(167,139,250,.6))}
+.gm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}
+.gm-card{position:relative;isolation:isolate;display:flex;flex-direction:column;padding:8px;border-radius:26px;background:linear-gradient(170deg,#12092d,#0a0617);border:2px solid #6d3df0;box-shadow:0 0 0 1px rgba(167,139,250,.16),0 0 30px -8px rgba(124,58,237,.75),inset 0 0 26px -12px rgba(124,58,237,.6);transition:translate .6s var(--ease),border-color .6s var(--ease),box-shadow .6s var(--ease)}
+.gm-card:hover,.gm-card:focus-within{translate:0 -6px;border-color:#a78bfa;box-shadow:0 0 0 1px rgba(196,181,253,.3),0 0 42px -6px rgba(139,92,246,.95),inset 0 0 26px -12px rgba(124,58,237,.7)}
+.gm-media{position:relative}
+.gm-artwrap{position:relative;aspect-ratio:8/3;border-radius:18px;overflow:hidden;background:#150c33}
+.gm-art{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .9s var(--ease)}
+.gm-card:hover .gm-art{transform:scale(1.05)}
+.gm-num{position:absolute;top:10px;left:10px;z-index:2;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);border:2px solid #c4b5fd;color:#fff;font-size:.82rem;box-shadow:0 8px 18px -8px rgba(0,0,0,.8)}
+.gm-num.pxt-wrap{display:grid;place-items:center;padding:0;gap:0}
+.gm-go{position:absolute;right:14px;bottom:-23px;z-index:3;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;background:#0b0819;border:2px solid #fff;transition:background .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease)}
+.gm-go svg{width:20px;height:20px;transition:transform .4s var(--ease)}
+.gm-go:hover,.gm-card:hover .gm-go{background:var(--lime);border-color:var(--lime);color:#14120a}
+.gm-card:hover .gm-go svg{transform:translate(2px,-2px)}
+.gm-body{position:relative;display:flex;flex:1;flex-direction:column;gap:.6rem;padding:2rem 1rem 1.1rem}
+.gm-body h3{margin:0;font-size:.95rem;line-height:1.4;font-weight:400;color:#fff;letter-spacing:0}
+.gm-body h3.pxt-wrap{gap:.4em .9em;padding-block:.2em}
+.gm-body p{color:#cfc8ee;font-size:.92rem;line-height:1.55;padding-right:3.4rem}
+.gm-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:.5rem}
+.gm-tags span{padding:.28rem .8rem;border-radius:9px;border:1.5px solid #8b5cf6;color:#c4b5fd;font:600 .72rem/1.4 'JetBrains Mono',monospace}
+.gm-tags span:first-child{border-color:var(--lime);color:var(--lime)}
+.gm-deco{position:absolute;right:14px;bottom:12px;width:54px;height:54px;pointer-events:none}
+.gm-hud{display:flex;align-items:center;gap:.9rem;margin-top:2.4rem}
+.gm-play{flex:none;width:14px;height:16px;fill:var(--lime)}
+.gm-hud-t{display:flex;flex:none;color:var(--lime);font-size:.78rem;white-space:nowrap}
+.gm-hud-t.pxt-wrap{flex-wrap:nowrap;align-items:center;padding:0;gap:1em}
+.gm-stripe{flex:none;width:76px;height:12px;background:repeating-linear-gradient(115deg,var(--purple) 0 6px,transparent 6px 11px);transform:skewX(-20deg)}
+.gm-line{flex:1;min-width:16px;height:2px;background:rgba(255,255,255,.75)}
+.gm-dots{display:flex;gap:.7rem}
+.gm-dots i{width:14px;height:14px;border:2px solid var(--purple);transition:background .3s var(--ease),border-color .3s var(--ease)}
+.gm-dots i.on{background:var(--lime);border-color:var(--lime)}
 
 /* ---------- IoT ---------- */
 .s-iot{background:linear-gradient(180deg,var(--bg),#0f0a24 18%,#0f0a24 82%,var(--bg))}
@@ -328,8 +341,8 @@ footer{margin-top:5rem;color:var(--muted);font-size:.85rem}
   .hero-robot-shell{width:100%;height:58%;top:auto;opacity:.95}
   .hero .wrap,.split{grid-template-columns:1fr}
   .stage{max-width:480px;margin:auto;aspect-ratio:auto;height:380px}.d-sq,.d-smile{display:none}
-  .inv{grid-template-columns:1fr}.dash{grid-template-columns:1fr 1fr}.browsers{height:400px}.phones{height:520px}
-  .splash{display:none}.reels{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.25rem}
+  .gm-grid{grid-template-columns:1fr}.dash{grid-template-columns:1fr 1fr}.browsers{height:400px}.phones{height:520px}
+  .reels{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.25rem}
   .rw:nth-child(n){margin-top:0}.rw:nth-child(2),.rw:nth-child(5){margin-top:35px}
 }
 @media (max-width:560px){.sk-grid{grid-template-columns:1fr}.reels{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;gap:1rem;padding:1rem .5rem 50px;margin-inline:-1rem}.rw{flex:0 0 78vw;max-width:280px;scroll-snap-align:center}.rw:nth-child(n){margin-top:0}.reel{max-width:100%}}
@@ -363,11 +376,7 @@ html.i18n-pending body{visibility:hidden}
 /* ---------- TEKS PIXEL SVG (pengganti font Press Start 2P) ---------- */
 .px-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .pxt-wrap{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.3em 1em;padding-block:.15em}
-.splash.pxt-wrap{display:inline-flex;flex-wrap:nowrap;padding-block:0}
-.mc-card h3.pxt-wrap{gap:.5em .9em;padding-block:.25em}
 .pxt{display:block;flex:none;height:1em;fill:currentColor;shape-rendering:crispEdges;overflow:visible}
-.mc-title .pxt{filter:drop-shadow(5px 5px 0 #0d0624)}
-.splash .pxt,.mc-card h3 .pxt{filter:drop-shadow(3px 3px 0 #0d0624)}
 
 /* ---------- ANIMASI CSS HANYA BERJALAN SAAT SECTION TERLIHAT ---------- */
 html.vis-gate section:not(.in-view) *,html.vis-gate section:not(.in-view) *::before,html.vis-gate section:not(.in-view) *::after{animation-play-state:paused!important}
@@ -557,13 +566,12 @@ img,video{max-width:100%;height:auto}
 }
 /* Label "Level up!" disembunyikan di <=900px seperti sebelumnya; menu agar muat di tablet */
 @media (max-width:900px){
-  .splash.pxt-wrap{display:none}
   .nav a{padding:.45rem .62rem;font-size:.82rem}
 }
 /* Tablet (768-1199px) */
 @media (min-width:768px) and (max-width:1199px){
-  .inv{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .inv .mc-card:last-child:nth-child(odd){grid-column:1/-1}
+  .gm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gm-grid>.gm-card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - .8rem)}
   .dash{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 /* Mobile (<768px) dan HP landscape: tanpa visual 3D/Spline, animasi dikurangi */
@@ -576,7 +584,7 @@ img,video{max-width:100%;height:auto}
   *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
   .nav{background:rgba(18,16,31,.94)}
   .glass-card{background:rgba(20,16,36,.66)}
-  .sk,.traces path,.animate-bounce,.animate-pulse,.splash,.mouse::after{animation:none!important}
+  .sk,.traces path,.animate-bounce,.animate-pulse,.mouse::after{animation:none!important}
   .scribble path{animation:none;stroke-dashoffset:0}
 }
 /* Layar lebar */
@@ -615,6 +623,7 @@ img,video{max-width:100%;height:auto}
   .nav-links .lang{position:static;grid-column:1/-1;justify-self:start;margin:.4rem 0 .1rem .2rem}
   .nav-links .lang button{min-height:40px;min-width:48px}
 }
+@media (max-width:767px){.gm-stripe{display:none}.gm-hud{gap:.7rem}.gm-hud-t{font-size:.62rem}.gm-body p{padding-right:0}.gm-deco{width:44px;height:44px}}
 </style>
   <!-- Spline Runtime: render langsung ke canvas, tanpa Spline Viewer/watermark -->
   <script type="importmap">
@@ -810,39 +819,85 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
 <!-- GAME -->
 <section class="s-game" id="game">
   <div class="sparks" id="sparks" aria-hidden="true"></div>
+  <svg class="gm-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+      <linearGradient id="gmBg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#150c33"/><stop offset="1" stop-color="#34208a"/></linearGradient>
+      <linearGradient id="gmBg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d0722"/><stop offset="1" stop-color="#2a1670"/></linearGradient>
+      <radialGradient id="gmGlow"><stop offset="0" stop-color="#a78bfa" stop-opacity=".42"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+      <radialGradient id="gmTorch"><stop offset="0" stop-color="#c8f533" stop-opacity=".3"/><stop offset="1" stop-color="#c8f533" stop-opacity="0"/></radialGradient>
+      <linearGradient id="gmPlanet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#5b21b6"/></linearGradient>
+      <linearGradient id="gmShip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4dcff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+      <linearGradient id="gmTr1" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#c8f533" stop-opacity=".95"/><stop offset="1" stop-color="#c8f533" stop-opacity="0"/></linearGradient>
+      <linearGradient id="gmTr2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#a78bfa" stop-opacity=".95"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></linearGradient>
+      <pattern id="gmBrick" width="64" height="28" patternUnits="userSpaceOnUse"><rect width="64" height="28" fill="#150c33"/><rect x="1" y="1" width="30" height="12" rx="1.5" fill="#1e1348"/><rect x="33" y="1" width="30" height="12" rx="1.5" fill="#241757"/><rect x="-15" y="15" width="30" height="12" rx="1.5" fill="#241757"/><rect x="17" y="15" width="30" height="12" rx="1.5" fill="#1e1348"/><rect x="49" y="15" width="30" height="12" rx="1.5" fill="#221650"/></pattern>
+    </defs></svg>
   <div class="sec">
     <div class="wrap">
       <div class="head" data-reveal><span class="badge" data-i="game">Game Developer</span></div>
-      <div class="mc-head">
-        <div class="px" id="creeper" data-speed=".3" aria-hidden="true"></div>
-        <h2 class="mc-title" data-reveal="left" data-px="Projects: Game" data-px-en="Projects: Game" data-px-id="Proyek: Game" data-px-ls=".02">Projects: Game</h2>
-        <span class="splash" data-px="Level up!" data-px-en="Level up!" data-px-id="Naik level!">Level up!</span>
+      <h2 class="gm-title" data-reveal="left" data-px="Projects: Game" data-px-en="Projects: Game" data-px-id="Proyek: Game" data-px-ls=".02">Projects: Game</h2>
+      <div class="gm-grid">
+        <article class="gm-card" data-reveal="scale">
+          <div class="gm-media">
+            <div class="gm-artwrap"><svg class="gm-art" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="400" height="150" fill="url(#gmBg1)"/><ellipse cx="290" cy="40" rx="150" ry="70" fill="url(#gmGlow)"/><rect x="30" y="30" width="4" height="4" fill="#a78bfa" opacity="0.6"/><rect x="74" y="16" width="3" height="3" fill="#c8f533" opacity="0.8"/><rect x="214" y="24" width="4" height="4" fill="#a78bfa" opacity="0.5"/><rect x="356" y="74" width="3" height="3" fill="#c8f533" opacity="0.7"/><rect x="18" y="98" width="3" height="3" fill="#a78bfa" opacity="0.6"/><rect x="262" y="6" width="3" height="3" fill="#a78bfa" opacity="0.5"/><g transform="translate(-20 -18) scale(1.3)"><g opacity="0.75" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="204,41 226,52 226,78 204,67" fill="#4c1d95"/><polygon points="226,52 248,41 248,67 226,78" fill="#3b1a85"/><polygon points="226,30 248,41 226,52 204,41" fill="#8b5cf6"/></g><g opacity="0.95" stroke="#d9ff6a" stroke-width="1" stroke-linejoin="round"><polygon points="182,52 204,63 204,89 182,78" fill="#4c1d95"/><polygon points="204,63 226,52 226,78 204,89" fill="#3b1a85"/><polygon points="204,41 226,52 204,63 182,52" fill="#c8f533"/></g><g opacity="0.75" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="160,63 182,74 182,100 160,89" fill="#4c1d95"/><polygon points="182,74 204,63 204,89 182,100" fill="#3b1a85"/><polygon points="182,52 204,63 182,74 160,63" fill="#8b5cf6"/></g><g opacity="1" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="138,74 160,85 160,111 138,100" fill="#4c1d95"/><polygon points="160,85 182,74 182,100 160,111" fill="#3b1a85"/><polygon points="160,63 182,74 160,85 138,74" fill="#8b5cf6"/></g><g opacity="1" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="72,107 94,118 94,144 72,133" fill="#4c1d95"/><polygon points="94,118 116,107 116,133 94,144" fill="#3b1a85"/><polygon points="94,96 116,107 94,118 72,107" fill="#8b5cf6"/></g><g opacity="1" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="50,118 72,129 72,155 50,144" fill="#4c1d95"/><polygon points="72,129 94,118 94,144 72,155" fill="#3b1a85"/><polygon points="72,107 94,118 72,129 50,118" fill="#8b5cf6"/></g><g opacity="1" stroke="#c4b5fd" stroke-width="1" stroke-linejoin="round"><polygon points="28,129 50,140 50,166 28,155" fill="#4c1d95"/><polygon points="50,140 72,129 72,155 50,166" fill="#3b1a85"/><polygon points="50,118 72,129 50,140 28,129" fill="#8b5cf6"/></g></g><g fill="none" stroke-linecap="round" stroke-width="2.5"><path d="M74 50h32M84 61h24M70 72h30" stroke="#a78bfa" stroke-opacity=".6"/><path d="M92 83h14" stroke="#c8f533" stroke-opacity=".9"/></g><g shape-rendering="crispEdges"><path d="M137 34h16v4h-16zM133 38h24v4h-24zM149 46h4v4h-4z" fill="#140c30"/><path d="M133 42h24v4h-24zM133 46h16v4h-16zM153 46h4v4h-4zM137 50h16v4h-16zM157 58h4v4h-4zM157 62h4v4h-4zM157 66h4v4h-4z" fill="#f1e8ff"/><path d="M129 54h8v4h-8zM125 58h8v4h-8z" fill="#c8f533"/><path d="M137 54h16v4h-16zM133 58h24v4h-24zM129 62h28v4h-28zM133 66h20v4h-20zM133 70h20v4h-20z" fill="#7c3aed"/><path d="M133 74h20v4h-20zM129 78h12v4h-12zM145 78h12v4h-12zM125 82h12v4h-12zM149 82h12v4h-12z" fill="#2a1670"/><path d="M125 86h8v4h-8zM153 86h8v4h-8z" fill="#c8f533"/></g><g shape-rendering="crispEdges"><path d="M292 10h4v2h-4zM298 10h4v2h-4zM290 12h14v2h-14zM290 14h14v2h-14zM292 16h10v2h-10zM294 18h6v2h-6zM296 20h2v2h-2z" fill="#c4b5fd"/></g><g shape-rendering="crispEdges"><path d="M310 10h4v2h-4zM316 10h4v2h-4zM308 12h14v2h-14zM308 14h14v2h-14zM310 16h10v2h-10zM312 18h6v2h-6zM314 20h2v2h-2z" fill="#c4b5fd"/></g><g shape-rendering="crispEdges"><path d="M328 10h4v2h-4zM334 10h4v2h-4zM326 12h14v2h-14zM326 14h14v2h-14zM328 16h10v2h-10zM330 18h6v2h-6zM332 20h2v2h-2z" fill="#c4b5fd"/></g><g shape-rendering="crispEdges"><path d="M346 10h4v2h-4zM352 10h4v2h-4zM344 12h14v2h-14zM344 14h14v2h-14zM346 16h10v2h-10zM348 18h6v2h-6zM350 20h2v2h-2z" fill="#c4b5fd"/></g><g shape-rendering="crispEdges"><path d="M364 10h4v2h-4zM370 10h4v2h-4zM362 12h14v2h-14zM362 14h14v2h-14zM364 16h10v2h-10zM366 18h6v2h-6zM368 20h2v2h-2z" fill="#3a2a7a"/></g></svg></div>
+            <span class="gm-num" data-px="01" aria-hidden="true">01</span>
+            <a class="gm-go" href="#game" aria-label="Open Block Runner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7M8.5 7H17v8.5"/></svg></a>
+          </div>
+          <div class="gm-body">
+            <h3 data-px="Block Runner">Block Runner</h3><p>Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.</p>
+            <div class="gm-tags"><span>Unity</span><span>C#</span></div>
+          </div>
+          <svg class="gm-deco" viewBox="0 0 48 48" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><rect x="40" y="0" width="8" height="8" fill="#8b5cf6"/><rect x="32" y="8" width="8" height="8" fill="#8b5cf6"/><rect x="24" y="16" width="8" height="8" fill="#8b5cf6"/><rect x="40" y="16" width="8" height="8" fill="#5b21b6"/><rect x="16" y="24" width="8" height="8" fill="#8b5cf6"/><rect x="32" y="24" width="8" height="8" fill="#5b21b6"/><rect x="8" y="32" width="8" height="8" fill="#8b5cf6"/><rect x="24" y="32" width="8" height="8" fill="#5b21b6"/><rect x="40" y="32" width="8" height="8" fill="#8b5cf6"/><rect x="0" y="40" width="8" height="8" fill="#8b5cf6"/><rect x="16" y="40" width="8" height="8" fill="#5b21b6"/><rect x="32" y="40" width="8" height="8" fill="#8b5cf6"/></svg>
+        </article>
+        <article class="gm-card" data-reveal="scale">
+          <div class="gm-media">
+            <div class="gm-artwrap"><svg class="gm-art" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="400" height="150" fill="url(#gmBrick)"/><rect width="400" height="150" fill="#0a0518" opacity=".35"/>
+<path d="M330 124V72a26 26 0 0 1 52 0V124Z" fill="#090514" stroke="#3b1a85" stroke-width="2"/>
+<circle cx="232" cy="56" r="105" fill="url(#gmTorch)"/>
+<rect x="229" y="56" width="6" height="26" rx="1" fill="#3b1a85"/><rect x="224" y="54" width="16" height="5" rx="1" fill="#6d28d9"/><g shape-rendering="crispEdges"><path d="M231 36h3v3h-3zM228 39h9v3h-9zM225 42h6v3h-6zM234 42h6v3h-6zM225 45h3v3h-3zM237 45h3v3h-3zM225 48h3v3h-3zM237 48h3v3h-3zM228 51h9v3h-9z" fill="#c8f533"/><path d="M231 42h3v3h-3zM228 45h9v3h-9zM228 48h9v3h-9z" fill="#f6ffd2"/></g>
+<rect y="124" width="400" height="26" fill="#0b061a"/><path d="M0 124H400" stroke="#4c1d95" stroke-width="2"/><path d="M0 138H400M70 124v26M170 124v26M280 124v26M360 124v26" stroke="#1c1240" stroke-width="1.5"/>
+<path d="M142 98l22-12" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round"/><g shape-rendering="crispEdges"><path d="M108 82h12v3h-12zM105 85h18v3h-18zM117 91h3v3h-3z" fill="#140c30"/><path d="M105 88h18v3h-18zM105 91h12v3h-12zM120 91h3v3h-3zM108 94h12v3h-12zM123 100h3v3h-3zM123 103h3v3h-3zM123 106h3v3h-3z" fill="#f1e8ff"/><path d="M102 97h6v3h-6zM99 100h6v3h-6z" fill="#c8f533"/><path d="M108 97h12v3h-12zM105 100h18v3h-18zM102 103h21v3h-21zM105 106h15v3h-15zM105 109h15v3h-15z" fill="#a78bfa"/><path d="M105 112h15v3h-15zM102 115h9v3h-9zM114 115h9v3h-9zM99 118h9v3h-9zM117 118h9v3h-9z" fill="#2a1670"/><path d="M99 121h6v3h-6zM120 121h6v3h-6z" fill="#7c3aed"/></g><g shape-rendering="crispEdges"><path d="M174 91h15v3h-15zM171 94h21v3h-21zM171 97h3v3h-3zM177 97h9v3h-9zM189 97h3v3h-3zM171 100h21v3h-21zM174 103h3v3h-3zM180 103h3v3h-3zM186 103h3v3h-3zM177 106h9v3h-9zM171 109h21v3h-21zM174 112h3v3h-3zM180 112h3v3h-3zM186 112h3v3h-3zM171 115h21v3h-21zM177 118h3v3h-3zM183 118h3v3h-3zM174 121h6v3h-6zM183 121h6v3h-6z" fill="#e4dcff"/><path d="M174 97h3v3h-3zM186 97h3v3h-3zM177 103h3v3h-3zM183 103h3v3h-3z" fill="#140c30"/></g><g shape-rendering="crispEdges"><path d="M298 91h15v3h-15zM295 94h21v3h-21zM295 97h3v3h-3zM301 97h9v3h-9zM313 97h3v3h-3zM295 100h21v3h-21zM298 103h3v3h-3zM304 103h3v3h-3zM310 103h3v3h-3zM301 106h9v3h-9zM295 109h21v3h-21zM298 112h3v3h-3zM304 112h3v3h-3zM310 112h3v3h-3zM295 115h21v3h-21zM301 118h3v3h-3zM307 118h3v3h-3zM298 121h6v3h-6zM307 121h6v3h-6z" fill="#cfc3ff"/><path d="M298 97h3v3h-3zM310 97h3v3h-3zM301 103h3v3h-3zM307 103h3v3h-3z" fill="#140c30"/></g></svg></div>
+            <span class="gm-num" data-px="02" aria-hidden="true">02</span>
+            <a class="gm-go" href="#game" aria-label="Open Pixel Dungeon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7M8.5 7H17v8.5"/></svg></a>
+          </div>
+          <div class="gm-body">
+            <h3 data-px="Pixel Dungeon">Pixel Dungeon</h3><p>Dungeon acak berbasis grid, musuh punya pola serangan sendiri.</p>
+            <div class="gm-tags"><span>Godot</span><span>GDScript</span></div>
+          </div>
+          <svg class="gm-deco" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path d="M4 34L8 8L22 22L30 4L38 22L52 8L56 34Z" fill="none" stroke="#c8f533" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        </article>
+        <article class="gm-card" data-reveal="scale">
+          <div class="gm-media">
+            <div class="gm-artwrap"><svg class="gm-art" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="400" height="150" fill="url(#gmBg3)"/><circle cx="24" cy="22" r="1.2" fill="#fff" opacity="0.8"/><circle cx="62" cy="58" r="1" fill="#c4b5fd" opacity="0.7"/><circle cx="96" cy="18" r="1.4" fill="#fff" opacity="0.7"/><circle cx="130" cy="44" r="1" fill="#c4b5fd" opacity="0.6"/><circle cx="178" cy="14" r="1.2" fill="#fff" opacity="0.8"/><circle cx="210" cy="120" r="1" fill="#c4b5fd" opacity="0.6"/><circle cx="40" cy="128" r="1.2" fill="#fff" opacity="0.6"/><circle cx="300" cy="14" r="1" fill="#fff" opacity="0.7"/><circle cx="372" cy="92" r="1.2" fill="#c4b5fd" opacity="0.7"/><circle cx="390" cy="20" r="1" fill="#fff" opacity="0.6"/><circle cx="150" cy="138" r="1" fill="#fff" opacity="0.5"/><circle cx="330" cy="128" r="1.1" fill="#c4b5fd" opacity="0.6"/>
+<path d="M18 80l2-6 2 6 6 2-6 2-2 6-2-6-6-2z" fill="#c8f533" opacity=".85"/>
+<circle cx="352" cy="36" r="21" fill="url(#gmPlanet)"/><ellipse cx="352" cy="38" rx="34" ry="8" fill="none" stroke="#c4b5fd" stroke-opacity=".55" stroke-width="2" transform="rotate(-18 352 38)"/>
+<polygon points="52,112 62,104 74,108 78,120 68,128 54,124" fill="#2a1670" stroke="#6d4fd0" stroke-width="1.5"/>
+<polygon points="338,104 352,96 368,102 372,118 358,128 340,122" fill="#2a1670" stroke="#6d4fd0" stroke-width="1.5"/>
+<polygon points="150,26 158,22 166,26 164,34 154,36" fill="#2a1670" stroke="#6d4fd0" stroke-width="1.2"/>
+<g transform="translate(262 78) rotate(-8)">
+<rect x="-300" y="-6.5" width="248" height="3" rx="1.5" fill="url(#gmTr1)"/><rect x="-260" y="3.5" width="208" height="3" rx="1.5" fill="url(#gmTr2)"/>
+<rect x="-210" y="-41" width="160" height="2" rx="1" fill="url(#gmTr2)"/><rect x="-210" y="40" width="160" height="2" rx="1" fill="url(#gmTr2)"/>
+<polygon points="12,-9 -18,-12 -50,-40 -32,-41 -6,-24" fill="#6d28d9" stroke="#c4b5fd" stroke-opacity=".7" stroke-width="1"/>
+<polygon points="12,9 -18,12 -50,40 -32,41 -6,24" fill="#4c1d95" stroke="#c4b5fd" stroke-opacity=".7" stroke-width="1"/>
+<polygon points="60,0 24,-9 -26,-13 -52,-7 -52,7 -26,13 24,9" fill="url(#gmShip)" stroke="#e4dcff" stroke-opacity=".7" stroke-width="1"/>
+<ellipse cx="20" cy="-1" rx="15" ry="5" fill="#c8f533" opacity=".92"/><ellipse cx="24" cy="-2.5" rx="6" ry="1.6" fill="#fff" opacity=".7"/>
+<rect x="-57" y="-6" width="6" height="4" fill="#c8f533"/><rect x="-57" y="2" width="6" height="4" fill="#c8f533"/></g></svg></div>
+            <span class="gm-num" data-px="03" aria-hidden="true">03</span>
+            <a class="gm-go" href="#game" aria-label="Open Space Drift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7M8.5 7H17v8.5"/></svg></a>
+          </div>
+          <div class="gm-body">
+            <h3 data-px="Space Drift">Space Drift</h3><p>Balap pesawat 3D dengan model dan efek buatan Blender.</p>
+            <div class="gm-tags"><span>Unity</span><span>Blender</span></div>
+          </div>
+          <svg class="gm-deco" viewBox="0 0 48 48" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><rect x="40" y="0" width="8" height="8" fill="#8b5cf6"/><rect x="32" y="8" width="8" height="8" fill="#8b5cf6"/><rect x="24" y="16" width="8" height="8" fill="#8b5cf6"/><rect x="40" y="16" width="8" height="8" fill="#5b21b6"/><rect x="16" y="24" width="8" height="8" fill="#8b5cf6"/><rect x="32" y="24" width="8" height="8" fill="#5b21b6"/><rect x="8" y="32" width="8" height="8" fill="#8b5cf6"/><rect x="24" y="32" width="8" height="8" fill="#5b21b6"/><rect x="40" y="32" width="8" height="8" fill="#8b5cf6"/><rect x="0" y="40" width="8" height="8" fill="#8b5cf6"/><rect x="16" y="40" width="8" height="8" fill="#5b21b6"/><rect x="32" y="40" width="8" height="8" fill="#8b5cf6"/></svg>
+        </article>
       </div>
-      <div class="hud" data-reveal>
-        <div class="hearts" id="hearts" aria-hidden="true"></div>
-        <div class="hotbar" aria-hidden="true">
-          <div class="slot sel"><div class="px" data-item="diamond"></div></div>
-          <div class="slot"><div class="px" data-item="heart"></div></div>
-          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-      <div class="inv">
-        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 2D Platformer</div>
-          <div class="icon"><div class="px" data-item="diamond"></div></div>
-          <h3 data-px="Block Runner">Block Runner</h3><p>Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.</p>
-          <div class="tags"><span>Unity</span><span>C#</span></div></article>
-        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Godot · Roguelike</div>
-          <div class="icon"><div class="px" data-item="creeper"></div></div>
-          <h3 data-px="Pixel Dungeon">Pixel Dungeon</h3><p>Dungeon acak berbasis grid, musuh punya pola serangan sendiri.</p>
-          <div class="tags"><span>Godot</span><span>GDScript</span></div></article>
-        <article class="mc-card" data-reveal="scale"><div class="mc-tip">Engine: Unity · 3D Arcade</div>
-          <div class="icon"><div class="px" data-item="heart"></div></div>
-          <h3 data-px="Space Drift">Space Drift</h3><p>Balap pesawat 3D dengan model dan efek buatan Blender.</p>
-          <div class="tags"><span>Unity</span><span>Blender</span></div></article>
+      <div class="gm-hud" data-reveal aria-hidden="true">
+        <svg class="gm-play" viewBox="0 0 14 16"><path d="M0 0l14 8L0 16z"/></svg>
+        <span class="gm-hud-t" data-px="> SELECT A PROJECT" data-px-en="> SELECT A PROJECT" data-px-id="> PILIH PROYEK">&gt; SELECT A PROJECT</span>
+        <span class="gm-stripe"></span><span class="gm-line"></span>
+        <span class="gm-dots"><i class="on"></i><i></i><i></i></span>
       </div>
     </div>
   </div>
-  <div class="ground"><div class="grass" id="grass"></div><div class="dirt" id="dirt"></div></div>
 </section>
 
 <!-- IoT -->
@@ -1092,7 +1147,7 @@ app.<em>get</em>(<em>'/api/produk'</em>, <b>async</b> (req, res) =&gt; {
    Teks dasar di HTML ditulis Indonesia; pasangan [id, en] ada di PAIRS.
    Menambah teks baru: tulis di HTML lalu tambahkan pasangannya ke PAIRS. */
 (() => {
-const PAIRS = [["Skill", "Skills"], ["Galeri", "Gallery"], ["Kontak", "Contact"], ["Hei, saya Nama Kamu!", "Hey, I'm Your Name!"], ["Mahasiswa Teknik Informatika. Web, aplikasi mobile, game, video, 3D, dan IoT dalam satu portofolio. Scroll ke bawah, tiap bagian punya dunianya sendiri.", "Informatics Engineering student. Web, mobile apps, games, video, 3D, and IoT in one portfolio. Scroll down, every section has its own world."], ["Lihat karya", "View my work"], ["Hubungi saya", "Contact me"], ["Ayo bikin sesuatu yang keren!", "Let's make something awesome!"], ["INTERAKTIF 3D · HOVER / SERET", "INTERACTIVE 3D · HOVER / DRAG"], ["Scroll ke bawah", "Scroll down"], ["APLIKASI", "TOOLS I"], ["YANG SAYA KUASAI.", "KNOW WELL."], ["Dikelompokkan per bidang. Arahkan kursor ke ikon untuk melihat nama aplikasinya, atau klik panah untuk melihat proyeknya.", "Grouped by field. Hover over an icon to see the app name, or click the arrow to view its projects."], ["4 aplikasi", "4 apps"], ["3 aplikasi", "3 apps"], ["IoT & Elektronik", "IoT & Electronics"], ["Ikon dari Simple Icons dan Devicon.", "Icons from Simple Icons and Devicon."], ["WEB YANG", "FAST & CLEAN"], ["CEPAT & RAPI.", "WEBSITES."], ["Dari antarmuka sampai API. Saya suka detail kecil: transisi halus, layout responsif, dan kode yang gampang dirawat.", "From interface to API. I love the small details: smooth transitions, responsive layouts, and code that is easy to maintain."], ["Toko Online UMKM", "Small Business Online Store"], ["Katalog, keranjang, dan pembayaran untuk usaha kecil.", "Catalog, cart, and payments for small businesses."], ["Sistem Informasi Akademik", "Academic Information System"], ["Jadwal, nilai, dan presensi dalam satu dashboard.", "Schedules, grades, and attendance in one dashboard."], ["Landing Page Event Kampus", "Campus Event Landing Page"], ["Halaman pendaftaran dengan animasi scroll dan hitung mundur.", "A registration page with scroll animations and a countdown."], ["APLIKASI DI", "APPS BUILT"], ["SATU TANGAN.", "FOR ONE HAND."], ["Android dan iOS dengan satu basis kode. Fokus pada kecepatan buka, gestur natural, dan layout yang pas di layar kecil.", "Android and iOS from a single codebase. Focused on fast launch, natural gestures, and layouts that fit small screens."], ["Catatan Keuangan Mahasiswa", "Student Finance Tracker"], ["Catat pengeluaran harian dan lihat grafik bulanan.", "Log daily spending and view monthly charts."], ["Aplikasi Kontrol IoT", "IoT Control App"], ["Nyalakan lampu dan baca sensor dari ponsel lewat MQTT.", "Switch lights on and read sensors from your phone over MQTT."], ["Pengingat Jadwal Kuliah", "Class Schedule Reminder"], ["Notifikasi tugas dan ujian, bekerja tanpa internet.", "Assignment and exam notifications that work offline."], ["Hari ini", "Today"], ["Ringkasan", "Summary"], ["Proyek: Game", "Projects: Game"], ["Naik level!", "Level up!"], ["Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.", "An endless 2D runner with touch controls and an online scoring system."], ["Dungeon acak berbasis grid, musuh punya pola serangan sendiri.", "Grid-based random dungeons where every enemy has its own attack pattern."], ["Balap pesawat 3D dengan model dan efek buatan Blender.", "3D spaceship racing with models and effects made in Blender."], ["PERANGKAT YANG", "DEVICES THAT"], ["SALING BICARA.", "TALK TO EACH OTHER."], ["Sensor membaca dunia, ESP32 mengirim data lewat MQTT, dashboard menampilkannya. Di bawah ini simulasi live-nya. Coba nyalakan relay.", "Sensors read the world, the ESP32 sends data over MQTT, and the dashboard displays it. Below is a live simulation. Try switching the relay."], ["Suhu ruangan", "Room temperature"], ["Kelembapan", "Humidity"], ["Cahaya (LDR)", "Light (LDR)"], ["Relay 1 · Lampu", "Relay 1 · Lamp"], ["CERITA YANG", "STORIES THAT"], ["BERGERAK.", "MOVE."], ["Memotong, menyusun ritme, memberi motion graphic dan retouch. Video pendek, trailer, sampai poster.", "Cutting, building rhythm, adding motion graphics and retouching. Short videos, trailers, and posters."], ["Layers · klik untuk menyalakan / mematikan", "Layers · click to toggle"], ["Judul teks", "Title text"], ["Cahaya matahari", "Sunlight"], ["Gunung", "Mountains"], ["Langit senja", "Sunset sky"], ["DARI KUBUS", "FROM A CUBE"], ["JADI DUNIA.", "TO A WORLD."], ["Modeling, sculpting, texturing, rigging, sampai render di Blender. Putar objek 3D di samping, itu scene interaktif.", "Modeling, sculpting, texturing, rigging, all the way to rendering in Blender. Spin the 3D object beside this, it is an interactive scene."], ["model selesai", "models completed"], ["render animasi", "animation renders"], ["tahun pakai Blender", "years using Blender"], ["IKUTI JUGA DI", "FOLLOW ME ON"], ["Kontennya selalu terbaru. Untuk prototipe ini, embed memakai akun @nvidia. Ganti dengan akunmu lewat atribut", "Always fresh content. This prototype embeds the @nvidia account. Swap in your own account via the"], ["dan", "and"], ["PUNYA IDE?", "GOT AN IDEA?"], ["AYO BIKIN BARENG.", "LET'S TEAM UP."], ["Terbuka untuk magang, proyek freelance, dan kolaborasi game jam.", "Open to internships, freelance projects, and game jam collaborations."], ["© 2026 Nama Kamu. Dibuat dengan HTML, CSS, JavaScript, GSAP, dan Three.js.", "© 2026 Your Name. Built with HTML, CSS, JavaScript, GSAP, and Three.js."], ["Robot 3D interaktif", "Interactive 3D robot"], ["Lihat proyek Web Development", "View Web Development projects"], ["Lihat proyek Mobile Apps", "View Mobile Apps projects"], ["Lihat proyek Game Development", "View Game Development projects"], ["Lihat proyek IoT & Elektronik", "View IoT & Electronics projects"], ["Lihat proyek Multimedia", "View Multimedia projects"], ["Lihat proyek 3D Art", "View 3D Art projects"], ["Log serial monitor", "Serial monitor log"]];
+const PAIRS = [["Skill", "Skills"], ["Galeri", "Gallery"], ["Kontak", "Contact"], ["Hei, saya Nama Kamu!", "Hey, I'm Your Name!"], ["Mahasiswa Teknik Informatika. Web, aplikasi mobile, game, video, 3D, dan IoT dalam satu portofolio. Scroll ke bawah, tiap bagian punya dunianya sendiri.", "Informatics Engineering student. Web, mobile apps, games, video, 3D, and IoT in one portfolio. Scroll down, every section has its own world."], ["Lihat karya", "View my work"], ["Hubungi saya", "Contact me"], ["Ayo bikin sesuatu yang keren!", "Let's make something awesome!"], ["INTERAKTIF 3D · HOVER / SERET", "INTERACTIVE 3D · HOVER / DRAG"], ["Scroll ke bawah", "Scroll down"], ["APLIKASI", "TOOLS I"], ["YANG SAYA KUASAI.", "KNOW WELL."], ["Dikelompokkan per bidang. Arahkan kursor ke ikon untuk melihat nama aplikasinya, atau klik panah untuk melihat proyeknya.", "Grouped by field. Hover over an icon to see the app name, or click the arrow to view its projects."], ["4 aplikasi", "4 apps"], ["3 aplikasi", "3 apps"], ["IoT & Elektronik", "IoT & Electronics"], ["Ikon dari Simple Icons dan Devicon.", "Icons from Simple Icons and Devicon."], ["WEB YANG", "FAST & CLEAN"], ["CEPAT & RAPI.", "WEBSITES."], ["Dari antarmuka sampai API. Saya suka detail kecil: transisi halus, layout responsif, dan kode yang gampang dirawat.", "From interface to API. I love the small details: smooth transitions, responsive layouts, and code that is easy to maintain."], ["Toko Online UMKM", "Small Business Online Store"], ["Katalog, keranjang, dan pembayaran untuk usaha kecil.", "Catalog, cart, and payments for small businesses."], ["Sistem Informasi Akademik", "Academic Information System"], ["Jadwal, nilai, dan presensi dalam satu dashboard.", "Schedules, grades, and attendance in one dashboard."], ["Landing Page Event Kampus", "Campus Event Landing Page"], ["Halaman pendaftaran dengan animasi scroll dan hitung mundur.", "A registration page with scroll animations and a countdown."], ["APLIKASI DI", "APPS BUILT"], ["SATU TANGAN.", "FOR ONE HAND."], ["Android dan iOS dengan satu basis kode. Fokus pada kecepatan buka, gestur natural, dan layout yang pas di layar kecil.", "Android and iOS from a single codebase. Focused on fast launch, natural gestures, and layouts that fit small screens."], ["Catatan Keuangan Mahasiswa", "Student Finance Tracker"], ["Catat pengeluaran harian dan lihat grafik bulanan.", "Log daily spending and view monthly charts."], ["Aplikasi Kontrol IoT", "IoT Control App"], ["Nyalakan lampu dan baca sensor dari ponsel lewat MQTT.", "Switch lights on and read sensors from your phone over MQTT."], ["Pengingat Jadwal Kuliah", "Class Schedule Reminder"], ["Notifikasi tugas dan ujian, bekerja tanpa internet.", "Assignment and exam notifications that work offline."], ["Hari ini", "Today"], ["Ringkasan", "Summary"], ["Proyek: Game", "Projects: Game"], ["Naik level!", "Level up!"], ["Game lari 2D tak berujung dengan kontrol sentuh dan sistem skor online.", "An endless 2D runner with touch controls and an online scoring system."], ["Dungeon acak berbasis grid, musuh punya pola serangan sendiri.", "Grid-based random dungeons where every enemy has its own attack pattern."], ["Balap pesawat 3D dengan model dan efek buatan Blender.", "3D spaceship racing with models and effects made in Blender."], ["PERANGKAT YANG", "DEVICES THAT"], ["SALING BICARA.", "TALK TO EACH OTHER."], ["Sensor membaca dunia, ESP32 mengirim data lewat MQTT, dashboard menampilkannya. Di bawah ini simulasi live-nya. Coba nyalakan relay.", "Sensors read the world, the ESP32 sends data over MQTT, and the dashboard displays it. Below is a live simulation. Try switching the relay."], ["Suhu ruangan", "Room temperature"], ["Kelembapan", "Humidity"], ["Cahaya (LDR)", "Light (LDR)"], ["Relay 1 · Lampu", "Relay 1 · Lamp"], ["CERITA YANG", "STORIES THAT"], ["BERGERAK.", "MOVE."], ["Memotong, menyusun ritme, memberi motion graphic dan retouch. Video pendek, trailer, sampai poster.", "Cutting, building rhythm, adding motion graphics and retouching. Short videos, trailers, and posters."], ["Layers · klik untuk menyalakan / mematikan", "Layers · click to toggle"], ["Judul teks", "Title text"], ["Cahaya matahari", "Sunlight"], ["Gunung", "Mountains"], ["Langit senja", "Sunset sky"], ["DARI KUBUS", "FROM A CUBE"], ["JADI DUNIA.", "TO A WORLD."], ["Modeling, sculpting, texturing, rigging, sampai render di Blender. Putar objek 3D di samping, itu scene interaktif.", "Modeling, sculpting, texturing, rigging, all the way to rendering in Blender. Spin the 3D object beside this, it is an interactive scene."], ["model selesai", "models completed"], ["render animasi", "animation renders"], ["tahun pakai Blender", "years using Blender"], ["IKUTI JUGA DI", "FOLLOW ME ON"], ["Kontennya selalu terbaru. Untuk prototipe ini, embed memakai akun @nvidia. Ganti dengan akunmu lewat atribut", "Always fresh content. This prototype embeds the @nvidia account. Swap in your own account via the"], ["dan", "and"], ["PUNYA IDE?", "GOT AN IDEA?"], ["AYO BIKIN BARENG.", "LET'S TEAM UP."], ["Terbuka untuk magang, proyek freelance, dan kolaborasi game jam.", "Open to internships, freelance projects, and game jam collaborations."], ["© 2026 Nama Kamu. Dibuat dengan HTML, CSS, JavaScript, GSAP, dan Three.js.", "© 2026 Your Name. Built with HTML, CSS, JavaScript, GSAP, and Three.js."], ["Robot 3D interaktif", "Interactive 3D robot"], ["Lihat proyek Web Development", "View Web Development projects"], ["Lihat proyek Mobile Apps", "View Mobile Apps projects"], ["Lihat proyek Game Development", "View Game Development projects"], ["Lihat proyek IoT & Elektronik", "View IoT & Electronics projects"], ["Lihat proyek Multimedia", "View Multimedia projects"], ["Lihat proyek 3D Art", "View 3D Art projects"], ["Log serial monitor", "Serial monitor log"], ["Buka Block Runner", "Open Block Runner"], ["Buka Pixel Dungeon", "Open Pixel Dungeon"], ["Buka Space Drift", "Open Space Drift"]];
 const H1 = {"id": "Saya membangun yang bisa diklik, dimainkan, dan diputar 360°.", "en": "I build things you can click, play, and spin 360°."};
 const DYN = {"en": {"menuOpen": "Open menu", "menuClose": "Close menu", "muted": "Muted", "soundOn": "Sound On", "lampOn": "Turn on the lamp", "lampOff": "Turn off the lamp", "locale": "en-US", "title": "Your Name — Developer & 3D Artist", "desc": "Portfolio of an Informatics Engineering student: web, mobile, game, multimedia, 3D, and IoT."}, "id": {"menuOpen": "Buka menu", "menuClose": "Tutup menu", "muted": "Bisu", "soundOn": "Suara Nyala", "lampOn": "Nyalakan lampu", "lampOff": "Matikan lampu", "locale": "id-ID", "title": "Nama Kamu — Developer & 3D Artist", "desc": "Portofolio mahasiswa Teknik Informatika: web, mobile, game, multimedia, 3D, dan IoT."}};
 const norm = s => s.replace(/\s+/g, ' ').trim();
@@ -1264,56 +1319,6 @@ const ICONS = {
 $$('[data-i]').forEach(el => el.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[el.dataset.i]}</svg>`));
 
 /* ===== Pixel art & tekstur (hanya ungu + lime) ===== */
-function pixelArt(el, map, pal, px) {
-  const rows = map.trim().split('\n').map(r => r.trim());
-  el.style.display = 'grid';
-  el.style.gridTemplateColumns = `repeat(${rows[0].length},${px}px)`;
-  rows.forEach(r => [...r].forEach(ch => {
-    const c = document.createElement('i'); c.style.width = c.style.height = px + 'px';
-    const col = pal[ch]; if (col) c.style.background = Array.isArray(col) ? col[Math.random() * col.length | 0] : col;
-    el.appendChild(c);
-  }));
-}
-function tile(colors, n = 8, px = 8) {
-  const c = document.createElement('canvas'); c.width = c.height = n * px; const x = c.getContext('2d');
-  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { x.fillStyle = colors[Math.random() * colors.length | 0]; x.fillRect(i * px, j * px, px, px); }
-  return `url(${c.toDataURL()})`;
-}
-const ART = {
-  creeper: [`
-    gggggggg
-    gggggggg
-    gkkggkkg
-    gkkggkkg
-    gggkkggg
-    ggkkkkgg
-    ggkggkgg
-    ggkggkgg`, { g: ['#c8f533', '#b5e01f', '#d6ff58'], k: '#14102a' }],
-  heart: [`
-    .rr.rr.
-    rrrrrrr
-    rwrrrrr
-    rrrrrrr
-    .rrrrr.
-    ..rrr..
-    ...r...`, { r: '#8b5cf6', w: '#e9ddff' }],
-  diamond: [`
-    ..bbbb..
-    .bwwcbb.
-    bwwcccbb
-    bwccccbd
-    bcccccdd
-    .bcccdd.
-    ..bcdd..
-    ...bd...`, { b: '#5b21b6', w: '#f3ebff', c: '#a78bfa', d: '#7c3aed' }]
-};
-const art = (el, k, px) => pixelArt(el, ART[k][0], ART[k][1], px);
-art($('#creeper'), 'creeper', 10);
-$$('[data-item]').forEach(e => art(e, e.dataset.item, e.closest('.icon') ? 6 : 3));
-for (let i = 0; i < 10; i++) { const h = document.createElement('div'); h.className = 'px'; art(h, 'heart', 3); $('#hearts').appendChild(h); }
-$('#grass').style.backgroundImage = tile(['#c8f533', '#b5e01f', '#d6ff58', '#a9d41a'], 8, 5);
-$('#dirt').style.backgroundImage = tile(['#2a1b5e', '#34226f', '#231650', '#2d1d66'], 8, 10);
-$$('.mc-card').forEach(c => c.style.backgroundImage = tile(['#2a2152', '#30275e', '#251c49', '#2d2457'], 8, 12));
 /* ===== Teks pixel SVG (bitmap 8x8 diambil dari font Press Start 2P) ===== */
 const PXF = {"!":"3838383030003000","\"":"6c6c6c0000000000","#":"6cfe6c6c6cfe6c00","$":"107cd07c16fc1000","%":"62a4c810264a8c00","&":"70d8d870dacc7e00","'":"3030300000000000","(":"0c18303030180c00",")":"6030181818306000","*":"006c38fe386c0000","+":"0018187e18180000",",":"0000000000303060","-":"0000007e00000000",".":"0000000000303000","/":"0204081020408000","0":"384cc6c6c6643800","1":"1838181818187e00","2":"7cc60e3c78e0fe00","3":"7e0c183c06c67c00","4":"1c3c6cccfe0c0c00","5":"fcc0fc0606c67c00","6":"3c60c0fcc6c67c00","7":"fec60c1830303000","8":"78c4e4789e867c00","9":"7cc6c67e060c7800",":":"0030300030300000",";":"0030300030306000","<":"0c18306030180c00","=":"0000fe00fe000000",">":"6030180c18306000","?":"7cfec60c38003800","@":"7c82baaabe807c00","A":"386cc6c6fec6c600","B":"fcc6c6fcc6c6fc00","C":"3c66c0c0c0663c00","D":"f8ccc6c6c6ccf800","E":"fec0c0fcc0c0fe00","F":"fec0c0fcc0c0c000","G":"3e60c0cec6663e00","H":"c6c6c6fec6c6c600","I":"7e18181818187e00","J":"0606060606c67c00","K":"c6ccd8f0f8dcce00","L":"6060606060607e00","M":"c6eefed6d6c6c600","N":"c6e6f6decec6c600","O":"7cc6c6c6c6c67c00","P":"fcc6c6c6fcc0c000","Q":"7cc6c6c6decc7a00","R":"fcc6c6cef8dcce00","S":"7cc6c07c06c67c00","T":"7e18181818181800","U":"c6c6c6c6c6c67c00","V":"c6c6c6ee7c381000","W":"d6d6d6d6feee4400","X":"c6c66c386cc6c600","Y":"6666663c18181800","Z":"fe0e1c3870e0fe00","[":"3c30303030303c00","\\":"8040201008040200","]":"7818181818187800","^":"386c000000000000","_":"00000000000000fe","`":"1008000000000000","a":"00007c067ec67e00","b":"c0c0fcc6c6c67c00","c":"00007ec0c0c07e00","d":"06067ec6c6c67e00","e":"00007cc6fec07c00","f":"0e187e1818181800","g":"00007ec6c67e067c","h":"c0c0fcc6c6c6c600","i":"1800381818187e00","j":"0c001c0c0c0c0c78","k":"c0c0c6ccf8ccc600","l":"3818181818187e00","m":"0000fcb6b6b6b600","n":"0000fcc6c6c6c600","o":"00007cc6c6c67c00","p":"0000fcc6c6fcc0c0","q":"00007ec6c67e0606","r":"00006e7060606000","s":"00007cc07c06fc00","t":"18187e1818181800","u":"0000c6c6c6c67e00","v":"00006666663c1800","w":"0000d6d6d6d66c00","x":"0000c66c386cc600","y":"0000c6c6c67e067c","z":"0000fe1c3870fe00","{":"0c18183018180c00","|":"1818181818181800","}":"6030301830306000","~":"000070ba1c000000"};
 function pxWord(word, ls) {
@@ -1338,6 +1343,14 @@ function renderPx() {
   });
 }
 renderPx(); window.addEventListener('langchange', renderPx);
+
+/* ===== Game: HUD pemilih proyek (kotak indikator mengikuti kartu yang di-hover / difokus) ===== */
+(function gameHud() {
+  const cards = $$('.gm-card'), dots = $$('.gm-dots i'); if (!cards.length) return;
+  const set = i => dots.forEach((d, k) => d.classList.toggle('on', k === i));
+  cards.forEach((c, i) => ['mouseenter', 'focusin'].forEach(ev => c.addEventListener(ev, () => set(i))));
+  set(0);
+})();
 
 // kotak-kotak kecil melayang (parallax) sebagai dekor game
 const sp = $('#sparks');
