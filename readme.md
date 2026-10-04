@@ -29,15 +29,15 @@
     </td>
     <td width="58%">
       <p>
-        Hi, I'm <b>YOUR NAME</b> — a <b>Developer & Designer</b> who loves turning ideas
+        Hi, I'm <b>Reez</b> — a <b>Developer & Designer</b> who loves turning ideas
         into playful, impactful visuals and products. I enjoy telling stories that
         entertain, connect, and leave a lasting impression.
       </p>
       <ul>
-        <li>🎯 Currently working on <b>your current project</b></li>
-        <li>🌱 Currently learning <b>your learning topic</b></li>
+        <li>🎯 Currently working on <b>Everything actually</b></li>
+        <li>🌱 Currently learning <b>Automation Bot</b></li>
         <li>🤝 Open for <b>collaboration & freelance</b></li>
-        <li>⚡ Fun fact: <b>write a fun fact here</b></li>
+        <li>⚡ Fun fact: <b>I really love cats</b></li>
       </ul>
     </td>
   </tr>
